@@ -4,7 +4,7 @@ import {Header} from "../components/Header";
 import api from "../classes/API";
 import {Container} from "../components/Container";
 import {Button} from "../components/Button";
-import {Card} from "../components/Card";
+import {PromiseCard} from "../components/PromiseCard";
 
 export function Homepage() {
 
@@ -36,9 +36,9 @@ export function Homepage() {
 
             <section className="pt-20">
                 <Container className="h-[16.625rem] justify-between">
-                    <Card icon={"delivery"} heading={"Free Shipping"} paragraph={"Upgrade your style today and get FREE shipping on all orders! Don't miss out."}/>
-                    <Card icon={"starBadge"} heading={"Satisfaction Guarantee"} paragraph={"Shop confidently with our Satisfaction Guarantee: Love it or get a refund."}/>
-                    <Card icon={"shieldCheck"} heading={"Secure Payment"} paragraph={"Your security is our priority. Your payments are secure with us."}/>
+                    <PromiseCard icon={"delivery"} heading={"Free Shipping"} paragraph={"Upgrade your style today and get FREE shipping on all orders! Don't miss out."}/>
+                    <PromiseCard icon={"starBadge"} heading={"Satisfaction Guarantee"} paragraph={"Shop confidently with our Satisfaction Guarantee: Love it or get a refund."}/>
+                    <PromiseCard icon={"shieldCheck"} heading={"Secure Payment"} paragraph={"Your security is our priority. Your payments are secure with us."}/>
                 </Container>
             </section>
 
