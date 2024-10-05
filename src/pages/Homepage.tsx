@@ -25,19 +25,32 @@ export function Homepage() {
                             <Button name={"arrowRight"} title={"View Collection"}/>
                         </div>
                     </div>
-                    <div>
-                        <div className="rounded-full h-80 w-80 bg-[#E9E9EB] flex relative ">
+                    <div className="h-full flex items-end">
+                        <div className="rounded-full h-[21.25rem] w-[21.25rem] bg-[#E9E9EB] flex relative ">
                             <img className="h-[2.375rem] absolute top-0 left-0" src="/images/homepageSection1Star.png" alt="star"/>
-                            <img className="h-[23.75rem] absolute right-0" src="/images/homepageSection1.png" alt="photo"/>
+                            <img className="h-[22.875rem] absolute right-0 bottom-0" src="/images/homepageSection1.png" alt="photo"/>
                         </div>
                     </div>
                 </Container>
             </section>
-            <section className="pt-20 pb-[4.5rem]">
+
+            <section className="pt-20">
                 <Container className="h-[16.625rem] justify-between">
-                    <Card name={"delivery"} heading={"Free Shipping"} paragraph={"Upgrade your style today and get FREE shipping on all orders! Don't miss out."}/>
-                    <Card name={"starBadge"} heading={"Satisfaction Guarantee"} paragraph={"Shop confidently with our Satisfaction Guarantee: Love it or get a refund."}/>
-                    <Card name={"shieldCheck"} heading={"Secure Payment"} paragraph={"Your security is our priority. Your payments are secure with us."}/>
+                    <Card icon={"delivery"} heading={"Free Shipping"} paragraph={"Upgrade your style today and get FREE shipping on all orders! Don't miss out."}/>
+                    <Card icon={"starBadge"} heading={"Satisfaction Guarantee"} paragraph={"Shop confidently with our Satisfaction Guarantee: Love it or get a refund."}/>
+                    <Card icon={"shieldCheck"} heading={"Secure Payment"} paragraph={"Your security is our priority. Your payments are secure with us."}/>
+                </Container>
+            </section>
+
+            <section className="pt-[4.5rem]">
+                <Container className="flex-col gap-20">
+                    <div className="flex flex-col items-center gap-2">
+                        <p className="text-xs">Shop Now</p>
+                        <h3 className="text-2xl font-bold">Best Selling</h3>
+                    </div>
+                    <div>
+
+                    </div>
                 </Container>
             </section>
         </div>
