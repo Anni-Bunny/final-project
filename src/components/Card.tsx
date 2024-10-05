@@ -8,10 +8,10 @@ interface CardProps {
 export function Card({name, heading, paragraph }:CardProps) {
     return (
         <div
-            className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            className="max-w-sm p-6 bg-white flex flex-col gap-3">
             <Icon name={`${name}`}/>
-            <h5>{heading}</h5>
-            <p>{paragraph}</p>
+            <h5 className="font-bold mt-3">{heading}</h5>
+            <p className="text-[0.875rem]">{paragraph}</p>
         </div>
 
     );
