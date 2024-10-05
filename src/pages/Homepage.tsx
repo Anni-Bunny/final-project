@@ -4,7 +4,7 @@ import {Header} from "../components/Header";
 import api from "../classes/API";
 import {Container} from "../components/Container";
 import {Button} from "../components/Button";
-import {Icon} from "../components/Icon";
+import {Card} from "../components/Card";
 
 export function Homepage() {
 
@@ -22,10 +22,7 @@ export function Homepage() {
                             <p className="text-[0.875rem]">Discover Our Newest Collection Today.</p>
                         </div>
                         <div>
-                            <Button>
-                                {"View Collection"}
-                                <Icon name="arrowRight"/>
-                            </Button>
+                            <Button name={"arrowRight"} title={"View Collection"}/>
                         </div>
                     </div>
                     <div>
@@ -34,6 +31,13 @@ export function Homepage() {
                             <img className="h-[23.75rem] absolute right-0" src="/images/homepageSection1.png" alt="photo"/>
                         </div>
                     </div>
+                </Container>
+            </section>
+            <section className="pt-20 pb-[4.5rem]">
+                <Container className="h-[16.625rem] justify-between">
+                    <Card name={"delivery"} heading={"Free Shipping"} paragraph={"Upgrade your style today and get FREE shipping on all orders! Don't miss out."}/>
+                    <Card name={"starBadge"} heading={"Satisfaction Guarantee"} paragraph={"Shop confidently with our Satisfaction Guarantee: Love it or get a refund."}/>
+                    <Card name={"shieldCheck"} heading={"Secure Payment"} paragraph={"Your security is our priority. Your payments are secure with us."}/>
                 </Container>
             </section>
         </div>
