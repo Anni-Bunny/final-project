@@ -6,7 +6,7 @@ interface IconProps {
 export function Icon({ name, className }: IconProps) {
     return (
         <>
-            <img className="size-5" src={`/icons/${name}.svg`} alt={`${name} icon`} />
+            <img className="size-[1.5rem]" src={`/icons/${name}.svg`} alt={`${name} icon`} />
         </>
     );
 }
