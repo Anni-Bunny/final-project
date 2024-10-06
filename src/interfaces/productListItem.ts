@@ -4,6 +4,7 @@ export interface productListItem {
     name: string,
     price: number,
     description: string,
-    image: string
-    size: string
+    image: string,
+    size: string,
+    stock: number
 }
