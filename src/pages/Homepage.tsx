@@ -1,14 +1,30 @@
 import {NotificationBar} from "../components/NotificationBar";
-import React from "react";
+import {useEffect, useState} from "react";
 import {Header} from "../components/Header";
 import api from "../classes/API";
 import {Container} from "../components/Container";
 import {Button} from "../components/Button";
 import {PromiseCard} from "../components/PromiseCard";
+import {productListItem} from "../interfaces/productListItem";
+import {ProductCard} from "../components/ProductCard";
 
 export function Homepage() {
 
-    api.getProducts()
+    const [data, setData] = useState<productListItem[]>([]);
+
+    useEffect(() => {
+        async function fetchProducts () {
+            try {
+                const products = await api.getProducts();
+                setData(products);
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            }
+        }
+
+        fetchProducts();
+    }, []);
+
 
     return (
         <div>
@@ -27,8 +43,10 @@ export function Homepage() {
                     </div>
                     <div className="h-full flex items-end">
                         <div className="rounded-full h-[21.25rem] w-[21.25rem] bg-[#E9E9EB] flex relative ">
-                            <img className="h-[2.375rem] absolute top-0 left-0" src="/images/homepageSection1Star.png" alt="star"/>
-                            <img className="h-[22.875rem] absolute right-0 bottom-0" src="/images/homepageSection1.png" alt="photo"/>
+                            <img className="h-[2.375rem] absolute top-0 left-0" src="/images/homepageSection1Star.png"
+                                 alt="star"/>
+                            <img className="h-[22.875rem] absolute right-0 bottom-0" src="/images/homepageSection1.png"
+                                 alt="photo"/>
                         </div>
                     </div>
                 </Container>
@@ -36,9 +54,12 @@ export function Homepage() {
 
             <section className="pt-20">
                 <Container className="h-[16.625rem] justify-between">
-                    <PromiseCard icon={"delivery"} heading={"Free Shipping"} paragraph={"Upgrade your style today and get FREE shipping on all orders! Don't miss out."}/>
-                    <PromiseCard icon={"starBadge"} heading={"Satisfaction Guarantee"} paragraph={"Shop confidently with our Satisfaction Guarantee: Love it or get a refund."}/>
-                    <PromiseCard icon={"shieldCheck"} heading={"Secure Payment"} paragraph={"Your security is our priority. Your payments are secure with us."}/>
+                    <PromiseCard icon={"delivery"} heading={"Free Shipping"}
+                                 paragraph={"Upgrade your style today and get FREE shipping on all orders! Don't miss out."}/>
+                    <PromiseCard icon={"starBadge"} heading={"Satisfaction Guarantee"}
+                                 paragraph={"Shop confidently with our Satisfaction Guarantee: Love it or get a refund."}/>
+                    <PromiseCard icon={"shieldCheck"} heading={"Secure Payment"}
+                                 paragraph={"Your security is our priority. Your payments are secure with us."}/>
                 </Container>
             </section>
 
@@ -48,8 +69,12 @@ export function Homepage() {
                         <p className="text-xs">Shop Now</p>
                         <h3 className="text-2xl font-bold">Best Selling</h3>
                     </div>
-                    <div>
-
+                    <div className="flex">
+                        {
+                            data.map(product => (
+                                <ProductCard key={product.id} product={product}/>
+                            ))
+                        }
                     </div>
                 </Container>
             </section>
