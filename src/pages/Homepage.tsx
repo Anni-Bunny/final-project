@@ -49,7 +49,7 @@ export function Homepage() {
                 </Container>
             </section>
 
-            <section className="pt-20">
+            <section className="mt-20">
                 <Container className="h-[16.625rem] justify-between">
                     <PromiseCard icon={"delivery"} heading={"Free Shipping"}
                                  paragraph={"Upgrade your style today and get FREE shipping on all orders! Don't miss out."}/>
@@ -60,19 +60,34 @@ export function Homepage() {
                 </Container>
             </section>
 
-            <section className="pt-[4.5rem]">
+            <section className="mt-[4.5rem]">
                 <Container className="flex-col gap-20">
                     <div className="flex flex-col items-center gap-2">
                         <p className="text-xs">Shop Now</p>
                         <h3 className="text-2xl font-bold">Best Selling</h3>
                     </div>
-                    <div className="flex gap-5">
+                    <div className="flex w-full justify-between">
                         {
                             data.map(product => (
                                 <ProductCard key={product.id} product={product}/>
                             ))
                         }
                     </div>
+                </Container>
+            </section>
+            <section className="mt-40 bg-[#F6F6F6]">
+                <Container className="justify-between">
+                    <div className="flex flex-col gap-8">
+                        <div className="flex flex-col gap-6">
+                            <h3 className="text-2xl font-bold">Browse Our Fashion Paradise!</h3>
+                            <p className="text-sm w-5/6">Step into a world of style and explore our diverse collection
+                                of clothing categories.</p>
+                        </div>
+                        <div>
+                            <Button className="inline" name={"arrowRight"} title={"Start Browsing"}/>
+                        </div>
+                    </div>
+                    <img className="h-[19.438rem]" src="/images/categoryImage.png" alt=""/>
                 </Container>
             </section>
         </div>
