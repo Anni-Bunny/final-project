@@ -13,13 +13,10 @@ export function Homepage() {
     const [data, setData] = useState<productListItem[]>([]);
 
     useEffect(() => {
-        async function fetchProducts () {
-            try {
-                const products = await api.getProducts();
+        async function fetchProducts() {
+            const products = await api.getProducts();
+            if (products)
                 setData(products);
-            } catch (error) {
-                console.error('Error fetching products:', error);
-            }
         }
 
         fetchProducts();
@@ -69,7 +66,7 @@ export function Homepage() {
                         <p className="text-xs">Shop Now</p>
                         <h3 className="text-2xl font-bold">Best Selling</h3>
                     </div>
-                    <div className="flex">
+                    <div className="flex gap-5">
                         {
                             data.map(product => (
                                 <ProductCard key={product.id} product={product}/>
