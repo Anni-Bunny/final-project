@@ -1,5 +1,3 @@
-import {productListItem} from "../interfaces/productListItem";
-
 class API {
     private static instance: API;
     private URL: string = 'http://localhost:3000/'; // Ensure the protocol is included
