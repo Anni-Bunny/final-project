@@ -7,13 +7,21 @@ interface ProductCardProps {
 
 export function ProductCard({product}: ProductCardProps) {
     return (
-        <Card>
+        <Card className="space-y-6 px-2 py-4">
             <img src={product.image} alt=""/>
-            <div>
+            <div className="flex flex-col gap-3">
                 <p>{product.name}</p>
-                <div>
-                    <span>{product.stock}</span>
-                    <span>{product.price}</span>
+                <div className="flex gap-3.5">
+                    <span className="border border-[#E6E7E8] rounded-full py-0.5 px-4 text-sm">
+                        {
+                            (product.stock)?"IN STOCK":"OUT OF STOCK"
+                        }
+                    </span>
+                    <span>
+                        {
+                            product.price > 0 ?`$${product.price}.00` : <span>`$${product.price}`</span>
+                        }
+                    </span>
                 </div>
             </div>
         </Card>
