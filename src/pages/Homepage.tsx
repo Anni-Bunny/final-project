@@ -18,10 +18,8 @@ export function Homepage() {
             if (products)
                 setData(products);
         }
-
         fetchProducts();
     }, []);
-
 
     return (
         <div>
