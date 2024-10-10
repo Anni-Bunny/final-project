@@ -35,7 +35,7 @@ export function Homepage() {
                             <p className="text-[0.875rem]">Discover Our Newest Collection Today.</p>
                         </div>
                         <div>
-                            <Button name={"arrowRight"} title={"View Collection"}/>
+                            <Button icon={"arrowRight"} title={"View Collection"}/>
                         </div>
                     </div>
                     <div className="h-full flex items-end">
@@ -84,7 +84,7 @@ export function Homepage() {
                                 of clothing categories.</p>
                         </div>
                         <div>
-                            <Button className="inline" name={"arrowRight"} title={"Start Browsing"}/>
+                            <Button className="inline" icon={"arrowRight"} title={"Start Browsing"}/>
                         </div>
                     </div>
                     <img className="h-[19.438rem]" src="/images/categoryImage.png" alt=""/>
