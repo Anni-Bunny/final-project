@@ -1,22 +1,16 @@
-import {Field, Input as HeadlessInput, Label } from '@headlessui/react'
-import clsx from 'clsx'
-
-interface InputProps{
-    className?:string
+interface InputProps {
+    className?: string,
+    label: string,
+    inputType: string
 }
 
-export default function Input() {
+export function Input({label, className, inputType}: InputProps) {
     return (
-        <div className="w-full max-w-md px-4">
-            <Field>
-                <Label className="text-sm/6 font-medium text-white">Name</Label>
-                <HeadlessInput
-                    className={clsx(
-                        'mt-3 block w-full rounded-lg border-none bg-white/5 py-1.5 px-3 text-sm/6 text-white',
-                        'focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25'
-                    )}
-                />
-            </Field>
+        <div className={`flex flex-col ${className}`}>
+            <h3 className="text-sm/6 font-medium text-black">{label}</h3>
+            <input className="rounded-md bg-white border border-[#E6E7E8] py-2.5 px-[0.938rem] h-[2.813rem] w-80 text-black text-sm
+            focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25 required:"
+                   type={inputType}/>
         </div>
     )
 }
