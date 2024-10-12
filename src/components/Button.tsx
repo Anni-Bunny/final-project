@@ -1,7 +1,7 @@
 import {Icon} from "./Icon";
 
 interface ButtonProps {
-    icon: string,
+    icon?: string,
     className?: string,
     title: string,
     type?: 'button-1' | 'button-2' | 'button-3' | 'button-4' | 'button-5' | 'button-6' | 'button-7' | 'button-8'
@@ -70,6 +70,8 @@ export function Button({icon, className, title, type = "button-1"}: ButtonProps)
         <div
             className={`${divClasses} group-hover/button:top-[-100%] left-0 absolute w-full h-full top-full transition-all duration-600`}>
         </div>
-        <Icon name={`${icon}`}/>
+        {
+            (icon)? <Icon name={`${icon}`}/> : null
+        }
     </button>;
 }
