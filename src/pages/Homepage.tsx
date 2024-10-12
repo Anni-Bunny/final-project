@@ -7,6 +7,8 @@ import {Button} from "../components/Button";
 import {PromiseCard} from "../components/PromiseCard";
 import {productListItem} from "../interfaces/productListItem";
 import {ProductCard} from "../components/ProductCard";
+import {Input} from "../components/Input";
+import {Footer} from "../components/Footer";
 
 export function Homepage() {
 
@@ -88,6 +90,14 @@ export function Homepage() {
                     <img className="h-[19.438rem]" src="/images/categoryImage.png" alt=""/>
                 </Container>
             </section>
+
+            <section className="h-96">
+
+            </section>
+
+            <Footer displayNewsLetter={true}/>
+
+
         </div>
 
 
