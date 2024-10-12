@@ -4,7 +4,7 @@ import {Button} from "./Button";
 
 export function NewsLetter() {
     return (
-        <div className="flex h-[12.5rem] bg-[#F6F6F6] w-full">
+        <div className="flex h-[12.5rem] bg-[#F6F6F6] w-full py-[3.688rem]">
             <Container className="justify-between">
                 <div className="flex flex-col gap-6">
                     <h3 className="text-2xl font-bold">Join Our Newsletter</h3>
