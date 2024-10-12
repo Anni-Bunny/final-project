@@ -23,7 +23,7 @@ export function Header() {
                         <Icon name="search"/>
                         <input type="search" className="h-6 outline-none"/>
                     </div>
-                    <Icon name="cart" className="size-"/>
+                    <Icon name="cart"/>
                     <Icon name="user-1"/>
                 </div>
             </Container>
