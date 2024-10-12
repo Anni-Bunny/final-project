@@ -4,7 +4,7 @@ import {Container} from "./Container";
 
 export function Header() {
     return (
-        <div className="h-20 bg-white flex justify-center items-center">
+        <header className="h-20 bg-white flex justify-center items-center">
             <Container className="h-11 justify-between">
                 <div className="flex gap-32 py-0.5 items-center">
                     <div className="flex items-center gap-3">
@@ -27,6 +27,6 @@ export function Header() {
                     <Icon name="user-1"/>
                 </div>
             </Container>
-        </div>
+        </header>
     );
 }
