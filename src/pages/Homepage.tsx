@@ -6,9 +6,8 @@ import {Container} from "../components/Container";
 import {Button} from "../components/Button";
 import {PromiseCard} from "../components/PromiseCard";
 import {productListItem} from "../interfaces/productListItem";
-import {ProductCard} from "../components/ProductCard";
-import {Input} from "../components/Input";
 import {Footer} from "../components/Footer";
+import {Slider} from "../components/Slider";
 
 export function Homepage() {
 
@@ -20,6 +19,7 @@ export function Homepage() {
             if (products)
                 setData(products);
         }
+
         fetchProducts();
     }, []);
 
@@ -66,13 +66,7 @@ export function Homepage() {
                         <p className="text-xs">Shop Now</p>
                         <h3 className="text-2xl font-bold">Best Selling</h3>
                     </div>
-                    <div className="flex w-full justify-between">
-                        {
-                            data.map(product => (
-                                <ProductCard key={product.id} product={product}/>
-                            ))
-                        }
-                    </div>
+                    <Slider products={data}/>
                 </Container>
             </section>
             <section className="mt-40 bg-[#F6F6F6]">
