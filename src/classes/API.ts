@@ -28,8 +28,12 @@ class API {
         }
     }
 
-    async getProducts() {
-        return await this.getRequest('products');
+    async getBestSellers() {
+        return await this.getRequest('BestSellers');
+    }
+
+    async getFeaturedProducts(){
+        return await this.getRequest('FeaturedProducts');
     }
 
 }
