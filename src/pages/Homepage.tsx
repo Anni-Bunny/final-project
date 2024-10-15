@@ -99,8 +99,8 @@ export function Homepage() {
             <section className="mt-36 mb-44">
                 <Container className="flex flex-col gap-12" >
                     <div className="flex items-center mx-auto gap-6 text-sm">
-                        <Link to={""}>Featured</Link>
-                        <Link to={""}>Latest</Link>
+                        <Button title={"Featured"} type={"button-8"}/>
+                        <Button title={"Latest"} type={"button-8"}/>
                     </div>
                     <Slider products={FeaturedProducts}/>
                 </Container>
