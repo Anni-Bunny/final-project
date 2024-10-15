@@ -12,7 +12,7 @@ export function ProductCard({product}: ProductCardProps) {
             <div className="flex flex-col gap-3">
                 <p>{product.name}</p>
                 <div className="flex gap-3.5">
-                    <span className="border border-[#E6E7E8] rounded-full py-0.5 px-4 text-sm">
+                    <span className={`border rounded-full py-0.5 px-4 text-sm ${(product.stock)? "text-[#0E1422]" : "text-[#E6E7E8]"}`}>
                         {
                             (product.stock)?"IN STOCK":"OUT OF STOCK"
                         }
