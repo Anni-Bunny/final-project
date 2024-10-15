@@ -8,20 +8,31 @@ import {PromiseCard} from "../components/PromiseCard";
 import {productListItem} from "../interfaces/productListItem";
 import {Footer} from "../components/Footer";
 import {Slider} from "../components/Slider";
+import {Link} from "react-router-dom";
 
 export function Homepage() {
 
-    const [data, setData] = useState<productListItem[]>([]);
+    const [BestSellers, setBestSellers] = useState<productListItem[]>([]);
 
     useEffect(() => {
         async function fetchProducts() {
-            const products = await api.getProducts();
+            const products = await api.getBestSellers();
             if (products)
-                setData(products);
+                setBestSellers(products);
         }
-
         fetchProducts();
     }, []);
+
+    const [FeaturedProducts, setFeaturedProducts] = useState<productListItem[]>([]);
+    useEffect(() => {
+        async function fetchProducts() {
+            const products = await api.getFeaturedProducts();
+            if (products)
+                setFeaturedProducts(products);
+        }
+        fetchProducts();
+    }, []);
+
 
     return (
         <div>
@@ -66,7 +77,7 @@ export function Homepage() {
                         <p className="text-xs">Shop Now</p>
                         <h3 className="text-2xl font-bold">Best Selling</h3>
                     </div>
-                    <Slider products={data}/>
+                    <Slider products={BestSellers}/>
                 </Container>
             </section>
             <section className="mt-40 bg-[#F6F6F6]">
@@ -85,8 +96,14 @@ export function Homepage() {
                 </Container>
             </section>
 
-            <section className="h-96">
-
+            <section className="mt-36 mb-44">
+                <Container className="flex flex-col gap-12" >
+                    <div className="flex items-center mx-auto gap-6 text-sm">
+                        <Link to={""}>Featured</Link>
+                        <Link to={""}>Latest</Link>
+                    </div>
+                    <Slider products={FeaturedProducts}/>
+                </Container>
             </section>
 
             <Footer displayNewsLetter={true}/>
