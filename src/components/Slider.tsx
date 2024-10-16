@@ -12,8 +12,7 @@ export function Slider({products}: ProductSliderInterface) {
         <Swiper className="flex w-full justify-between"
                 spaceBetween={50}
                 slidesPerView={4}
-                onSlideChange={() => console.log('slide change')}
-                onSwiper={(swiper: any) => console.log(swiper)}>
+        >
             {
                 products.map(product => (
                     <SwiperSlide key={product.id}>
