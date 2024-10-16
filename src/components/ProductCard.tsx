@@ -8,7 +8,7 @@ interface ProductCardProps {
 export function ProductCard({product}: ProductCardProps) {
     return (
         <Card className="space-y-6 px-2 py-4">
-            <img src={product.image} alt=""/>
+            <img className="bg-[#F6F6F6]" src={product.image} alt=""/>
             <div className="flex flex-col gap-3">
                 <p>{product.name}</p>
                 <div className="flex gap-3.5">
