@@ -4,10 +4,11 @@ interface ButtonProps {
     icon?: string,
     className?: string,
     title: string,
-    type?: 'button-1' | 'button-2' | 'button-3' | 'button-4' | 'button-5' | 'button-6' | 'button-7' | 'button-8'
+    type?: 'button-1' | 'button-2' | 'button-3' | 'button-4' | 'button-5' | 'button-6' | 'button-7' | 'button-8',
+    onClick?: () => void
 }
 
-export function Button({icon, className, title, type = "button-1"}: ButtonProps) {
+export function Button({icon, className, title, type = "button-1", onClick}: ButtonProps) {
 
     let typeClasses = ""
     let divClasses = ""
@@ -65,6 +66,7 @@ export function Button({icon, className, title, type = "button-1"}: ButtonProps)
     }
 
     return <button
+        onClick={onClick}
         className={`${typeClasses} overflow-hidden group/button relative transition duration-200 flex items-center ${className}`}>
         <span className={`${titleClasses} font-medium invert flex items-center`}>{title}</span>
         <div
