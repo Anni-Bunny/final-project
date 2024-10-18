@@ -45,9 +45,10 @@ export function TabSwitcher() {
                     <Button onClick={onChangeTab} name={"features"} title={"Featured"} type={"button-8"}/>
                     <Button onClick={onChangeTab} name={"latest"} title={"Latest"} type={"button-8"}/>
                 </div>
-                {
-                    currentTab === tabs.features ? <Slider products={featuredProducts}/> : <Slider products={latestProducts}/>
-                }
+
+                <Slider className={ currentTab !== tabs.features ? 'hidden' : ''} products={featuredProducts}/>
+                <Slider className={ currentTab !== tabs.latest ? 'hidden' : ''} products={latestProducts}/>
+
             </Container>
         </section>
     )
