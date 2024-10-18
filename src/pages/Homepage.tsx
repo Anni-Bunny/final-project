@@ -9,6 +9,7 @@ import {productListItem} from "../interfaces/productListItem";
 import {Footer} from "../components/Footer";
 import {Slider} from "../components/Slider";
 import {Link} from "react-router-dom";
+import {TabSwitcher} from "../components/TabSwitcher";
 
 export function Homepage() {
 
@@ -20,16 +21,7 @@ export function Homepage() {
             if (products)
                 setBestSellers(products);
         }
-        fetchProducts();
-    }, []);
 
-    const [FeaturedProducts, setFeaturedProducts] = useState<productListItem[]>([]);
-    useEffect(() => {
-        async function fetchProducts() {
-            const products = await api.getFeaturedProducts();
-            if (products)
-                setFeaturedProducts(products);
-        }
         fetchProducts();
     }, []);
 
@@ -96,15 +88,8 @@ export function Homepage() {
                 </Container>
             </section>
 
-            <section className="mt-36 mb-44">
-                <Container className="flex flex-col gap-12" >
-                    <div className="flex items-center mx-auto gap-6 text-sm">
-                        <Button title={"Featured"} type={"button-8"}/>
-                        <Button title={"Latest"} type={"button-8"}/>
-                    </div>
-                    <Slider products={FeaturedProducts}/>
-                </Container>
-            </section>
+
+            <TabSwitcher/>
 
             <Footer displayNewsLetter={true}/>
 
