@@ -1,18 +1,28 @@
 import {Icon} from "./Icon";
+import React from "react";
 
 interface ButtonProps {
     icon?: string,
     className?: string,
     title: string,
     type?: 'button-1' | 'button-2' | 'button-3' | 'button-4' | 'button-5' | 'button-6' | 'button-7' | 'button-8',
-    onClick?: () => void
+    onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void,
+    name?: string
 }
 
-export function Button({icon, className, title, type = "button-1", onClick}: ButtonProps) {
+export function Button({icon, className, title, type = "button-1", onClick, name}: ButtonProps) {
 
     let typeClasses = ""
     let divClasses = ""
     let titleClasses = ""
+
+    // const btnTypes = {
+    //     primary: 'bg-[#0E1422] rounded border py-3 px-6 h-[2.75rem]',
+    //     secondary: 'bg-[#202533] rounded border py-3 px-6 h-[2.75rem]'
+    // }
+
+
+    // console.log(btnTypes[type])
 
     switch (type) {
         case 'button-1': {
@@ -66,6 +76,7 @@ export function Button({icon, className, title, type = "button-1", onClick}: But
     }
 
     return <button
+        name={name}
         onClick={onClick}
         className={`${typeClasses} overflow-hidden group/button relative transition duration-200 flex items-center ${className}`}>
         <span className={`${titleClasses} font-medium invert flex items-center`}>{title}</span>
