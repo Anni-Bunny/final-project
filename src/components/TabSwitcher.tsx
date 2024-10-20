@@ -42,8 +42,8 @@ export function TabSwitcher() {
         <section className="mt-36 mb-44">
             <Container className="flex flex-col gap-12">
                 <div className="flex items-center mx-auto gap-6 text-sm">
-                    <Button onClick={onChangeTab} name={"features"} title={"Featured"} type={"button-8"}/>
-                    <Button onClick={onChangeTab} name={"latest"} title={"Latest"} type={"button-8"}/>
+                    <Button onClick={onChangeTab} name={"features"} title={"Featured"} type={"whiteLightRoundedBtn"}/>
+                    <Button onClick={onChangeTab} name={"latest"} title={"Latest"} type={"whiteLightRoundedBtn"}/>
                 </div>
 
                 <Slider className={ currentTab !== tabs.features ? 'hidden' : ''} products={featuredProducts}/>
