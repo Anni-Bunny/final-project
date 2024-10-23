@@ -6,6 +6,7 @@ import {Slider} from "../components/Slider";
 import {useEffect, useState} from "react";
 import {productListItem} from "../interfaces/productListItem";
 import api from "../classes/API";
+import {ProductImageSlider} from "../components/ProductImageSlider";
 
 export function Product() {
 
@@ -27,6 +28,7 @@ export function Product() {
             <Header/>
             <section>
                 <Container>
+                    <ProductImageSlider product={BestSellers[0]}/>
                     <div>
                         <h3>Raw Black T-Shirt Lineup</h3>
                     </div>
