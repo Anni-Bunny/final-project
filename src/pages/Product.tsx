@@ -18,7 +18,6 @@ export function Product() {
             if (products)
                 setBestSellers(products);
         }
-
         fetchProducts();
     }, []);
 
@@ -27,10 +26,10 @@ export function Product() {
             <NotificationBar/>
             <Header/>
             <section>
-                <Container>
-                    <ProductImageSlider product={BestSellers[0]}/>
+                <Container className="justify-center pb-44 gap-32">
+                    <ProductImageSlider className="h-[35.875rem] w-[33.375rem] bg-[#F6F6F6] rounded py-7 px-24" product={BestSellers[0]}/>
                     <div>
-                        <h3>Raw Black T-Shirt Lineup</h3>
+                        <h3 className="text-2xl font-bold text-[#0E1422]">Raw Black T-Shirt Lineup</h3>
                     </div>
                 </Container>
             </section>
