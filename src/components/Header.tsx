@@ -7,12 +7,12 @@ export function Header() {
         <header className="h-20 bg-white flex justify-center items-center">
             <Container className="h-11 justify-between">
                 <div className="flex gap-32 py-0.5 items-center">
-                    <div className="flex items-center gap-3">
+                    <Link to="/" className="flex items-center gap-3">
                         <img src="/images/ecommerceLogo.svg" alt="Ecommerce logo"/>
                         <h1 className="font-bold">Ecommerce</h1>
-                    </div>
+                    </Link>
                     <div className="flex gap-8">
-                        <Link to={""}>Home</Link>
+                        <Link to="/">Home</Link>
                         <Link to={""}>Categories</Link>
                         <Link to={""}>About</Link>
                         <Link to={""}>Contact</Link>
