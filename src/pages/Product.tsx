@@ -7,31 +7,61 @@ import {useEffect, useState} from "react";
 import {productListItem} from "../interfaces/productListItem";
 import api from "../classes/API";
 import {ProductImageSlider} from "../components/ProductImageSlider";
+import {BreadCrumb} from "../components/BreadCrumb";
+import {useParams} from "react-router-dom";
 
 export function Product() {
 
+    const {id} = useParams()
     const [BestSellers, setBestSellers] = useState<productListItem[]>([]);
+    const [product, setProduct] = useState<productListItem>();
+
+    let links = [
+        {
+            name: "Ecommerce",
+            url: "/"
+        },
+        {
+            name: "Products",
+            url: "/products"
+        },
+        {
+            name: "Raw Black T-Shirt Lineup"
+        }
+    ]
 
     useEffect(() => {
         async function fetchProducts() {
             const products = await api.getBestSellers();
-            if (products)
+            if (products) {
                 setBestSellers(products);
+            }
+
+            if (id) {
+                const product = await api.getBestSellers(id);
+                setProduct(product)
+            }
+
         }
+
         fetchProducts();
-    }, []);
+    }, [id]);
 
     return (
         <>
             <NotificationBar/>
             <Header/>
+            <BreadCrumb links={links}/>
             <section>
-                <Container className="justify-between pb-44 gap-32">
-                    <ProductImageSlider className="h-[40rem] w-1/2 bg-[#F6F6F6] rounded" product={BestSellers[0]}/>
-                    <div className="w-1/2">
-                        <h3 className="text-2xl font-bold text-[#0E1422] w-full">Raw Black T-Shirt Lineup</h3>
-                    </div>
-                </Container>
+                {
+                    product &&
+                    <Container className="justify-between pb-44 gap-32">
+                        <ProductImageSlider className="h-[40rem] w-1/2 bg-[#F6F6F6] rounded" product={product}/>
+                        <div className="w-1/2">
+                            <h3 className="text-2xl font-bold text-[#0E1422] w-full">{product.name}</h3>
+                        </div>
+                    </Container>
+                }
             </section>
 
             <Container className="pb-36 flex flex-col gap-14">
