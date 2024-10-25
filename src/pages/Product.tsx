@@ -26,10 +26,10 @@ export function Product() {
             <NotificationBar/>
             <Header/>
             <section>
-                <Container className="justify-center pb-44 gap-32">
-                    <ProductImageSlider className="h-[35.875rem] w-[33.375rem] bg-[#F6F6F6] rounded py-7 px-24" product={BestSellers[0]}/>
-                    <div>
-                        <h3 className="text-2xl font-bold text-[#0E1422]">Raw Black T-Shirt Lineup</h3>
+                <Container className="justify-between pb-44 gap-32">
+                    <ProductImageSlider className="h-[40rem] w-1/2 bg-[#F6F6F6] rounded" product={BestSellers[0]}/>
+                    <div className="w-1/2">
+                        <h3 className="text-2xl font-bold text-[#0E1422] w-full">Raw Black T-Shirt Lineup</h3>
                     </div>
                 </Container>
             </section>
