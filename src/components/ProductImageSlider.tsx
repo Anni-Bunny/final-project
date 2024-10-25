@@ -10,13 +10,13 @@ interface ProductSliderInterface {
 
 export function ProductImageSlider({product, className, color = 'default'}: ProductSliderInterface) {
     return (
-        <div className={`${className} flex w-full justify-between`}>
+        <div className={`${className} flex`}>
             <Swiper slidesPerView={1}>
                 {
                     product && product.images[color].map((image, index) => (
 
                         <SwiperSlide key={`${product.id}_${color}_${index}`}>
-                            <img src={image} alt={product.name} className="w-full h-auto"/>
+                            <img src={image} alt={product.name} className="h-full mx-auto"/>
                         </SwiperSlide>
 
                     ))
