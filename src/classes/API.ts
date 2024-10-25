@@ -28,11 +28,15 @@ class API {
         }
     }
 
-    async getBestSellers() {
-        return await this.getRequest('BestSellers');
+    async getBestSellers(id: string | null = null) {
+        let url = 'BestSellers'
+        if (id) {
+            url += `/${id}`
+        }
+        return await this.getRequest(url);
     }
 
-    async getFeaturedProducts(){
+    async getFeaturedProducts() {
         return await this.getRequest('FeaturedProducts');
     }
 
