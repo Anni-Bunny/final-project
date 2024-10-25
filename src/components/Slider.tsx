@@ -19,7 +19,7 @@ export function Slider({products, className}: ProductSliderInterface) {
                {
                    products.map(product => (
                        <SwiperSlide key={product.id}>
-                           <Link to="/product"><ProductCard key={product.id} product={product}/></Link>
+                           <Link to={"/products/" + product.id}><ProductCard key={product.id} product={product}/></Link>
                        </SwiperSlide>
                    ))
                }
