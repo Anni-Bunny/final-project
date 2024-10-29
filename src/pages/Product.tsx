@@ -11,6 +11,7 @@ import {BreadCrumb} from "../components/BreadCrumb";
 import {useParams} from "react-router-dom";
 import {Button} from "../components/Button";
 import {Stock} from "../components/Stock";
+import {ProductPrice} from "../components/ProductPrice";
 
 export function Product() {
 
@@ -59,12 +60,13 @@ export function Product() {
                     <Container className="justify-between pb-44 gap-32">
                         <ProductImageSlider className="h-[40rem] w-1/2 bg-[#F6F6F6] rounded" product={product}/>
                         <div className="w-1/2 py-3">
-                            <h3 className="text-2xl font-bold text-[#0E1422]">{product.name}</h3>
-                            <div className="flex gap-2">
+                            <h3 className="text-2xl font-bold text-[#0E1422] mb-3">{product.name}</h3>
+                            <div className="flex gap-2 mb-6">
                                 <Button type="LightGrayBtn" title={"4.2 — 54 Reviews"}
                                         className="h-7 flex-row-reverse gap-2" icon={"star"}/>
                                 <Stock product={product} className="h-7"/>
                             </div>
+                            <ProductPrice product={product} className="text-[#0E1422] font-semibold text-lg mb-8"/>
                         </div>
                     </Container>
                 }
