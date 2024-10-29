@@ -1,5 +1,6 @@
 import {Card} from "./Card";
 import {productListItem} from "../interfaces/productListItem";
+import {Stock} from "./Stock";
 
 interface ProductCardProps {
     product: productListItem
@@ -12,11 +13,7 @@ export function ProductCard({product}: ProductCardProps) {
             <div className="flex flex-col gap-3">
                 <p>{product.name}</p>
                 <div className="flex gap-3.5">
-                    <span className={`border rounded-full py-0.5 px-4 text-sm ${(product.stock)? "text-[#0E1422]" : "text-[#E6E7E8]"}`}>
-                        {
-                            (product.stock)?"IN STOCK":"OUT OF STOCK"
-                        }
-                    </span>
+                    <Stock product={product}/>
                     <span>
                         {
                             product.price > 0 ?`$${product.price}.00` : <span>`$${product.price}`</span>
