@@ -12,6 +12,7 @@ import {useParams} from "react-router-dom";
 import {Button} from "../components/Button";
 import {Stock} from "../components/Stock";
 import {ProductPrice} from "../components/ProductPrice";
+import {Radio} from "../components/Radio";
 
 export function Product() {
 
@@ -67,6 +68,14 @@ export function Product() {
                                 <Stock product={product} className="h-7"/>
                             </div>
                             <ProductPrice product={product} className="text-[#0E1422] font-semibold text-lg mb-8"/>
+                            <div>
+                                <h3 className="text-[#5C5F6A]">AVAILABLE COLORS</h3>
+                                <Radio name={"color"} type={"color"}/>
+                            </div>
+                            <div>
+                                <h3 className="text-[#5C5F6A]">SELECT SIZE</h3>
+                                <Radio name={"size"} type={"text"} label={"S"}/>
+                            </div>
                         </div>
                     </Container>
                 }
