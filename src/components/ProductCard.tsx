@@ -1,6 +1,7 @@
 import {Card} from "./Card";
 import {productListItem} from "../interfaces/productListItem";
 import {Stock} from "./Stock";
+import {ProductPrice} from "./ProductPrice";
 
 interface ProductCardProps {
     product: productListItem
@@ -14,11 +15,7 @@ export function ProductCard({product}: ProductCardProps) {
                 <p>{product.name}</p>
                 <div className="flex gap-3.5">
                     <Stock product={product}/>
-                    <span>
-                        {
-                            product.price > 0 ?`$${product.price}.00` : <span>`$${product.price}`</span>
-                        }
-                    </span>
+                    <ProductPrice product={product}/>
                 </div>
             </div>
         </Card>
