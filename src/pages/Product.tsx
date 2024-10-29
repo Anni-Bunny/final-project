@@ -9,6 +9,8 @@ import api from "../classes/API";
 import {ProductImageSlider} from "../components/ProductImageSlider";
 import {BreadCrumb} from "../components/BreadCrumb";
 import {useParams} from "react-router-dom";
+import {Button} from "../components/Button";
+import {Stock} from "../components/Stock";
 
 export function Product() {
 
@@ -41,7 +43,6 @@ export function Product() {
                 const product = await api.getBestSellers(id);
                 setProduct(product)
             }
-
         }
 
         fetchProducts();
@@ -57,8 +58,13 @@ export function Product() {
                     product &&
                     <Container className="justify-between pb-44 gap-32">
                         <ProductImageSlider className="h-[40rem] w-1/2 bg-[#F6F6F6] rounded" product={product}/>
-                        <div className="w-1/2">
-                            <h3 className="text-2xl font-bold text-[#0E1422] w-full">{product.name}</h3>
+                        <div className="w-1/2 py-3">
+                            <h3 className="text-2xl font-bold text-[#0E1422]">{product.name}</h3>
+                            <div className="flex gap-2">
+                                <Button type="LightGrayBtn" title={"4.2 — 54 Reviews"}
+                                        className="h-7 flex-row-reverse gap-2" icon={"star"}/>
+                                <Stock product={product} className="h-7"/>
+                            </div>
                         </div>
                     </Container>
                 }
