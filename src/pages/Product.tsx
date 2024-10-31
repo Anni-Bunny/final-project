@@ -13,6 +13,7 @@ import {Button} from "../components/Button";
 import {Stock} from "../components/Stock";
 import {ProductPrice} from "../components/ProductPrice";
 import {Radio} from "../components/Radio";
+import {InfoTabsSwitcher} from "../components/InfoTabsSwitcher";
 
 export function Product() {
 
@@ -80,6 +81,8 @@ export function Product() {
                     </Container>
                 }
             </section>
+
+            <InfoTabsSwitcher/>
 
             <Container className="pb-36 flex flex-col gap-14">
                 <div className=" flex flex-col w-full items-start px-3 pt-4 gap-2">
