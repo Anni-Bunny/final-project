@@ -8,8 +8,7 @@ import {PromiseCard} from "../components/PromiseCard";
 import {productListItem} from "../interfaces/productListItem";
 import {Footer} from "../components/Footer";
 import {Slider} from "../components/Slider";
-import {Link} from "react-router-dom";
-import {TabSwitcher} from "../components/TabSwitcher";
+import {ProductsTabsSwitcher} from "../components/ProductsTabsSwitcher";
 
 export function Homepage() {
 
@@ -89,7 +88,7 @@ export function Homepage() {
             </section>
 
 
-            <TabSwitcher/>
+            <ProductsTabsSwitcher/>
 
             <Footer displayNewsLetter={true}/>
 
