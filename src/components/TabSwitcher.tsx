@@ -1,55 +1,42 @@
-import {Button} from "./Button";
-import {Slider} from "./Slider";
-import React, {useEffect, useState} from "react";
-import {productListItem} from "../interfaces/productListItem";
-import api from "../classes/API";
+import React, {useState} from "react";
 import {Container} from "./Container";
+import {Button} from "./Button";
 
-export function TabSwitcher() {
+interface TabSwitcherProps {
+    tabs: { name: string; title: string }[];
+    content: { name: string; component: React.ReactNode}[] ;
+}
 
-    const [featuredProducts, setFeaturedProducts] = useState<productListItem[]>([]);
-    const [latestProducts, setlatestProducts] = useState<productListItem[]>([]);
-
-    useEffect(() => {
-        async function getFeaturedProducts() {
-            const products = await api.getBestSellers();
-            if (products)
-                setlatestProducts(products);
-        }
-        getFeaturedProducts();
-
-        async function getLatestProducts() {
-            const products = await api.getFeaturedProducts();
-            if (products)
-                setFeaturedProducts(products);
-        }
-        getLatestProducts();
-    }, []);
-
-
-    const tabs = {
-        features: 'Features Content',
-        latest: 'Latest Content'
-    }
-
-    const [currentTab, setCurrentTab] = useState<string>(tabs.features)
+export function TabSwitcher({tabs, content}: TabSwitcherProps) {
+    const [currentTab, setCurrentTab] = useState<string>(tabs[0].name);
 
     function onChangeTab(event: React.MouseEvent<HTMLButtonElement>) {
-        setCurrentTab(tabs[event.currentTarget.name as keyof typeof tabs])
+        setCurrentTab(event.currentTarget.name);
     }
 
     return (
         <section className="mt-36 mb-44">
             <Container className="flex flex-col gap-12">
                 <div className="flex items-center mx-auto gap-6 text-sm">
-                    <Button onClick={onChangeTab} name={"features"} title={"Featured"} type={"whiteLightRoundedBtn"}/>
-                    <Button onClick={onChangeTab} name={"latest"} title={"Latest"} type={"whiteLightRoundedBtn"}/>
+                    {tabs.map((tab) => (
+                        <Button
+                            key={tab.name}
+                            name={tab.name}
+                            onClick={onChangeTab}
+                            type="whiteLightRoundedBtn"
+                            title={tab.title}
+                        />
+                    ))}
                 </div>
 
-                <Slider className={ currentTab !== tabs.features ? 'hidden' : ''} products={featuredProducts}/>
-                <Slider className={ currentTab !== tabs.latest ? 'hidden' : ''} products={latestProducts}/>
-
+                <div className='w-full'>
+                    {content.map((item, index) => (
+                        <div key={index} className={currentTab === item.name ? '' : 'hidden'}>
+                            {item.component}
+                        </div>
+                    ))}
+                </div>
             </Container>
         </section>
-    )
+    );
 }
