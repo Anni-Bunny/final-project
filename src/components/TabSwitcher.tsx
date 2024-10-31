@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {Container} from "./Container";
 import {Button} from "./Button";
+import {BtnType} from "./Button";
 
 const types = {
     vertical: {
@@ -18,10 +19,12 @@ interface TabSwitcherProps {
     tabs: { name: string; title: string }[];
     content: { name: string; component: React.ReactNode}[] ;
     containerClassName?: string;
-    type? : type;
+    type?: type;
+    contentClassName?: string;
+    btnType?: BtnType
 }
 
-export function TabSwitcher({tabs, content, containerClassName, type = "vertical"}: TabSwitcherProps) {
+export function TabSwitcher({tabs, content, containerClassName, type = "vertical", contentClassName, btnType= "whiteLightRoundedBtn"}: TabSwitcherProps) {
     const [currentTab, setCurrentTab] = useState<string>(tabs[0].name);
 
     function onChangeTab(event: React.MouseEvent<HTMLButtonElement>) {
@@ -33,21 +36,22 @@ export function TabSwitcher({tabs, content, containerClassName, type = "vertical
 
 
     return (
-        <section className="mt-36 mb-44">
+        <section className="pb-44">
             <Container className={`flex gap-12 ${containerFlexDirection}`}>
-                <div className={`flex items-center mx-auto gap-6 text-sm ${btnFlexDirection}`}>
+                <div className={`flex items-center gap-6 text-sm ${btnFlexDirection}`}>
                     {tabs.map((tab) => (
                         <Button
                             key={tab.name}
                             name={tab.name}
                             onClick={onChangeTab}
-                            type="whiteLightRoundedBtn"
+                            type={btnType}
                             title={tab.title}
+                            className={currentTab === tab.name ? 'bg-[#F6F6F6]' : 'bg-white'}
                         />
                     ))}
                 </div>
 
-                <div className='w-full'>
+                <div className={`w-full ${contentClassName}`}>
                     {content.map((item, index) => (
                         <div key={index} className={currentTab === item.name ? '' : 'hidden'}>
                             {item.component}
