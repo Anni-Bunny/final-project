@@ -8,9 +8,9 @@ const btnTypes = {
         titleClasses: ""
     },
     LightGrayBtn: {
-        typeClasses: "bg-[#F6F6F6] rounded-3xl border py-3 px-6 h-[2.75rem]",
+        typeClasses: "rounded-xl py-3 px-6 h-[2.75rem] w-[15rem] bg-[#F6F6F6]",
         divClasses: "bg-gray-400",
-        titleClasses: "text-[#5C5F6A]"
+        titleClasses: "text-[#f1ebdd] font-normal"
     },
     whiteBoldBtn: {
         typeClasses: "bg-white rounded border py-3 px-6 h-[2.75rem] border-black hover:bg-[#0E1422]",
@@ -30,7 +30,7 @@ const btnTypes = {
 
 }
 
-type BtnType = keyof typeof btnTypes;
+export type BtnType = keyof typeof btnTypes;
 
 interface ButtonProps {
     icon?: string,
@@ -43,14 +43,14 @@ interface ButtonProps {
 
 export function Button({icon, className, title, type = "defaultBtn", onClick, name}: ButtonProps) {
 
-    let typeClasses = btnTypes[type].typeClasses
+    let typeClasses = btnTypes[type].typeClasses + " " + className
     let divClasses = btnTypes[type].divClasses
     let titleClasses = btnTypes[type].titleClasses
 
     return <button
         name={name}
         onClick={onClick}
-        className={`${typeClasses} overflow-hidden group/button relative transition duration-200 flex items-center group justify-center ${className}`}>
+        className={`${typeClasses} overflow-hidden group/button relative transition duration-200 flex items-center group justify-center`}>
         <span className={`${titleClasses} font-medium invert flex items-center`}>{title}</span>
         <div
             className={`${divClasses} group-hover/button:top-[-100%] left-0 absolute w-full h-full top-full transition-all duration-600`}>
