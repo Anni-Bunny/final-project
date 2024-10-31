@@ -1,0 +1,50 @@
+import {Slider} from "./Slider";
+import {useEffect, useState} from "react";
+import {productListItem} from "../interfaces/productListItem";
+import api from "../classes/API";
+import {TabSwitcher} from "./TabSwitcher";
+
+export function ProductsTabsSwitcher() {
+
+    const [featuredProducts, setFeaturedProducts] = useState<productListItem[]>([]);
+    const [latestProducts, setlatestProducts] = useState<productListItem[]>([]);
+
+    useEffect(() => {
+        async function getFeaturedProducts() {
+            const products = await api.getBestSellers();
+            if (products)
+                setlatestProducts(products);
+        }
+
+        getFeaturedProducts();
+
+        async function getLatestProducts() {
+            const products = await api.getFeaturedProducts();
+            if (products)
+                setFeaturedProducts(products);
+        }
+
+        getLatestProducts();
+    }, []);
+
+    const tabs = [
+        {name: 'featured', title: 'Featured'},
+        {name: 'latest', title: 'Latest'}
+    ];
+
+    const content = [
+        {
+            name: 'featured',
+            component: <Slider products={featuredProducts}/>
+        },
+        {
+            name: 'latest',
+            component: <Slider products={latestProducts}/>
+        }
+
+    ];
+
+    return (
+        <TabSwitcher tabs={tabs} content={content}/>
+    );
+}
