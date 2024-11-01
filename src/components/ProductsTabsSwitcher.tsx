@@ -44,7 +44,13 @@ export function ProductsTabsSwitcher() {
 
     ];
 
+    const containerClassName: string = "pt-[9.5rem]"
+
     return (
-        <TabSwitcher tabs={tabs} content={content}/>
+        <TabSwitcher
+            tabs={tabs}
+            content={content}
+            containerClassName={containerClassName}
+        />
     );
 }
