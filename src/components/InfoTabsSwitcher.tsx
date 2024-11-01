@@ -1,10 +1,10 @@
-import {TabSwitcher} from "./TabSwitcher";
+import {Tabs, TabSwitcher} from "./TabSwitcher";
 
 export function InfoTabsSwitcher() {
 
-    const tabs = [
-        {name: 'details', title: 'Details'},
-        {name: 'reviews', title: 'Reviews'}
+    const tabs: Tabs = [
+        {name: 'details', title: 'Details', icon: 'more', textPosition: 'start'},
+        {name: 'reviews', title: 'Reviews', icon: 'emptyStar', textPosition: 'start'}
     ];
 
     const content = [
@@ -49,6 +49,7 @@ export function InfoTabsSwitcher() {
             type="horizontal"
             contentClassName={contentClassName}
             btnType="LightGrayBtn"
+            iconPosition={"start"}
         />
     );
 }
