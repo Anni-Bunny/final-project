@@ -30,6 +30,17 @@ const btnTypes = {
 
 }
 
+const iconPositions = {
+    start: "-order-1",
+    end: "",
+}
+const textPositions = {
+    start: "justify-start",
+    center: "justify-center items-center"
+}
+
+export type TextPosition = keyof typeof textPositions;
+export type IconPosition = keyof typeof iconPositions;
 export type BtnType = keyof typeof btnTypes;
 
 interface ButtonProps {
@@ -38,25 +49,27 @@ interface ButtonProps {
     title: string,
     type?: BtnType,
     onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void,
-    name?: string
+    name?: string,
+    iconPosition?: IconPosition,
+    textPosition?: TextPosition
 }
 
-export function Button({icon, className, title, type = "defaultBtn", onClick, name}: ButtonProps) {
+export function Button({icon, className, title, type = "defaultBtn", onClick, name, iconPosition = 'end', textPosition = "center"}: ButtonProps) {
 
-    let typeClasses = btnTypes[type].typeClasses + " " + className
+    let typeClasses = btnTypes[type].typeClasses + " " + className + " " + textPositions[textPosition]
     let divClasses = btnTypes[type].divClasses
     let titleClasses = btnTypes[type].titleClasses
 
     return <button
         name={name}
         onClick={onClick}
-        className={`${typeClasses} overflow-hidden group/button relative transition duration-200 flex items-center group justify-center`}>
-        <span className={`${titleClasses} font-medium invert flex items-center`}>{title}</span>
+        className={`${typeClasses} gap-2 items-center overflow-hidden group/button relative transition duration-200 flex group`}>
+        <span className={`${titleClasses} font-medium invert flex`}>{title}</span>
         <div
             className={`${divClasses} group-hover/button:top-[-100%] left-0 absolute w-full h-full top-full transition-all duration-600`}>
         </div>
         {
-            (icon) ? <Icon name={`${icon}`}/> : null
+            (icon) ? <Icon className={iconPositions[iconPosition]} name={`${icon}`}/> : null
         }
     </button>;
 }
