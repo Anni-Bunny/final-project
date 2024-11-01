@@ -2,6 +2,8 @@ import React, {useState} from "react";
 import {Container} from "./Container";
 import {Button} from "./Button";
 import {BtnType} from "./Button";
+import {IconPosition} from "./Button";
+import {TextPosition} from "./Button";
 
 const types = {
     vertical: {
@@ -14,17 +16,19 @@ const types = {
     },
 }
 type type = keyof typeof types;
+export type Tabs = { name: string; title: string, icon?: string, textPosition?:TextPosition }[];
 
 interface TabSwitcherProps {
-    tabs: { name: string; title: string }[];
+    tabs: Tabs;
     content: { name: string; component: React.ReactNode}[] ;
     containerClassName?: string;
     type?: type;
     contentClassName?: string;
-    btnType?: BtnType
+    btnType?: BtnType;
+    iconPosition?: IconPosition;
 }
 
-export function TabSwitcher({tabs, content, containerClassName, type = "vertical", contentClassName, btnType= "whiteLightRoundedBtn"}: TabSwitcherProps) {
+export function TabSwitcher({tabs, content, containerClassName, type = "vertical", contentClassName, btnType= "whiteLightRoundedBtn", iconPosition}: TabSwitcherProps) {
     const [currentTab, setCurrentTab] = useState<string>(tabs[0].name);
 
     function onChangeTab(event: React.MouseEvent<HTMLButtonElement>) {
@@ -47,6 +51,9 @@ export function TabSwitcher({tabs, content, containerClassName, type = "vertical
                             type={btnType}
                             title={tab.title}
                             className={currentTab === tab.name ? 'bg-[#F6F6F6]' : 'bg-white'}
+                            iconPosition ={iconPosition}
+                            icon ={tab.icon}
+                            textPosition={tab.textPosition}
                         />
                     ))}
                 </div>
