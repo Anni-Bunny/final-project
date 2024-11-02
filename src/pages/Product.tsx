@@ -82,7 +82,13 @@ export function Product() {
                 }
             </section>
 
-            <InfoTabsSwitcher/>
+            <section>
+                {
+                    product &&
+                    <InfoTabsSwitcher product={product}/>
+                }
+            </section>
+
 
             <Container className="pb-36 flex flex-col gap-14">
                 <div className=" flex flex-col w-full items-start px-3 pt-4 gap-2">
