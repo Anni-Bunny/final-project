@@ -16,11 +16,11 @@ const types = {
     },
 }
 type type = keyof typeof types;
-export type Tabs = { name: string; title: string, icon?: string, textPosition?:TextPosition }[];
+export type Tabs = { name: string; title: string, icon?: string, textPosition?: TextPosition }[];
 
 interface TabSwitcherProps {
     tabs: Tabs;
-    content: { name: string; component: React.ReactNode}[] ;
+    content: { name: string; component: React.ReactNode }[];
     containerClassName?: string;
     type?: type;
     contentClassName?: string;
@@ -28,7 +28,15 @@ interface TabSwitcherProps {
     iconPosition?: IconPosition;
 }
 
-export function TabSwitcher({tabs, content, containerClassName, type = "vertical", contentClassName, btnType= "whiteLightRoundedBtn", iconPosition}: TabSwitcherProps) {
+export function TabSwitcher({
+                                tabs,
+                                content,
+                                containerClassName,
+                                type = "vertical",
+                                contentClassName,
+                                btnType = "whiteLightRoundedBtn",
+                                iconPosition
+                            }: TabSwitcherProps) {
     const [currentTab, setCurrentTab] = useState<string>(tabs[0].name);
 
     function onChangeTab(event: React.MouseEvent<HTMLButtonElement>) {
@@ -41,29 +49,31 @@ export function TabSwitcher({tabs, content, containerClassName, type = "vertical
 
     return (
         <section className="pb-44">
-            <Container className={`flex gap-12 ${containerFlexDirection}`}>
-                <div className={`flex items-center gap-6 text-sm ${btnFlexDirection}`}>
-                    {tabs.map((tab) => (
-                        <Button
-                            key={tab.name}
-                            name={tab.name}
-                            onClick={onChangeTab}
-                            type={btnType}
-                            title={tab.title}
-                            className={currentTab === tab.name ? 'bg-[#F6F6F6]' : 'bg-white'}
-                            iconPosition ={iconPosition}
-                            icon ={tab.icon}
-                            textPosition={tab.textPosition}
-                        />
-                    ))}
-                </div>
+            <Container className={`${containerFlexDirection}`}>
+                <div className="flex items-start gap-12 w-full">
+                    <div className={`flex gap-6 text-sm pt-20 ${btnFlexDirection}`}>
+                        {tabs.map((tab) => (
+                            <Button
+                                key={tab.name}
+                                name={tab.name}
+                                onClick={onChangeTab}
+                                type={btnType}
+                                title={tab.title}
+                                className={currentTab === tab.name ? 'bg-[#F6F6F6]' : 'bg-white'}
+                                iconPosition={iconPosition}
+                                icon={tab.icon}
+                                textPosition={tab.textPosition}
+                            />
+                        ))}
+                    </div>
 
-                <div className={`w-full ${contentClassName}`}>
-                    {content.map((item, index) => (
-                        <div key={index} className={currentTab === item.name ? '' : 'hidden'}>
-                            {item.component}
-                        </div>
-                    ))}
+                    <div className={`w-full ${contentClassName}`}>
+                        {content.map((item, index) => (
+                            <div key={index} className={currentTab === item.name ? '' : 'hidden'}>
+                                {item.component}
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </Container>
         </section>
