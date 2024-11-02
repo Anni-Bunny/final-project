@@ -1,6 +1,12 @@
 import {Tabs, TabSwitcher} from "./TabSwitcher";
+import {ProductReviewList} from "./ProductReviewList";
+import {productListItem} from "../interfaces/productListItem";
 
-export function InfoTabsSwitcher() {
+interface InfoTabsSwitcherProps{
+    product: productListItem;
+}
+
+export function InfoTabsSwitcher({product}:InfoTabsSwitcherProps) {
 
     const tabs: Tabs = [
         {name: 'details', title: 'Details', icon: 'more', textPosition: 'start'},
@@ -33,7 +39,7 @@ export function InfoTabsSwitcher() {
         },
         {
             name: 'reviews',
-            component: <div></div>
+            component: <ProductReviewList productId={product.id}/>
         }
 
     ];
