@@ -1,3 +1,13 @@
+import {Simulate} from "react-dom/test-utils";
+import error = Simulate.error;
+
+export interface reviewParams {
+    id?: number | string,
+    productId?: number | string,
+    _page?: number | string,
+    _per_page?: number | string
+}
+
 class API {
     private static instance: API;
     private URL: string = 'http://localhost:3000/'; // Ensure the protocol is included
@@ -38,6 +48,25 @@ class API {
 
     async getFeaturedProducts() {
         return await this.getRequest('FeaturedProducts');
+    }
+
+    async getReviews({id, productId, _page = 1, _per_page = 3}: reviewParams) {
+        let url = 'Reviews';
+
+        if (!id && !productId) {
+            throw new Error('at least one is required id or productId')
+        }
+
+        if (id) {
+            url += `/${id}`
+            return await this.getRequest(url);
+        }
+
+        if (productId) {
+            url += `?productId=${productId}&_page=${_page}&_per_page=${_per_page}&_sort=-date`
+        }
+
+        return await this.getRequest(url);
     }
 
 }
