@@ -51,6 +51,7 @@ export function ProductsTabsSwitcher() {
             tabs={tabs}
             content={content}
             containerClassName={containerClassName}
+            btnDivClassName={"w-full justify-center"}
         />
     );
 }
