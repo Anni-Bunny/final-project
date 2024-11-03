@@ -26,6 +26,7 @@ interface TabSwitcherProps {
     contentClassName?: string;
     btnType?: BtnType;
     iconPosition?: IconPosition;
+    btnDivClassName?:string
 }
 
 export function TabSwitcher({
@@ -35,7 +36,8 @@ export function TabSwitcher({
                                 type = "vertical",
                                 contentClassName,
                                 btnType = "whiteLightRoundedBtn",
-                                iconPosition
+                                iconPosition,
+                                btnDivClassName
                             }: TabSwitcherProps) {
     const [currentTab, setCurrentTab] = useState<string>(tabs[0].name);
 
@@ -49,9 +51,9 @@ export function TabSwitcher({
 
     return (
         <section className="pb-44">
-            <Container className={`${containerFlexDirection}`}>
-                <div className="flex items-start gap-12 w-full">
-                    <div className={`flex gap-6 text-sm pt-20 ${btnFlexDirection}`}>
+            <Container>
+                <div className={`${containerFlexDirection} flex items-start gap-12 w-full`}>
+                    <div className={`flex gap-6 text-sm pt-20 ${btnFlexDirection} ${btnDivClassName}`}>
                         {tabs.map((tab) => (
                             <Button
                                 key={tab.name}
