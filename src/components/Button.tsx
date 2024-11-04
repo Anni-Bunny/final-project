@@ -12,15 +12,15 @@ const btnTypes = {
         divClasses: "bg-gray-400",
         titleClasses: "text-[#f1ebdd] font-normal"
     },
-    whiteBoldBtn: {
-        typeClasses: "bg-white rounded border py-3 px-6 h-[2.75rem] border-black hover:bg-[#0E1422]",
-        divClasses: "bg-gray-500",
-        titleClasses: "text-white group-hover:text-black"
+    whiteBtn: {
+        typeClasses: "bg-white rounded border py-3 px-6 h-[2.75rem] border-black ",
+        divClasses: "bg-gray-400",
+        titleClasses: "text-white font-normal"
     },
-    whiteBoldSmallBtn: {
-        typeClasses: "bg-white rounded border py-3 px-5 h-[2.75rem] border-black hover:border-[#B6B7BC]",
-        divClasses: "bg-gray-500",
-        titleClasses: "text-white group-hover:text-[#5C5F6A]"
+    whiteSmallBtn: {
+        typeClasses: "bg-white py-3 px-5 h-[2.75rem] ",
+        divClasses: "",
+        titleClasses: "text-[#5C5F6A] group-hover:text-[#f1ebdd] "
     },
     whiteLightRoundedBtn: {
         typeClasses: "bg-white rounded-3xl w-24 border py-1 px-4 h-8",
