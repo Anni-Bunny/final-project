@@ -47,12 +47,42 @@ export function ProductReviewList({productId}: ProductReviewListProps) {
         getReviews();
     }, [productId]);
 
+    const [isDropdownVisible, setDropdownVisible] = useState(false);
+
+    const toggleDropdown = () => {
+        setDropdownVisible((prev) => !prev);
+    };
+
     return (
         <div className="flex flex-col gap-6 text-[#0E1422]">
             <div className="border-b">
                 <h5 className="font-semibold text-[1rem] pb-4">Reviews</h5>
                 <p className="pb-10">{averageStars ? averageStars.toFixed(1) : 'No ratings yet'} -{reviews.items} Reviews</p>
-                <Button title={"Write a review"} type={"whiteBoldBtn"} className="mb-10"/>
+                <Button title={"Write a review"} type={"whiteBtn"} className=""/>
+                <div className="flex w-full justify-end pb-10">
+                    <Button
+                        title={"Sort By"}
+                        icon={"chevronDown"}
+                        className={""}
+                        type={"whiteSmallBtn"}
+                    />
+                    <div
+                        id="dropdown"
+                        className={`z-10 ${isDropdownVisible ? '' : 'hidden'} bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700`}>
+                        <ul className="py-2 text-sm text-gray-700 dark:text-gray-200"
+                            aria-labelledby="dropdownDefaultButton">
+                            <li>
+                                <a href="#"
+                                   className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+                            </li>
+                            <li>
+                                <a href="#"
+                                   className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
             </div>
 
             <div>
