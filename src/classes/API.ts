@@ -6,6 +6,7 @@ export interface reviewParams {
     productId?: number | string,
     _page?: number | string,
     _per_page?: number | string
+    _sort?: string
 }
 
 class API {
@@ -50,7 +51,7 @@ class API {
         return await this.getRequest('FeaturedProducts');
     }
 
-    async getReviews({id, productId, _page = 1, _per_page = 3}: reviewParams) {
+    async getReviews({id, productId, _page = 1, _per_page = 3, _sort = '-date'}: reviewParams) {
         let url = 'Reviews';
 
         if (!id && !productId) {
@@ -63,7 +64,7 @@ class API {
         }
 
         if (productId) {
-            url += `?productId=${productId}&_page=${_page}&_per_page=${_per_page}&_sort=-date`
+            url += `?productId=${productId}&_page=${_page}&_per_page=${_per_page}&_sort=${_sort}`
         }
 
         return await this.getRequest(url);
