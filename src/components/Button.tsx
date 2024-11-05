@@ -60,9 +60,18 @@ export function Button({icon, className, title, type = "defaultBtn", onClick, na
     let divClasses = btnTypes[type].divClasses
     let titleClasses = btnTypes[type].titleClasses
 
+    let handleOnClick
+
+    if (onClick) {
+        handleOnClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+            event.preventDefault()
+            onClick(event)
+        }
+    }
+
     return <button
         name={name}
-        onClick={onClick}
+        onClick={handleOnClick}
         className={`${typeClasses} gap-2 items-center overflow-hidden group/button relative transition duration-200 flex group`}>
         <span className={`${titleClasses} font-medium invert flex`}>{title}</span>
         <div
