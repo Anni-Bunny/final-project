@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {review} from "../interfaces/review";
 import api from "../classes/API";
 import {ProductReviews} from "./ProductReviews";
@@ -10,15 +10,15 @@ interface ProductReviewListProps {
 
 interface reviewRequestResponse {
     first: number,
-    prev: null|number,
-    next: null|number,
+    prev: null | number,
+    next: null | number,
     last: number,
     pages: number,
     items: number,
     data: review[]
 }
 
-const ReviewRequestResponseDefaultValues ={
+const ReviewRequestResponseDefaultValues = {
     first: 1,
     prev: null,
     next: null,
@@ -39,9 +39,9 @@ export function ProductReviewList({productId}: ProductReviewListProps) {
             if (reviews)
                 setReviews(reviews);
 
-                const totalStars = reviews.data.reduce((acc: number, review: review) => acc + review.stars, 0);
-                const avgStars = reviews.data.length ? (totalStars / reviews.data.length) : 0;
-                setAverageStars(avgStars);
+            const totalStars = reviews.data.reduce((acc: number, review: review) => acc + review.stars, 0);
+            const avgStars = reviews.data.length ? (totalStars / reviews.data.length) : 0;
+            setAverageStars(avgStars);
         }
 
         getReviews();
@@ -54,23 +54,24 @@ export function ProductReviewList({productId}: ProductReviewListProps) {
     };
 
     return (
-        <div className="flex flex-col gap-6 text-[#0E1422]">
+        <div className="flex flex-col gap-6 text-[#0E1422] pb-10">
             <div className="border-b">
                 <h5 className="font-semibold text-[1rem] pb-4">Reviews</h5>
                 <p className="pb-10">{averageStars ? averageStars.toFixed(1) : 'No ratings yet'} -{reviews.items} Reviews</p>
                 <Button title={"Write a review"} type={"whiteBtn"} className=""/>
-                <div className="flex w-full justify-end pb-10">
+
+                <div className="flex relative w-full justify-end">
                     <Button
                         title={"Sort By"}
                         icon={"chevronDown"}
                         className={""}
                         type={"whiteSmallBtn"}
+                        onClick={toggleDropdown}
                     />
                     <div
                         id="dropdown"
-                        className={`z-10 ${isDropdownVisible ? '' : 'hidden'} bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700`}>
-                        <ul className="py-2 text-sm text-gray-700 dark:text-gray-200"
-                            aria-labelledby="dropdownDefaultButton">
+                        className={`absolute bottom-0 translate-y-full z-10 ${isDropdownVisible ? '' : 'hidden'} bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700`}>
+                        <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
                             <li>
                                 <a href="#"
                                    className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
