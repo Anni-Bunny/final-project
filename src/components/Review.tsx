@@ -14,8 +14,12 @@ export function Review({review}:ReviewProps) {
                 <div className="flex justify-between">
                     <h3 className="text-sm font-medium mb-1.5">{review.name}{review.surName}</h3>
                     <div className="flex">
-                        {Array(review.stars).fill(<Icon name="star"/>)}
-                        {Array(5-(review.stars)).fill(<Icon name="emptyStar"/>)}
+                        {Array(review.stars).map((star,index) => (
+                            <Icon key={index} name="star"/>
+                        ))}
+                        {Array(5-(review.stars)).map((star,index) => (
+                            <Icon key={index + 'empty'} name="emptyStar"/>
+                        ))}
                     </div>
                 </div>
                 <p className="text-xs mb-4 text-[#5C5F6A]">{moment(review.date).fromNow()}</p>
