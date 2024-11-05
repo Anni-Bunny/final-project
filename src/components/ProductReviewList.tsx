@@ -28,14 +28,27 @@ const ReviewRequestResponseDefaultValues = {
     data: []
 }
 
+const sortByList = [
+    {
+        title: 'Date',
+        sortKey: 'date',
+    },
+    {
+        title: 'Stars',
+        sortKey: 'stars',
+    }
+]
+
 
 export function ProductReviewList({productId}: ProductReviewListProps) {
+    const [sortedBy, setSortedBy] = useState('-date');
     const [reviews, setReviews] = useState<reviewRequestResponse>(ReviewRequestResponseDefaultValues)
     const [averageStars, setAverageStars] = useState<number | null>(null);
+    const [sortTitle, setSortTitle] = useState('Date desc');
 
     useEffect(() => {
         async function getReviews() {
-            const reviews = await api.getReviews({productId: productId});
+            const reviews = await api.getReviews({productId: productId, _sort: sortedBy});
             if (reviews)
                 setReviews(reviews);
 
@@ -45,7 +58,7 @@ export function ProductReviewList({productId}: ProductReviewListProps) {
         }
 
         getReviews();
-    }, [productId]);
+    }, [productId, sortedBy]);
 
     const [isDropdownVisible, setDropdownVisible] = useState(false);
 
@@ -53,8 +66,21 @@ export function ProductReviewList({productId}: ProductReviewListProps) {
         setDropdownVisible((prev) => !prev);
     };
 
+    function sortReviews(event: React.MouseEvent<HTMLElement>) {
+        const value = event.currentTarget.dataset.sortBy;
+        const title = event.currentTarget.textContent?.trim();
+
+        if (value && title) {
+            setSortedBy(value);
+            setSortTitle(title);
+            toggleDropdown();
+        }
+    }
+
     return (
-        <div className="flex flex-col gap-6 text-[#0E1422] pb-10">
+        <div className="flex flex-col gap-6 text-[#0E1422] pb-10"
+             onMouseLeave={() => setDropdownVisible(false)}
+        >
             <div className="border-b">
                 <h5 className="font-semibold text-[1rem] pb-4">Reviews</h5>
                 <p className="pb-10">{averageStars ? averageStars.toFixed(1) : 'No ratings yet'} -{reviews.items} Reviews</p>
@@ -62,7 +88,7 @@ export function ProductReviewList({productId}: ProductReviewListProps) {
 
                 <div className="flex relative w-full justify-end">
                     <Button
-                        title={"Sort By"}
+                        title={`Sort By ${sortTitle}`}
                         icon={"chevronDown"}
                         className={""}
                         type={"whiteSmallBtn"}
@@ -70,16 +96,32 @@ export function ProductReviewList({productId}: ProductReviewListProps) {
                     />
                     <div
                         id="dropdown"
-                        className={`absolute bottom-0 translate-y-full z-10 ${isDropdownVisible ? '' : 'hidden'} bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700`}>
+                        className={`absolute bottom-0 translate-y-full z-10 ${isDropdownVisible ? '' : 'hidden'} bg-gray-500 rounded shadow-2xl w-44`}
+                    >
                         <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
-                            <li>
-                                <a href="#"
-                                   className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
-                            </li>
-                            <li>
-                                <a href="#"
-                                   className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
-                            </li>
+                            {
+                                sortByList.map((item, index) => (
+                                    <React.Fragment key={index}>
+                                        {sortedBy !== `-${item.sortKey}` &&
+                                            <li className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer"
+                                                data-sort-by={`-${item.sortKey}`}
+                                                onClick={sortReviews}
+                                            >
+                                                {item.title} desc
+                                            </li>
+                                        }
+
+                                        {sortedBy !== `${item.sortKey}` &&
+                                            <li className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer"
+                                                data-sort-by={item.sortKey}
+                                                onClick={sortReviews}
+                                            >
+                                                {item.title} asc
+                                            </li>
+                                        }
+                                    </React.Fragment>
+                                ))
+                            }
                         </ul>
                     </div>
                 </div>
