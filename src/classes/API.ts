@@ -11,7 +11,7 @@ export interface reviewParams {
 
 class API {
     private static instance: API;
-    private URL: string = 'http://localhost:3000/'; // Ensure the protocol is included
+    private URL: string = 'http://localhost:3001/'; // Ensure the protocol is included
 
     private constructor() {
     } // Private constructor to prevent instantiation
