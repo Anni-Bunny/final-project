@@ -1,0 +1,7 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Server" type="CompoundRunConfigurationType">
+    <toRun name="API" type="ShConfigurationType" />
+    <toRun name="Yarn Start" type="ShConfigurationType" />
+    <method v="2" />
+  </configuration>
+</component>
