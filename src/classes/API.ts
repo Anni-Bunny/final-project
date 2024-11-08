@@ -1,12 +1,15 @@
-import {Simulate} from "react-dom/test-utils";
-import error = Simulate.error;
-
 export interface reviewParams {
     id?: number | string,
     productId?: number | string,
     _page?: number | string,
     _per_page?: number | string
     _sort?: string
+}
+
+export interface productParams {
+    id?: number | string,
+    _sort?: string,
+    _limit?: number
 }
 
 class API {
@@ -39,20 +42,38 @@ class API {
         }
     }
 
-    async getBestSellers(id: string | null = null) {
-        let url = 'BestSellers'
+    async getUsers(id: string | null = null) {
+        let url = 'users'
         if (id) {
             url += `/${id}`
+
         }
         return await this.getRequest(url);
     }
 
-    async getFeaturedProducts() {
-        return await this.getRequest('FeaturedProducts');
+    async getProducts( {id, _sort, _limit = 10} : productParams = {}) {
+        let url = 'products'
+        if (id) {
+            url += `/${id}`
+
+        }
+        else if(_sort){
+            url += `?_sort=${_sort}&_limit=${_limit}`
+        }
+        return await this.getRequest(url);
+    }
+
+    async getCarts(id: string | null = null) {
+        let url = 'carts'
+        if (id) {
+            url += `/${id}`
+
+        }
+        return await this.getRequest(url);
     }
 
     async getReviews({id, productId, _page = 1, _per_page = 3, _sort = '-date'}: reviewParams) {
-        let url = 'Reviews';
+        let url = 'reviews';
 
         if (!id && !productId) {
             throw new Error('at least one is required id or productId')
@@ -67,6 +88,15 @@ class API {
             url += `?productId=${productId}&_page=${_page}&_per_page=${_per_page}&_sort=${_sort}`
         }
 
+        return await this.getRequest(url);
+    }
+
+    async getCategories(id: string | null = null) {
+        let url = 'categories'
+        if (id) {
+            url += `/${id}`
+
+        }
         return await this.getRequest(url);
     }
 
