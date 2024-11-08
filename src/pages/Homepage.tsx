@@ -11,14 +11,13 @@ import {Slider} from "../components/Slider";
 import {ProductsTabsSwitcher} from "../components/ProductsTabsSwitcher";
 
 export function Homepage() {
-
-    const [BestSellers, setBestSellers] = useState<product[]>([]);
+    const [bestSelling, setBestSelling] = useState<product[]>([])
 
     useEffect(() => {
         async function fetchProducts() {
-            const products = await api.getBestSellers();
+            const products = await api.getProducts({_sort: "-score"});
             if (products)
-                setBestSellers(products);
+                setBestSelling(products);
         }
 
         fetchProducts();
@@ -68,7 +67,7 @@ export function Homepage() {
                         <p className="text-xs">Shop Now</p>
                         <h3 className="text-2xl font-bold">Best Selling</h3>
                     </div>
-                    <Slider products={BestSellers}/>
+                    <Slider products={bestSelling}/>
                 </Container>
             </section>
             <section className="mt-40 bg-[#F6F6F6]">
