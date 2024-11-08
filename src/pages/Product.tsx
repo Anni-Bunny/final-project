@@ -18,8 +18,8 @@ import {InfoTabsSwitcher} from "../components/InfoTabsSwitcher";
 export function Product() {
 
     const {id} = useParams()
-    const [BestSellers, setBestSellers] = useState<product[]>([]);
     const [product, setProduct] = useState<product>();
+    const [products, setProducts] = useState<product[]>([]);
 
     let links = [
         {
@@ -37,13 +37,13 @@ export function Product() {
 
     useEffect(() => {
         async function fetchProducts() {
-            const products = await api.getBestSellers();
+            const products = await api.getProducts();
             if (products) {
-                setBestSellers(products);
+                setProducts(products);
             }
 
             if (id) {
-                const product = await api.getBestSellers(id);
+                const product = await api.getProducts({id:id});
                 setProduct(product)
             }
         }
@@ -95,7 +95,7 @@ export function Product() {
                     <h3 className="text-2xl font-bold text-[#0E1422]">You might also like</h3>
                     <p className="text-xs text-[#878A92]">SIMILAR PRODUCTS</p>
                 </div>
-                <Slider products={BestSellers}/>
+                <Slider products={products}/>
             </Container>
 
             <Footer displayNewsLetter={true}/>
