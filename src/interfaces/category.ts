@@ -1,3 +1,5 @@
-export interface category{
-    [field: string]: number | string;
+export interface category {
+    id: number,
+    name: string,
+    image: string
 }
