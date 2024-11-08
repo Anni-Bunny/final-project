@@ -1,15 +1,16 @@
-interface SizeStock {
+import {category} from "./category";
+
+interface sizeStock {
     [size: string]: number; // Allows for any size as a key with a number value
 }
 
-interface ColorStock {
-    [color: string]: SizeStock; // Allows for any color as a key with SizeStock as value
+interface colorStock {
+    [color: string]: sizeStock; // Allows for any color as a key with SizeStock as value
 }
 
 interface imageColor {
     [color: string]: string[];
 }
-
 
 export interface productListItem {
     id: number,
@@ -18,6 +19,8 @@ export interface productListItem {
     price: number,
     description: string,
     images: imageColor,
-    size: string,
-    stock: ColorStock
+    stock: colorStock,
+    category: category,
+    score: number,
+    createdAt: string
 }
