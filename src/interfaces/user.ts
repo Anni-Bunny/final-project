@@ -1,13 +1,19 @@
 interface name{
-    [key:string]: string;
+    firstname: string,
+    lastname: string
 }
 
-interface GeolocationData{
-    [latLong:string]: number;
+interface geolocationData{
+    lat: number,
+    long: number
 }
 
 interface address{
-    [key:string] : GeolocationData | string
+    geolocation: geolocationData,
+    city: string,
+    street: string,
+    number: string,
+    zipcode: string
 }
 
 export interface user{
