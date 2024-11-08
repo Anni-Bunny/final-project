@@ -1,10 +1,10 @@
 import {Card} from "./Card";
-import {productListItem} from "../interfaces/productListItem";
+import {product} from "../interfaces/product";
 import {Stock} from "./Stock";
 import {ProductPrice} from "./ProductPrice";
 
 interface ProductCardProps {
-    product: productListItem
+    product: product
 }
 
 export function ProductCard({product}: ProductCardProps) {

@@ -1,13 +1,13 @@
 import {Slider} from "./Slider";
 import {useEffect, useState} from "react";
-import {productListItem} from "../interfaces/productListItem";
+import {product} from "../interfaces/product";
 import api from "../classes/API";
 import {TabSwitcher} from "./TabSwitcher";
 
 export function ProductsTabsSwitcher() {
 
-    const [featuredProducts, setFeaturedProducts] = useState<productListItem[]>([]);
-    const [latestProducts, setlatestProducts] = useState<productListItem[]>([]);
+    const [featuredProducts, setFeaturedProducts] = useState<product[]>([]);
+    const [latestProducts, setlatestProducts] = useState<product[]>([]);
 
     useEffect(() => {
         async function getFeaturedProducts() {

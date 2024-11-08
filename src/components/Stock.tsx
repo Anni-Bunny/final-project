@@ -1,7 +1,7 @@
-import {productListItem} from "../interfaces/productListItem";
+import {product} from "../interfaces/product";
 
 interface StockParams {
-    product: productListItem,
+    product: product,
     className?: string
 }
 

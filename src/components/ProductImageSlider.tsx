@@ -1,9 +1,9 @@
 import {Swiper, SwiperSlide} from 'swiper/react';
 import 'swiper/css';
-import {productListItem} from "../interfaces/productListItem";
+import {product} from "../interfaces/product";
 
 interface ProductSliderInterface {
-    product: productListItem,
+    product: product,
     className?: string,
     color?: string
 }

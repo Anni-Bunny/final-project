@@ -12,7 +12,7 @@ interface imageColor {
     [color: string]: string[];
 }
 
-export interface productListItem {
+export interface product {
     id: number,
     sku: string,
     name: string,

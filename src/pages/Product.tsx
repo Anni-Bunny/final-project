@@ -4,7 +4,7 @@ import {Footer} from "../components/Footer";
 import {Container} from "../components/Container";
 import {Slider} from "../components/Slider";
 import {useEffect, useState} from "react";
-import {productListItem} from "../interfaces/productListItem";
+import {product} from "../interfaces/product";
 import api from "../classes/API";
 import {ProductImageSlider} from "../components/ProductImageSlider";
 import {BreadCrumb} from "../components/BreadCrumb";
@@ -18,8 +18,8 @@ import {InfoTabsSwitcher} from "../components/InfoTabsSwitcher";
 export function Product() {
 
     const {id} = useParams()
-    const [BestSellers, setBestSellers] = useState<productListItem[]>([]);
-    const [product, setProduct] = useState<productListItem>();
+    const [BestSellers, setBestSellers] = useState<product[]>([]);
+    const [product, setProduct] = useState<product>();
 
     let links = [
         {

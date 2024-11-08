@@ -1,9 +1,9 @@
 import {Tabs, TabSwitcher} from "./TabSwitcher";
 import {ProductReviewList} from "./ProductReviewList";
-import {productListItem} from "../interfaces/productListItem";
+import {product} from "../interfaces/product";
 
 interface InfoTabsSwitcherProps{
-    product: productListItem;
+    product: product;
 }
 
 export function InfoTabsSwitcher({product}:InfoTabsSwitcherProps) {

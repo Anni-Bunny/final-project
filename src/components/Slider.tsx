@@ -1,11 +1,11 @@
 import {Swiper, SwiperSlide} from 'swiper/react';
 import 'swiper/css';
 import {ProductCard} from "./ProductCard";
-import {productListItem} from "../interfaces/productListItem";
+import {product} from "../interfaces/product";
 import {Link} from "react-router-dom";
 
 interface ProductSliderInterface {
-    products: productListItem[],
+    products: product[],
     className?: string
 }
 

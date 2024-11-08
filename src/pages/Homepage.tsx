@@ -5,14 +5,14 @@ import api from "../classes/API";
 import {Container} from "../components/Container";
 import {Button} from "../components/Button";
 import {PromiseCard} from "../components/PromiseCard";
-import {productListItem} from "../interfaces/productListItem";
+import {product} from "../interfaces/product";
 import {Footer} from "../components/Footer";
 import {Slider} from "../components/Slider";
 import {ProductsTabsSwitcher} from "../components/ProductsTabsSwitcher";
 
 export function Homepage() {
 
-    const [BestSellers, setBestSellers] = useState<productListItem[]>([]);
+    const [BestSellers, setBestSellers] = useState<product[]>([]);
 
     useEffect(() => {
         async function fetchProducts() {
