@@ -86,14 +86,10 @@ export function Homepage() {
                 </Container>
             </section>
 
-
             <ProductsTabsSwitcher/>
 
             <Footer displayNewsLetter={true}/>
 
-
         </div>
-
-
     );
 }
