@@ -61,7 +61,7 @@ export function TabSwitcher({
                                 onClick={onChangeTab}
                                 type={btnType}
                                 title={tab.title}
-                                className={currentTab === tab.name ? 'bg-[#F6F6F6]' : 'bg-white'}
+                                className={currentTab === tab.name ? 'bg-gray-100' : 'bg-white'}
                                 iconPosition={iconPosition}
                                 icon={tab.icon}
                                 textPosition={tab.textPosition}
