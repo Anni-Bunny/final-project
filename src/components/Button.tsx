@@ -23,7 +23,7 @@ const btnTypes = {
         titleClasses: "text-[#5C5F6A] group-hover:text-[#f1ebdd] "
     },
     whiteLightRoundedBtn: {
-        typeClasses: "bg-white rounded-3xl w-24 border py-1 px-4 h-8",
+        typeClasses: "rounded-3xl w-24 border py-1 px-4 h-8",
         divClasses: "bg-gray-500",
         titleClasses: "text-[#5C5F6A]"
     },
