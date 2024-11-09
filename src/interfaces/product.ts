@@ -13,7 +13,7 @@ interface imageColor {
 }
 
 export interface product {
-    id: number,
+    id: string,
     sku: string,
     name: string,
     price: number,
