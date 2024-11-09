@@ -6,17 +6,23 @@ import {TabSwitcher} from "./TabSwitcher";
 
 export function ProductsTabsSwitcher() {
 
-    const [products, setProducts] = useState<product[]>([]);
+    const [featuredProducts, setFeaturedProducts] = useState<product[]>([])
+    const [latestProducts, setLlatestProducts] = useState<product[]>([])
 
     useEffect(() => {
         async function fetchProducts() {
-            const products = await api.getProducts();
-            if (products)
-                setProducts(products);
+            const featuredProducts = await api.getProducts({_sort: "-score"});
+            if (featuredProducts)
+                setFeaturedProducts(featuredProducts);
+
+            const latestProducts = await api.getProducts({_sort: "-createdAt"});
+            if (latestProducts)
+                setLlatestProducts(latestProducts);
         }
 
         fetchProducts();
     }, []);
+
 
 
     const tabs = [
@@ -27,11 +33,11 @@ export function ProductsTabsSwitcher() {
     const content = [
         {
             name: 'featured',
-            component: <Slider products={products}/>
+            component: <Slider products={featuredProducts}/>
         },
         {
             name: 'latest',
-            component: <Slider products={products}/>
+            component: <Slider products={latestProducts}/>
         }
 
     ];
