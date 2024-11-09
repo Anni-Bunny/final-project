@@ -4,8 +4,8 @@ import {Container} from "./Container";
 
 export function Header() {
     return (
-        <header className="h-20 bg-white flex justify-center items-center">
-            <Container className="h-11 justify-between">
+        <Container className="h-20 border-b border-[#F6F6F6] bg-white flex justify-center items-center">
+            <header className="h-11 flex justify-between w-full">
                 <div className="flex gap-32 py-0.5 items-center">
                     <Link to="/" className="flex items-center gap-3">
                         <img src="/images/ecommerceLogo.svg" alt="Ecommerce logo"/>
@@ -26,7 +26,8 @@ export function Header() {
                     <Icon name="cart"/>
                     <Icon name="user-1"/>
                 </div>
-            </Container>
-        </header>
-    );
+            </header>
+        </Container>
+)
+    ;
 }
