@@ -17,7 +17,7 @@ interface BreadCrumbParams {
 export function BreadCrumb({links}: BreadCrumbParams) {
     return (
         <Container>
-            <nav className="flex px-3 py-[0.094rem] my-4" aria-label="Breadcrumb">
+            <nav className="flex px-3 py-[1rem] my-4" aria-label="Breadcrumb">
                 <ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
 
                     {
