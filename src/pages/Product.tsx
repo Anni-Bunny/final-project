@@ -27,6 +27,7 @@ export function Product() {
     const [product, setProduct] = useState<product>();
     const [products, setProducts] = useState<product[]>([]);
     const [selectedOptions, setSelectedOptions] = useState<selectedOptions>({})
+    const [productQuantity, setProductQuantity] = useState<number>(0)
 
     let links = [
         {
@@ -81,6 +82,15 @@ export function Product() {
         }
     }
 
+    function changeProductQuantity(event: React.MouseEvent<HTMLButtonElement>){
+        if (event.currentTarget.name === "minus" && productQuantity > 0){
+            setProductQuantity((state)=> state - 1)
+        }
+        else if (product && selectedOptions.color && selectedOptions.size &&
+            event.currentTarget.name === "plus" && productQuantity < product.stock[selectedOptions.color][selectedOptions.size] ){
+            setProductQuantity((state)=> state + 1)
+        }
+    }
 
     function addToCart() {
         console.log(selectedOptions)
@@ -96,18 +106,17 @@ export function Product() {
                     product &&
                     <Container className="justify-between pb-44 gap-32">
                         <ProductImageSlider className="h-[40rem] w-1/2 bg-[#F6F6F6] rounded" product={product}/>
-                        <div className="h-[40rem] w-1/2 py-3">
-                            <h3 className="text-2xl font-bold text-[#0E1422] mb-3">{product.name}</h3>
+                        <div className="h-[40rem] w-1/2 py-3 flex flex-col justify-between">
+                            <h3 className="text-2xl font-bold text-[#0E1422] mb-4">{product.name}</h3>
                             <div className="flex gap-2 mb-6">
-                                <Button type="LightGrayBtn" title={"4.2 — 54 Reviews"}
-                                        className="h-7 flex-row-reverse gap-2" icon={"star"}/>
+                                <div className="flex gap-2 bg-[#F6F6F6] rounded-full py-0.5 px-6 justify-center"> <Icon name={"star"}/> {`${product.score} — 54 Reviews`}</div>
                                 <Stock product={product} className="h-7"/>
                             </div>
-                            <div className="mb-8">
-                                <ProductPrice product={product} className="text-[#0E1422] font-semibold text-lg"/>
+                            <div className="mb-10">
+                                <ProductPrice product={product} className="text-[#0E1422] text-xl font-bold"/>
                             </div>
 
-                            <div className="mb-4">
+                            <div className="mb-6 flex flex-col gap-2">
                                 <h3 className="text-[#5C5F6A]">AVAILABLE COLORS</h3>
                                 <div className="flex gap-3">
                                     {
@@ -119,7 +128,7 @@ export function Product() {
                                 </div>
                             </div>
 
-                            <div className="mb-8">
+                            <div className="mb-6 flex flex-col gap-2">
                                 <h3 className="text-[#5C5F6A]">SELECT SIZE</h3>
                                 <div className="flex gap-3">
                                     {
@@ -132,8 +141,13 @@ export function Product() {
                                 </div>
                             </div>
 
-                            <div className="mb-10">
+                            <div className="mb-10 flex flex-col gap-2">
                                 <h3 className="text-[#5C5F6A]">QUANTITY</h3>
+                                <div className="h-11 min-w-10 w-40 flex items-center justify-between border border-[#E6E7E8] px-4 ">
+                                    <Button icon={"minus"} name={"minus"} type={"QuantityBtn"} onClick={changeProductQuantity}/>
+                                    <h3 className="text-sm text-[#202533]">{productQuantity}</h3>
+                                    <Button icon={"add"} name={"plus"} type={"QuantityBtn"} onClick={changeProductQuantity}/>
+                                </div>
 
                             </div>
                             <div className="flex gap-4 mb-3">
