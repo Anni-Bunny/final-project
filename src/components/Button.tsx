@@ -13,9 +13,9 @@ const btnTypes = {
         titleClasses: "text-[#f1ebdd] font-normal"
     },
     whiteBtn: {
-        typeClasses: "bg-white rounded border py-3 px-6 h-[2.75rem] border-black gap-2 ",
+        typeClasses: "bg-white rounded border border-[#5C5F6A] py-3 px-6 h-[2.75rem] hover:border-black gap-2 ",
         divClasses: "bg-gray-400",
-        titleClasses: "text-white font-normal"
+        titleClasses: "text-[#5C5F6A] font-normal group-hover:text-white"
     },
     whiteSmallBtn: {
         typeClasses: "bg-white py-3 px-5 h-[2.75rem] gap-2",
