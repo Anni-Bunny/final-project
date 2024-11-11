@@ -8,25 +8,7 @@ interface ProductReviewListProps {
     productId: number | string
 }
 
-interface reviewRequestResponse {
-    first: number,
-    prev: null | number,
-    next: null | number,
-    last: number,
-    pages: number,
-    items: number,
-    data: review[]
-}
 
-const ReviewRequestResponseDefaultValues = {
-    first: 1,
-    prev: null,
-    next: null,
-    last: 1,
-    pages: 0,
-    items: 0,
-    data: []
-}
 
 const sortByList = [
     {
@@ -42,24 +24,30 @@ const sortByList = [
 
 export function ProductReviewList({productId}: ProductReviewListProps) {
     const [sortedBy, setSortedBy] = useState('-date');
-    const [reviews, setReviews] = useState<reviewRequestResponse>(ReviewRequestResponseDefaultValues)
+    const [reviews, setReviews] = useState<review[]>([])
     const [averageStars, setAverageStars] = useState<number | null>(null);
     const [sortTitle, setSortTitle] = useState('Date desc');
-    const [perPage, setPerPage] = useState<number>(3)
+    const [page, setPage] = useState<number>(1)
+
+    useEffect(() => {
+        setPage(1);
+    }, [sortedBy]);
 
     useEffect(() => {
         async function getReviews() {
-            const reviews = await api.getReviews({productId: productId, _sort: sortedBy, _per_page: perPage});
-            if (reviews)
-                setReviews(reviews);
+            const reviewsRequest = await api.getReviews({productId: productId, _sort: sortedBy, _page: page});
+            if (reviewsRequest) {
+                setReviews((prevState) => (page === 1 ? reviewsRequest.data : [...prevState, ...reviewsRequest.data]));
+            }
 
-            const totalStars = reviews.data.reduce((acc: number, review: review) => acc + review.stars, 0);
-            const avgStars = reviews.data.length ? (totalStars / reviews.data.length) : 0;
+
+            const totalStars = reviewsRequest.data.reduce((acc: number, review: review) => acc + review.stars, 0);
+            const avgStars = reviewsRequest.data.length ? (totalStars / reviewsRequest.data.length) : 0;
             setAverageStars(avgStars);
         }
 
         getReviews();
-    }, [productId, sortedBy, perPage]);
+    }, [productId, sortedBy, page]);
 
     const [isDropdownVisible, setDropdownVisible] = useState(false);
 
@@ -79,12 +67,10 @@ export function ProductReviewList({productId}: ProductReviewListProps) {
     }
 
     function loadMoreReviews(event: React.MouseEvent<HTMLButtonElement>){
-        if(event.currentTarget.name === "Load more reviews"){
-            setPerPage( (state)=> state + 3)
-        }
+        setPage( (prevState)=> prevState + 1)
     }
 
-    console.log(perPage)
+    console.log(page)
 
     return (
         <div className="flex flex-col gap-6 text-[#0E1422] pb-10"
@@ -92,7 +78,7 @@ export function ProductReviewList({productId}: ProductReviewListProps) {
         >
             <div className="border-b">
                 <h5 className="font-semibold text-[1rem] pb-4">Reviews</h5>
-                <p className="pb-10">{averageStars ? averageStars.toFixed(1) : 'No ratings yet'} -{reviews.items} Reviews</p>
+                <p className="pb-10">{averageStars ? averageStars.toFixed(1) : 'No ratings yet'} -{1} Reviews</p>
                 <Button title={"Write a review"} type={"whiteBtn"} className=""/>
 
                 <div className="flex relative w-full justify-end">
@@ -138,7 +124,7 @@ export function ProductReviewList({productId}: ProductReviewListProps) {
             </div>
 
             <div className="mb-16">
-                <ProductReviews reviews={reviews.data}/>
+                <ProductReviews reviews={reviews}/>
             </div>
 
             <div className="flex items-center justify-center gap-4">
