@@ -45,10 +45,11 @@ export function ProductReviewList({productId}: ProductReviewListProps) {
     const [reviews, setReviews] = useState<reviewRequestResponse>(ReviewRequestResponseDefaultValues)
     const [averageStars, setAverageStars] = useState<number | null>(null);
     const [sortTitle, setSortTitle] = useState('Date desc');
+    const [perPage, setPerPage] = useState<number>(3)
 
     useEffect(() => {
         async function getReviews() {
-            const reviews = await api.getReviews({productId: productId, _sort: sortedBy});
+            const reviews = await api.getReviews({productId: productId, _sort: sortedBy, _per_page: perPage});
             if (reviews)
                 setReviews(reviews);
 
@@ -58,7 +59,7 @@ export function ProductReviewList({productId}: ProductReviewListProps) {
         }
 
         getReviews();
-    }, [productId, sortedBy]);
+    }, [productId, sortedBy, perPage]);
 
     const [isDropdownVisible, setDropdownVisible] = useState(false);
 
@@ -76,6 +77,14 @@ export function ProductReviewList({productId}: ProductReviewListProps) {
             toggleDropdown();
         }
     }
+
+    function loadMoreReviews(event: React.MouseEvent<HTMLButtonElement>){
+        if(event.currentTarget.name === "Load more reviews"){
+            setPerPage( (state)=> state + 3)
+        }
+    }
+
+    console.log(perPage)
 
     return (
         <div className="flex flex-col gap-6 text-[#0E1422] pb-10"
@@ -128,9 +137,14 @@ export function ProductReviewList({productId}: ProductReviewListProps) {
 
             </div>
 
-            <div>
+            <div className="mb-16">
                 <ProductReviews reviews={reviews.data}/>
             </div>
+
+            <div className="flex items-center justify-center gap-4">
+                <Button title={"Load more reviews"} name={"Load more reviews"} type={"whiteBtn"} className="border-[#5C5F6A]" onClick={loadMoreReviews}/>
+            </div>
+
         </div>
     );
 }
