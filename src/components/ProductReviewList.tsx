@@ -30,10 +30,6 @@ export function ProductReviewList({productId}: ProductReviewListProps) {
     const [page, setPage] = useState<number>(1)
 
     useEffect(() => {
-        setPage(1);
-    }, [sortedBy]);
-
-    useEffect(() => {
         async function getReviews() {
             const reviewsRequest = await api.getReviews({productId: productId, _sort: sortedBy, _page: page});
             if (reviewsRequest) {
@@ -62,6 +58,7 @@ export function ProductReviewList({productId}: ProductReviewListProps) {
         if (value && title) {
             setSortedBy(value);
             setSortTitle(title);
+            setPage(1);
             toggleDropdown();
         }
     }
