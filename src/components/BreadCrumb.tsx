@@ -5,7 +5,7 @@ import React from 'react';
 
 
 export interface BreadCrumbLink {
-    name: string,
+    name?: string,
     url?: string
 }
 
