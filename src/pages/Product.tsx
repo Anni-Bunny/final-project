@@ -15,6 +15,7 @@ import {ProductPrice} from "../components/ProductPrice";
 import {Radio} from "../components/Radio";
 import {InfoTabsSwitcher} from "../components/InfoTabsSwitcher";
 import {Icon} from "../components/Icon";
+import {review} from "../interfaces/review";
 
 interface selectedOptions {
     color?: string,
@@ -28,6 +29,8 @@ export function Product() {
     const [products, setProducts] = useState<product[]>([]);
     const [selectedOptions, setSelectedOptions] = useState<selectedOptions>({})
     const [productQuantity, setProductQuantity] = useState<number>(0)
+    const [reviews, setReviews] = useState<review[]>([])
+    const [reviewCount, setReviewCount]= useState<number>(0)
 
     let links = [
         {
@@ -59,8 +62,19 @@ export function Product() {
             }
         }
 
+        async function fetchReviews(){
+            const reviewsRequest = await api.getReviews({productId: id});
+            if (reviewsRequest) {
+                setReviews(reviewsRequest.data);
+                setReviewCount(reviewsRequest.items);
+            }
+        }
+
         fetchProducts();
+        fetchReviews();
     }, [id]);
+
+    console.log(reviews)
 
     function onChangeRadio(event: React.ChangeEvent<HTMLInputElement>) {
         const val = event.currentTarget.value
@@ -105,11 +119,11 @@ export function Product() {
                 {
                     product &&
                     <Container className="justify-between pb-44 gap-32">
-                        <ProductImageSlider className="h-[40rem] w-1/2 bg-[#F6F6F6] rounded" product={product}/>
+                        <ProductImageSlider key={product.id} className="h-[40rem] w-1/2 bg-[#F6F6F6] rounded" product={product}/>
                         <div className="h-[40rem] w-1/2 py-3 flex flex-col justify-between">
                             <h3 className="text-2xl font-bold text-[#0E1422] mb-4">{product.name}</h3>
                             <div className="flex gap-2 mb-6">
-                                <div className="flex gap-2 bg-[#F6F6F6] rounded-full py-0.5 px-6 justify-center"> <Icon name={"star"}/> {`${product.score} — 54 Reviews`}</div>
+                                <div className="flex gap-2 bg-[#F6F6F6] rounded-full py-0.5 px-6 justify-center"> <Icon name={"star"}/> {`${product.score} — ${reviewCount} Reviews`}</div>
                                 <Stock product={product} className="h-7"/>
                             </div>
                             <div className="mb-10">
