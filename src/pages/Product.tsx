@@ -42,7 +42,7 @@ export function Product() {
             url: "/products"
         },
         {
-            name: "Raw Black T-Shirt Lineup"
+            name: product?.name
         }
     ]
 
