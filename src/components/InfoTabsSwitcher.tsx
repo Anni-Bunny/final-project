@@ -21,7 +21,7 @@ export function InfoTabsSwitcher({product}:InfoTabsSwitcherProps) {
         },
         {
             name: 'reviews',
-            component: <ProductReviewList productId={product.id}/>
+            component: <ProductReviewList product={product}/>
         }
 
     ];
