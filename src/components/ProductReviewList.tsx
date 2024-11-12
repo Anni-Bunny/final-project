@@ -4,34 +4,30 @@ import api from "../classes/API";
 import {ProductReviews} from "./ProductReviews";
 import {Button} from "./Button";
 import {product} from "../interfaces/product";
+import {SortDropdown} from "./SortDropdown";
 
 interface ProductReviewListProps {
-    product: product
+    product: product;
 }
-
-
-
-const sortByList = [
-    {
-        title: 'Date',
-        sortKey: 'date',
-    },
-    {
-        title: 'Stars',
-        sortKey: 'stars',
-    }
-]
-
 
 export function ProductReviewList({product}: ProductReviewListProps) {
     const [sortedBy, setSortedBy] = useState('-date');
-    const [reviews, setReviews] = useState<review[]>([])
+    const [reviews, setReviews] = useState<review[]>([]);
     const [averageStars, setAverageStars] = useState<number | null>(null);
     const [sortTitle, setSortTitle] = useState('Date desc');
-    const [page, setPage] = useState<number>(1)
-    const [isDropdownVisible, setDropdownVisible] = useState(false);
-    const [reviewCount, setReviewCount]= useState<number>(0)
+    const [page, setPage] = useState<number>(1);
+    const [reviewCount, setReviewCount] = useState<number>(0);
 
+    const sortByList = [
+        {
+            title: 'Date',
+            sortKey: 'date',
+        },
+        {
+            title: 'Stars',
+            sortKey: 'stars',
+        }
+    ];
 
     useEffect(() => {
         async function getReviews() {
@@ -46,78 +42,29 @@ export function ProductReviewList({product}: ProductReviewListProps) {
         getReviews();
     }, [product.id, sortedBy, page]);
 
-
-    const toggleDropdown = () => {
-        setDropdownVisible((prev) => !prev);
+    const sortReviews = (sortBy: string, title: string) => {
+        setSortedBy(sortBy);
+        setSortTitle(title);
+        setPage(1);
     };
 
-    function sortReviews(event: React.MouseEvent<HTMLElement>) {
-        const value = event.currentTarget.dataset.sortBy;
-        const title = event.currentTarget.textContent?.trim();
-
-        if (value && title) {
-            setSortedBy(value);
-            setSortTitle(title);
-            setPage(1);
-            toggleDropdown();
-        }
-    }
-
-    function loadMoreReviews(event: React.MouseEvent<HTMLButtonElement>){
-        setPage( (prevState)=> prevState + 1)
-    }
-
-    console.log(page)
+    const loadMoreReviews = () => {
+        setPage((prevState) => prevState + 1);
+    };
 
     return (
-        <div className="flex flex-col gap-6 text-[#0E1422] pb-10"
-             onMouseLeave={() => setDropdownVisible(false)}
-        >
+        <div className="flex flex-col gap-6 text-[#0E1422] pb-10">
             <div className="border-b">
                 <h5 className="font-semibold text-[1rem] pb-4">Reviews</h5>
                 <p className="pb-10">{averageStars ? averageStars : 'No ratings yet'} - {reviewCount} Reviews</p>
                 <Button title={"Write a review"} type={"whiteBtn"} className=""/>
 
-                <div className="flex relative w-full justify-end">
-                    <Button
-                        title={`Sort By ${sortTitle}`}
-                        icon={"chevronDown"}
-                        className={""}
-                        type={"whiteSmallBtn"}
-                        onClick={toggleDropdown}
-                    />
-                    <div
-                        id="dropdown"
-                        className={`absolute bottom-0 translate-y-full z-10 ${isDropdownVisible ? '' : 'hidden'} bg-gray-500 rounded shadow-2xl w-44`}
-                    >
-                        <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
-                            {
-                                sortByList.map((item, index) => (
-                                    <React.Fragment key={index}>
-                                        {sortedBy !== `-${item.sortKey}` &&
-                                            <li className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer"
-                                                data-sort-by={`-${item.sortKey}`}
-                                                onClick={sortReviews}
-                                            >
-                                                {item.title} desc
-                                            </li>
-                                        }
-
-                                        {sortedBy !== `${item.sortKey}` &&
-                                            <li className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer"
-                                                data-sort-by={item.sortKey}
-                                                onClick={sortReviews}
-                                            >
-                                                {item.title} asc
-                                            </li>
-                                        }
-                                    </React.Fragment>
-                                ))
-                            }
-                        </ul>
-                    </div>
-                </div>
-
+                <SortDropdown
+                    sortedBy={sortedBy}
+                    sortTitle={sortTitle}
+                    sortByList={sortByList}
+                    onSortChange={sortReviews}
+                />
             </div>
 
             <div className="mb-16">
@@ -125,9 +72,9 @@ export function ProductReviewList({product}: ProductReviewListProps) {
             </div>
 
             <div className="flex items-center justify-center gap-4">
-                <Button title={"Load more reviews"} name={"Load more reviews"} type={"whiteBtn"} className="border-[#5C5F6A]" onClick={loadMoreReviews}/>
+                <Button title={"Load more reviews"} name={"Load more reviews"} type={"whiteBtn"}
+                        className="border-[#5C5F6A]" onClick={loadMoreReviews}/>
             </div>
-
         </div>
     );
 }
