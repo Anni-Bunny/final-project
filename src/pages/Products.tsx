@@ -12,9 +12,6 @@ export function Products() {
         {
             name: "Products",
             url: "/products"
-        },
-        {
-            name: "Raw Black T-Shirt Lineup"
         }
     ]
 
