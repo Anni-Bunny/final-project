@@ -3,9 +3,10 @@ import {review} from "../interfaces/review";
 import api from "../classes/API";
 import {ProductReviews} from "./ProductReviews";
 import {Button} from "./Button";
+import {product} from "../interfaces/product";
 
 interface ProductReviewListProps {
-    productId: number | string
+    product: product
 }
 
 
@@ -22,30 +23,29 @@ const sortByList = [
 ]
 
 
-export function ProductReviewList({productId}: ProductReviewListProps) {
+export function ProductReviewList({product}: ProductReviewListProps) {
     const [sortedBy, setSortedBy] = useState('-date');
     const [reviews, setReviews] = useState<review[]>([])
     const [averageStars, setAverageStars] = useState<number | null>(null);
     const [sortTitle, setSortTitle] = useState('Date desc');
     const [page, setPage] = useState<number>(1)
+    const [isDropdownVisible, setDropdownVisible] = useState(false);
+    const [reviewCount, setReviewCount]= useState<number>(0)
+
 
     useEffect(() => {
         async function getReviews() {
-            const reviewsRequest = await api.getReviews({productId: productId, _sort: sortedBy, _page: page});
+            const reviewsRequest = await api.getReviews({productId: product.id, _sort: sortedBy, _page: page});
             if (reviewsRequest) {
                 setReviews((prevState) => (page === 1 ? reviewsRequest.data : [...prevState, ...reviewsRequest.data]));
+                setReviewCount(reviewsRequest.items);
             }
-
-
-            const totalStars = reviewsRequest.data.reduce((acc: number, review: review) => acc + review.stars, 0);
-            const avgStars = reviewsRequest.data.length ? (totalStars / reviewsRequest.data.length) : 0;
-            setAverageStars(avgStars);
+            setAverageStars(product.score);
         }
 
         getReviews();
-    }, [productId, sortedBy, page]);
+    }, [product.id, sortedBy, page]);
 
-    const [isDropdownVisible, setDropdownVisible] = useState(false);
 
     const toggleDropdown = () => {
         setDropdownVisible((prev) => !prev);
@@ -75,7 +75,7 @@ export function ProductReviewList({productId}: ProductReviewListProps) {
         >
             <div className="border-b">
                 <h5 className="font-semibold text-[1rem] pb-4">Reviews</h5>
-                <p className="pb-10">{averageStars ? averageStars.toFixed(1) : 'No ratings yet'} -{1} Reviews</p>
+                <p className="pb-10">{averageStars ? averageStars : 'No ratings yet'} - {reviewCount} Reviews</p>
                 <Button title={"Write a review"} type={"whiteBtn"} className=""/>
 
                 <div className="flex relative w-full justify-end">
