@@ -1,5 +1,3 @@
-import React, {ChangeEventHandler} from "react";
-
 const RarioTypes={
     color: {
         parentSpanClasses: "border-transparent p-1 rounded-full",
