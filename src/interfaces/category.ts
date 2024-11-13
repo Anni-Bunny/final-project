@@ -1,5 +1,5 @@
 export interface category {
-    id: number,
+    id: string,
     name: string,
     image: string
 }
