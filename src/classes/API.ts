@@ -12,6 +12,10 @@ export interface productParams {
     _limit?: number
 }
 
+export interface categoriesParams {
+    id?: number | string
+}
+
 class API {
     private static instance: API;
     private URL: string = 'http://localhost:3001/'; // Ensure the protocol is included
@@ -91,7 +95,7 @@ class API {
         return await this.getRequest(url);
     }
 
-    async getCategories(id: string | null = null) {
+    async getCategories({id} : categoriesParams = {}) {
         let url = 'categories'
         if (id) {
             url += `/${id}`
