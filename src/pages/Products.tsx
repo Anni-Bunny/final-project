@@ -10,19 +10,32 @@ import api from "../classes/API";
 import {Container} from "../components/Container";
 import {category} from "../interfaces/category";
 import {CheckBox} from "../components/CheckBox"
+import {Radio} from "../components/Radio";
+import {RangeSlider} from "../components/RangeSlider";
 
+interface selectedOptions {
+    color?: string,
+    size?: string
+}
 
 export function Products() {
 
     const [products, setProducts] = useState<product[]>([]);
     const [categories, setCategories] = useState<category[]>([])
     const [selectedCategoryId, setSelectedCategoryId] = useState<string[]>([]);
+    const [firstProduct, setFirstProduct] =useState<product | null>(null);
+    const [selectedOptions, setSelectedOptions] = useState<selectedOptions>({})
 
     useEffect(() => {
         async function getProducts() {
             const products = await api.getProducts();
             if (products) {
                 setProducts(products);
+                const product = products[0];
+                setFirstProduct(product);
+                let colors = Object.keys(product.stock)
+                let sizes = Object.keys(product.stock[colors[0]])
+                setSelectedOptions({color: colors[0], size: sizes[0]})
             }
         }
 
@@ -36,6 +49,7 @@ export function Products() {
         getProducts();
         getCategories()
     }, []);
+
 
     let links = [
         {
@@ -62,6 +76,27 @@ export function Products() {
         }
 
     };
+
+    function onChangeRadio(event: React.ChangeEvent<HTMLInputElement>) {
+        const val = event.currentTarget.value
+        const name = event.currentTarget.name
+
+        if (selectedOptions.size && firstProduct && name === "color") {
+            const availableSizes = Object.keys(firstProduct.stock[val])
+            const newSize = availableSizes.includes(selectedOptions.size) ? selectedOptions.size : availableSizes[0]
+            setSelectedOptions((state) => ({
+                ...state,
+                size: newSize,
+                [name]: val
+            }));
+        } else {
+            setSelectedOptions((state) => ({
+                ...state,
+                [name]: val
+            }));
+        }
+    }
+
 
 
     return (
@@ -94,14 +129,37 @@ export function Products() {
 
                         <div>
                             <h4>Color</h4>
+                            <div className="flex gap-3">
+                                {
+                                    firstProduct &&
+                                    Object.keys(firstProduct.stock).map((color, index) =>
+                                        <Radio onChange={onChangeRadio} key={index}
+                                               checked={selectedOptions.color === color} name={"color"}
+                                               value={color} type={"color"}/>
+                                    )
+                                }
+                            </div>
                         </div>
 
                         <div>
                             <h4>Size</h4>
+                            <div className="flex gap-3">
+                                {
+                                    selectedOptions.color && firstProduct &&
+                                    Object.keys(firstProduct.stock[selectedOptions.color]).map((size, index) =>
+                                        <Radio onChange={onChangeRadio} key={index}
+                                               checked={selectedOptions.size === size} name={"size"}
+                                               value={size} label={size} type={"text"}/>
+                                    )
+                                }
+                            </div>
                         </div>
 
                         <div>
                             <h4>Price</h4>
+
+                            <RangeSlider/>
+
                         </div>
                     </div>
 
