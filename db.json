@@ -3491,65 +3491,6 @@
       },
       "score": 3.125,
       "createdAt": "2023-11-27 19:35:16"
-    },
-    {
-      "id": "22",
-      "sku": "CJT-04588",
-      "name": "Trendy Pink-Tinted Sunglasses",
-      "price": 38,
-      "description": "Step up your style game with these fashionable black-framed, pink-tinted sunglasses. Perfect for making a statement while protecting your eyes from the glare. Their bold color and contemporary design make these shades a must-have accessory for any trendsetter looking to add a pop of color to their ensemble.",
-      "images": {
-        "default": [
-          "[\"https:\/\/i.imgur.com\/0qQBkxX.jpg\"",
-          "\"https:\/\/i.imgur.com\/I5g1DoE.jpg\"",
-          "\"https:\/\/i.imgur.com\/myfFQBW.jpg\"]"
-        ],
-        "blue": [
-          "[\"https:\/\/i.imgur.com\/0qQBkxX.jpg\"",
-          "\"https:\/\/i.imgur.com\/I5g1DoE.jpg\"",
-          "\"https:\/\/i.imgur.com\/myfFQBW.jpg\"]"
-        ],
-        "yellow": [
-          "[\"https:\/\/i.imgur.com\/0qQBkxX.jpg\"",
-          "\"https:\/\/i.imgur.com\/I5g1DoE.jpg\"",
-          "\"https:\/\/i.imgur.com\/myfFQBW.jpg\"]"
-        ],
-        "green": [
-          "[\"https:\/\/i.imgur.com\/0qQBkxX.jpg\"",
-          "\"https:\/\/i.imgur.com\/I5g1DoE.jpg\"",
-          "\"https:\/\/i.imgur.com\/myfFQBW.jpg\"]"
-        ]
-      },
-      "stock": {
-        "blue": {
-          "S": 10,
-          "M": 3,
-          "L": 69,
-          "XL": 98,
-          "XXL": 35
-        },
-        "yellow": {
-          "S": 53,
-          "M": 63,
-          "L": 80,
-          "XL": 86,
-          "XXL": 32
-        },
-        "green": {
-          "S": 66,
-          "M": 44,
-          "L": 2,
-          "XL": 93,
-          "XXL": 35
-        }
-      },
-      "category": {
-        "id": "7",
-        "name": "Sunglasses",
-        "image": "https:\/\/i.imgur.com\/BG8J0Fj.jpg"
-      },
-      "score": 2.575,
-      "createdAt": "2023-11-24 17:48:39"
     }
   ],
   "carts": [
