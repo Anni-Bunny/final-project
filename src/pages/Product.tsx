@@ -30,7 +30,7 @@ export function Product() {
     const [selectedOptions, setSelectedOptions] = useState<selectedOptions>({})
     const [productQuantity, setProductQuantity] = useState<number>(0)
     const [reviews, setReviews] = useState<review[]>([])
-    const [reviewCount, setReviewCount]= useState<number>(0)
+    const [reviewCount, setReviewCount] = useState<number>(0)
 
     let links = [
         {
@@ -62,7 +62,7 @@ export function Product() {
             }
         }
 
-        async function fetchReviews(){
+        async function fetchReviews() {
             const reviewsRequest = await api.getReviews({productId: id});
             if (reviewsRequest) {
                 setReviews(reviewsRequest.data);
@@ -84,7 +84,6 @@ export function Product() {
             const availableSizes = Object.keys(product.stock[val])
             const newSize = availableSizes.includes(selectedOptions.size) ? selectedOptions.size : availableSizes[0]
             setSelectedOptions((state) => ({
-                ...state,
                 size: newSize,
                 [name]: val
             }));
@@ -96,13 +95,12 @@ export function Product() {
         }
     }
 
-    function changeProductQuantity(event: React.MouseEvent<HTMLButtonElement>){
-        if (event.currentTarget.name === "minus" && productQuantity > 0){
-            setProductQuantity((state)=> state - 1)
-        }
-        else if (product && selectedOptions.color && selectedOptions.size &&
-            event.currentTarget.name === "plus" && productQuantity < product.stock[selectedOptions.color][selectedOptions.size] ){
-            setProductQuantity((state)=> state + 1)
+    function changeProductQuantity(event: React.MouseEvent<HTMLButtonElement>) {
+        if (event.currentTarget.name === "minus" && productQuantity > 0) {
+            setProductQuantity((state) => state - 1)
+        } else if (product && selectedOptions.color && selectedOptions.size &&
+            event.currentTarget.name === "plus" && productQuantity < product.stock[selectedOptions.color][selectedOptions.size]) {
+            setProductQuantity((state) => state + 1)
         }
     }
 
@@ -119,11 +117,13 @@ export function Product() {
                 {
                     product &&
                     <Container className="justify-between pb-44 gap-32">
-                        <ProductImageSlider key={product.id} className="h-[40rem] w-1/2 bg-[#F6F6F6] rounded" product={product}/>
+                        <ProductImageSlider key={product.id} className="h-[40rem] w-1/2 bg-[#F6F6F6] rounded"
+                                            product={product}/>
                         <div className="h-[40rem] w-1/2 py-3 flex flex-col justify-between">
                             <h3 className="text-2xl font-bold text-[#0E1422] mb-4">{product.name}</h3>
                             <div className="flex gap-2 mb-6">
-                                <div className="flex gap-2 bg-[#F6F6F6] rounded-full py-0.5 px-6 justify-center"> <Icon name={"star"}/> {`${product.score} — ${reviewCount} Reviews`}</div>
+                                <div className="flex gap-2 bg-[#F6F6F6] rounded-full py-0.5 px-6 justify-center"><Icon
+                                    name={"star"}/> {`${product.score} — ${reviewCount} Reviews`}</div>
                                 <Stock product={product} className="h-7"/>
                             </div>
                             <div className="mb-10">
@@ -135,8 +135,12 @@ export function Product() {
                                 <div className="flex gap-3">
                                     {
                                         Object.keys(product.stock).map((color, index) =>
-                                            <Radio onChange={onChangeRadio} key={index} checked={selectedOptions.color === color} name={"color"}
-                                                   value={color} type={"color"}/>
+                                            <Radio onChange={onChangeRadio}
+                                                   key={index}
+                                                   checked={selectedOptions.color === color}
+                                                   name={"color"}
+                                                   value={color}
+                                                   type={"color"}/>
                                         )
                                     }
                                 </div>
@@ -148,8 +152,13 @@ export function Product() {
                                     {
                                         selectedOptions.color &&
                                         Object.keys(product.stock[selectedOptions.color]).map((size, index) =>
-                                            <Radio onChange={onChangeRadio} key={index} checked={selectedOptions.size === size} name={"size"}
-                                                   value={size} label={size} type={"text"}/>
+                                            <Radio onChange={onChangeRadio}
+                                                   key={index}
+                                                   checked={selectedOptions.size === size}
+                                                   name={"size"}
+                                                   value={size}
+                                                   label={size}
+                                                   type={"text"}/>
                                         )
                                     }
                                 </div>
@@ -157,10 +166,13 @@ export function Product() {
 
                             <div className="mb-10 flex flex-col gap-2">
                                 <h3 className="text-[#5C5F6A]">QUANTITY</h3>
-                                <div className="h-11 min-w-10 w-40 flex items-center justify-between border border-[#E6E7E8] px-4 ">
-                                    <Button icon={"minus"} name={"minus"} type={"QuantityBtn"} onClick={changeProductQuantity}/>
+                                <div
+                                    className="h-11 min-w-10 w-40 flex items-center justify-between border border-[#E6E7E8] px-4 ">
+                                    <Button icon={"minus"} name={"minus"} type={"QuantityBtn"}
+                                            onClick={changeProductQuantity}/>
                                     <h3 className="text-sm text-[#202533]">{productQuantity}</h3>
-                                    <Button icon={"add"} name={"plus"} type={"QuantityBtn"} onClick={changeProductQuantity}/>
+                                    <Button icon={"add"} name={"plus"} type={"QuantityBtn"}
+                                            onClick={changeProductQuantity}/>
                                 </div>
 
                             </div>
