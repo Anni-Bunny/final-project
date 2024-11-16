@@ -23,7 +23,7 @@ export function Products() {
     const [products, setProducts] = useState<product[]>([]);
     const [categories, setCategories] = useState<category[]>([])
     const [selectedCategoryId, setSelectedCategoryId] = useState<string[]>([]);
-    const [firstProduct, setFirstProduct] =useState<product | null>(null);
+    const [firstProduct, setFirstProduct] = useState<product | null>(null);
     const [selectedOptions, setSelectedOptions] = useState<selectedOptions>({})
 
     useEffect(() => {
@@ -66,7 +66,7 @@ export function Products() {
     const handleCategoryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const currentValue = event.currentTarget.value
         const checked = event.currentTarget.checked
-        if (checked){
+        if (checked) {
             setSelectedCategoryId(prevState => ([
                 ...prevState,
                 currentValue
@@ -81,22 +81,12 @@ export function Products() {
         const val = event.currentTarget.value
         const name = event.currentTarget.name
 
-        if (selectedOptions.size && firstProduct && name === "color") {
-            const availableSizes = Object.keys(firstProduct.stock[val])
-            const newSize = availableSizes.includes(selectedOptions.size) ? selectedOptions.size : availableSizes[0]
-            setSelectedOptions((state) => ({
-                ...state,
-                size: newSize,
-                [name]: val
-            }));
-        } else {
-            setSelectedOptions((state) => ({
-                ...state,
-                [name]: val
-            }));
-        }
-    }
+        setSelectedOptions((state) => ({
+            ...state,
+            [name]: val
+        }));
 
+    }
 
 
     return (
@@ -133,9 +123,12 @@ export function Products() {
                                 {
                                     firstProduct &&
                                     Object.keys(firstProduct.stock).map((color, index) =>
-                                        <Radio onChange={onChangeRadio} key={index}
-                                               checked={selectedOptions.color === color} name={"color"}
-                                               value={color} type={"color"}/>
+                                        <Radio onChange={onChangeRadio}
+                                               key={index}
+                                               checked={selectedOptions.color === color}
+                                               name={"color"}
+                                               value={color}
+                                               type={"color"}/>
                                     )
                                 }
                             </div>
