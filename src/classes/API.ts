@@ -9,7 +9,9 @@ export interface reviewParams {
 export interface productParams {
     id?: number | string,
     _sort?: string,
-    _limit?: number
+    _limit?: number,
+    _page?: number,
+    _per_page?: number | string
 }
 
 export interface categoriesParams {
@@ -55,14 +57,20 @@ class API {
         return await this.getRequest(url);
     }
 
-    async getProducts( {id, _sort, _limit = 9} : productParams = {}) {
+    async getProducts({id, _sort, _limit = 9, _page, _per_page = 9}: productParams = {}) {
         let url = 'products'
         if (id) {
+
             url += `/${id}`
 
-        }
-        else if(_sort){
+        } else if (_page) {
+
+            url += `?_page=${_page}&_per_page=${_per_page}&_sort=${_sort}`
+
+        } else if (_sort) {
+
             url += `?_sort=${_sort}&_limit=${_limit}`
+
         }
         return await this.getRequest(url);
     }
@@ -95,7 +103,7 @@ class API {
         return await this.getRequest(url);
     }
 
-    async getCategories({id} : categoriesParams = {}) {
+    async getCategories({id}: categoriesParams = {}) {
         let url = 'categories'
         if (id) {
             url += `/${id}`
