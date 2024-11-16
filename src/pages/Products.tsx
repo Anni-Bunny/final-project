@@ -12,25 +12,41 @@ import {category} from "../interfaces/category";
 import {CheckBox} from "../components/CheckBox"
 import {Radio} from "../components/Radio";
 import {RangeSlider} from "../components/RangeSlider";
+import {SortDropdown} from "../components/SortDropdown";
+import {renponse} from "../interfaces/response";
 
 interface selectedOptions {
     color?: string,
     size?: string
 }
 
+const defaultResponse = {
+    first: 1,
+    prev: null,
+    next: null,
+    last: null,
+    pages: null,
+    items: null,
+    data: []
+}
+
 export function Products() {
 
-    const [products, setProducts] = useState<product[]>([]);
     const [categories, setCategories] = useState<category[]>([])
     const [selectedCategoryId, setSelectedCategoryId] = useState<string[]>([]);
     const [firstProduct, setFirstProduct] = useState<product | null>(null);
     const [selectedOptions, setSelectedOptions] = useState<selectedOptions>({})
+    const [sortedBy, setSortedBy] = useState('-date');
+    const [sortTitle, setSortTitle] = useState('Date desc');
+    const [currentPage, setCurrentPage] = useState<number>(1);
+    const [response, setResponse] = useState<renponse>(defaultResponse)
 
     useEffect(() => {
         async function getProducts() {
-            const products = await api.getProducts();
+            const response = await api.getProducts({_sort: sortedBy, _page: currentPage});
+            setResponse(response);
+            const products = response.data
             if (products) {
-                setProducts(products);
                 const product = products[0];
                 setFirstProduct(product);
                 let colors = Object.keys(product.stock)
@@ -48,7 +64,7 @@ export function Products() {
 
         getProducts();
         getCategories()
-    }, []);
+    }, [sortedBy]);
 
 
     let links = [
@@ -87,6 +103,23 @@ export function Products() {
         }));
 
     }
+
+    const sortByList = [
+        {
+            title: 'Date',
+            sortKey: 'createdAt',
+        },
+        {
+            title: 'price',
+            sortKey: 'price',
+        }
+    ];
+
+    const sortReviews = (sortBy: string, title: string) => {
+        setSortedBy(sortBy);
+        setSortTitle(title);
+        setCurrentPage(1);
+    };
 
 
     return (
@@ -140,9 +173,13 @@ export function Products() {
                                 {
                                     selectedOptions.color && firstProduct &&
                                     Object.keys(firstProduct.stock[selectedOptions.color]).map((size, index) =>
-                                        <Radio onChange={onChangeRadio} key={index}
-                                               checked={selectedOptions.size === size} name={"size"}
-                                               value={size} label={size} type={"text"}/>
+                                        <Radio onChange={onChangeRadio}
+                                               key={index}
+                                               checked={selectedOptions.size === size}
+                                               name={"size"}
+                                               value={size}
+                                               label={size}
+                                               type={"text"}/>
                                     )
                                 }
                             </div>
@@ -152,19 +189,28 @@ export function Products() {
                             <h4>Price</h4>
 
                             <RangeSlider/>
-
                         </div>
                     </div>
 
-                    <div className="flex-col grid grid-cols-3">
-                        {
-                            products.map(product => (
-                                <Link to={"/products/" + product.id}>
-                                    <ProductCard key={product.id} product={product}/>
-                                </Link>
-                            ))
-                        }
+                    <div>
+                        <SortDropdown sortedBy={sortedBy}
+                                      sortTitle={sortTitle}
+                                      sortByList={sortByList}
+                                      onSortChange={sortReviews}
+                        />
+
+                        <div className="flex-col grid grid-cols-3 gap-8 mb-16">
+                            {
+                                response.data.map(product => (
+                                    <Link to={"/products/" + product.id}>
+                                        <ProductCard key={product.id} product={product}/>
+                                    </Link>
+                                ))
+                            }
+                        </div>
                     </div>
+
+
                 </div>
             </Container>
 
