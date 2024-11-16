@@ -1,8 +1,8 @@
 import React, { useState, useRef } from 'react';
 
 export function RangeSlider(){
-    const [leftValue, setLeftValue] = useState<number>(20);  // Left bullet initial position
-    const [rightValue, setRightValue] = useState<number>(80); // Right bullet initial position
+    const [leftValue, setLeftValue] = useState<number>(0);  // Left bullet initial position
+    const [rightValue, setRightValue] = useState<number>(50); // Right bullet initial position
     const [showLeftTooltip, setShowLeftTooltip] = useState<boolean>(false); // Left tooltip visibility
     const [showRightTooltip, setShowRightTooltip] = useState<boolean>(false); // Right tooltip visibility
 
@@ -117,4 +117,4 @@ export function RangeSlider(){
             </div>
         </div>
     );
-};
+}
