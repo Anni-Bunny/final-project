@@ -55,7 +55,7 @@ class API {
         return await this.getRequest(url);
     }
 
-    async getProducts( {id, _sort, _limit = 10} : productParams = {}) {
+    async getProducts( {id, _sort, _limit = 9} : productParams = {}) {
         let url = 'products'
         if (id) {
             url += `/${id}`
