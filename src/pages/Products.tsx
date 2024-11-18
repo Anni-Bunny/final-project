@@ -4,7 +4,6 @@ import {Footer} from "../components/Footer";
 import {BreadCrumb} from "../components/BreadCrumb";
 import {Link} from "react-router-dom";
 import {ProductCard} from "../components/ProductCard";
-import {product} from "../interfaces/product";
 import React, {useEffect, useState} from "react";
 import api from "../classes/API";
 import {Container} from "../components/Container";
@@ -14,10 +13,13 @@ import {Radio} from "../components/Radio";
 import {RangeSlider} from "../components/RangeSlider";
 import {SortDropdown} from "../components/SortDropdown";
 import {renponse} from "../interfaces/response";
+import {Pagination} from "../components/Pagination";
+import {topFunction} from "../Helpers/functions";
 
 interface selectedOptions {
     color?: string,
-    size?: string
+    size?: string,
+    page?: number | string
 }
 
 const defaultResponse = {
@@ -34,25 +36,28 @@ export function Products() {
 
     const [categories, setCategories] = useState<category[]>([])
     const [selectedCategoryId, setSelectedCategoryId] = useState<string[]>([]);
-    const [firstProduct, setFirstProduct] = useState<product | null>(null);
-    const [selectedOptions, setSelectedOptions] = useState<selectedOptions>({})
+    const [selectedOptions, setSelectedOptions] = useState<selectedOptions>({page: 1})
     const [sortedBy, setSortedBy] = useState('-date');
     const [sortTitle, setSortTitle] = useState('Date desc');
-    const [currentPage, setCurrentPage] = useState<number>(1);
     const [response, setResponse] = useState<renponse>(defaultResponse)
+
+    function resetPage() {
+        setSelectedOptions(state => (
+            {
+                ...state,
+                page: 1
+            }
+        ))
+    }
+
+    const colors = ["blue", "yellow", "green"]
+    const sizes = ["S", "M", "L", "XL", "XXL"]
+
 
     useEffect(() => {
         async function getProducts() {
-            const response = await api.getProducts({_sort: sortedBy, _page: currentPage});
+            const response = await api.getProducts({_sort: sortedBy, _page: selectedOptions.page});
             setResponse(response);
-            const products = response.data
-            if (products) {
-                const product = products[0];
-                setFirstProduct(product);
-                let colors = Object.keys(product.stock)
-                let sizes = Object.keys(product.stock[colors[0]])
-                setSelectedOptions({color: colors[0], size: sizes[0]})
-            }
         }
 
         async function getCategories() {
@@ -63,8 +68,13 @@ export function Products() {
         }
 
         getProducts();
-        getCategories()
-    }, [sortedBy]);
+
+        if (!categories.length) {
+            getCategories()
+        }
+
+        topFunction()
+    }, [sortedBy, selectedOptions.page]);
 
 
     let links = [
@@ -90,18 +100,29 @@ export function Products() {
         } else {
             setSelectedCategoryId(prevState => (prevState.filter(item => item !== currentValue)));
         }
-
+        resetPage()
     };
 
     function onChangeRadio(event: React.ChangeEvent<HTMLInputElement>) {
         const val = event.currentTarget.value
         const name = event.currentTarget.name
 
-        setSelectedOptions((state) => ({
-            ...state,
-            [name]: val
-        }));
+        if (name !== "page") {
 
+            setSelectedOptions((state) => ({
+                ...state,
+                page: 1,
+                [name]: val
+            }));
+
+        } else {
+
+            setSelectedOptions((state) => ({
+                ...state,
+                [name]: val
+            }));
+
+        }
     }
 
     const sortByList = [
@@ -118,7 +139,7 @@ export function Products() {
     const sortReviews = (sortBy: string, title: string) => {
         setSortedBy(sortBy);
         setSortTitle(title);
-        setCurrentPage(1);
+        resetPage();
     };
 
 
@@ -154,8 +175,7 @@ export function Products() {
                             <h4>Color</h4>
                             <div className="flex gap-3">
                                 {
-                                    firstProduct &&
-                                    Object.keys(firstProduct.stock).map((color, index) =>
+                                    colors.map((color, index) =>
                                         <Radio onChange={onChangeRadio}
                                                key={index}
                                                checked={selectedOptions.color === color}
@@ -171,8 +191,7 @@ export function Products() {
                             <h4>Size</h4>
                             <div className="flex gap-3">
                                 {
-                                    selectedOptions.color && firstProduct &&
-                                    Object.keys(firstProduct.stock[selectedOptions.color]).map((size, index) =>
+                                    sizes.map((size, index) =>
                                         <Radio onChange={onChangeRadio}
                                                key={index}
                                                checked={selectedOptions.size === size}
@@ -207,6 +226,12 @@ export function Products() {
                                     </Link>
                                 ))
                             }
+                        </div>
+
+                        <div className=" flex justify-center">
+                            {response.pages &&
+                                <Pagination pageCount={response.pages} className="mb-32" onChange={onChangeRadio}
+                                            selectedOptionsPage={selectedOptions.page}/>}
                         </div>
                     </div>
 
