@@ -10,7 +10,7 @@ export interface productParams {
     id?: number | string,
     _sort?: string,
     _limit?: number,
-    _page?: number,
+    _page?: number | string,
     _per_page?: number | string
 }
 
