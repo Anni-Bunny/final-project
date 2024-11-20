@@ -18,12 +18,12 @@ export function SortDropdown({
         <Dropdown
             title={`Sort By ${sortTitle}`}
             icon={"chevronDown"}
-            child2={<ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
+            child2={<ul className="py-2 text-sm text-[#0E1422]">
                 {sortByList.map((item, index) => (
                     <React.Fragment key={index}>
                         {sortedBy !== `-${item.sortKey}` && (
                             <li
-                                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer"
+                                className="block px-4 py-2 hover:bg-gray-400 bg-opacity-25 cursor-pointer transition duration-200 hover:text-white hover:font-bold"
                                 data-sort-by={`-${item.sortKey}`}
                                 onClick={() => {
                                     onSortChange(`-${item.sortKey}`, `${item.title} desc`);
@@ -35,7 +35,7 @@ export function SortDropdown({
 
                         {sortedBy !== `${item.sortKey}` && (
                             <li
-                                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer"
+                                className="block px-4 py-2 hover:bg-gray-400 cursor-pointer transition duration-200 hover:text-white hover:font-bold"
                                 data-sort-by={item.sortKey}
                                 onClick={() => {
                                     onSortChange(`${item.sortKey}`, `${item.title} asc`);
