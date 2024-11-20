@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {Button} from './Button';  // Import Button
+import React from 'react';
+import {Dropdown} from "./DropDown";  // Import Button
 
 interface SortDropdownProps {
     sortedBy: string;
@@ -14,55 +14,39 @@ export function SortDropdown({
                                  sortByList,
                                  onSortChange,
                              }: SortDropdownProps) {
-    const [isVisible, setIsVisible] = useState(false);
-
-    const toggleDropdown = () => {
-        setIsVisible((prev) => !prev);
-    };
-
     return (
-        <div className="flex relative w-full justify-end"
-             onMouseLeave={() => setIsVisible(false)}>
-            <Button
-                title={`Sort By ${sortTitle}`}
-                icon={"chevronDown"}
-                className={""}
-                type={"whiteSmallBtn"}
-                onClick={toggleDropdown}
-            />
-            <div
-                className={`absolute bottom-0 translate-y-full z-10 ${isVisible ? '' : 'hidden'} bg-gray-500 rounded shadow-2xl w-44`}
-            >
-                <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
-                    {sortByList.map((item, index) => (
-                        <React.Fragment key={index}>
-                            {sortedBy !== `-${item.sortKey}` && (
-                                <li
-                                    className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer"
-                                    data-sort-by={`-${item.sortKey}`}
-                                    onClick={() => {
-                                        onSortChange(`-${item.sortKey}`, `${item.title} desc`);
-                                    }}
-                                >
-                                    {item.title} desc
-                                </li>
-                            )}
+        <Dropdown
+            title={`Sort By ${sortTitle}`}
+            icon={"chevronDown"}
+            child2={<ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
+                {sortByList.map((item, index) => (
+                    <React.Fragment key={index}>
+                        {sortedBy !== `-${item.sortKey}` && (
+                            <li
+                                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer"
+                                data-sort-by={`-${item.sortKey}`}
+                                onClick={() => {
+                                    onSortChange(`-${item.sortKey}`, `${item.title} desc`);
+                                }}
+                            >
+                                {item.title} desc
+                            </li>
+                        )}
 
-                            {sortedBy !== `${item.sortKey}` && (
-                                <li
-                                    className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer"
-                                    data-sort-by={item.sortKey}
-                                    onClick={() => {
-                                        onSortChange(`${item.sortKey}`, `${item.title} asc`);
-                                    }}
-                                >
-                                    {item.title} asc
-                                </li>
-                            )}
-                        </React.Fragment>
-                    ))}
-                </ul>
-            </div>
-        </div>
-    );
+                        {sortedBy !== `${item.sortKey}` && (
+                            <li
+                                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer"
+                                data-sort-by={item.sortKey}
+                                onClick={() => {
+                                    onSortChange(`${item.sortKey}`, `${item.title} asc`);
+                                }}
+                            >
+                                {item.title} asc
+                            </li>
+                        )}
+                    </React.Fragment>
+                ))}
+            </ul>}
+        />
+    )
 }
