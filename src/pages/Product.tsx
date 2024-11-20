@@ -120,6 +120,7 @@ export function Product() {
             }
             dispatch(addProduct(cartItem))
         }
+        setProductQuantity(0)
     }
 
     return (
