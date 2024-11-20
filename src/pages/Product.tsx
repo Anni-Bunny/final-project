@@ -110,9 +110,12 @@ export function Product() {
     }
 
     function addToCart() {
-        console.log(selectedOptions)
-        if (id && selectedOptions.color && selectedOptions.size && productQuantity) {
+        if (id && selectedOptions.color && selectedOptions.size && productQuantity && product) {
             const cartItem: cartItem = {
+                image: product.images[selectedOptions.color][0],
+                name: product.name,
+                price: product.price,
+                stock:product.stock[selectedOptions.color][selectedOptions.size],
                 productId: Number(id),
                 color: selectedOptions.color,
                 size: selectedOptions.size,
