@@ -18,7 +18,7 @@ export function SortDropdown({
         <Dropdown
             title={`Sort By ${sortTitle}`}
             icon={"chevronDown"}
-            child2={<ul className="py-2 text-sm text-[#0E1422]">
+            child2={<ul className="py-2 text-sm w-44 text-[#0E1422]">
                 {sortByList.map((item, index) => (
                     <React.Fragment key={index}>
                         {sortedBy !== `-${item.sortKey}` && (
