@@ -7,6 +7,7 @@ interface dropdownProps {
     child1?: React.ReactNode,
     child2?: React.ReactNode,
     child1ClassName?: string,
+    child2ClassName?: string,
 }
 
 export function Dropdown({
@@ -15,6 +16,7 @@ export function Dropdown({
                              child1,
                              child2,
                              child1ClassName,
+                             child2ClassName,
                          }: dropdownProps) {
     const [isVisible, setIsVisible] = useState(false);
 
@@ -39,7 +41,7 @@ export function Dropdown({
             </div>
 
             <div
-                className={`absolute right-2 bottom-0 translate-y-full z-10 ${isVisible ? '' : 'hidden'} bg-gray-500 rounded shadow-2xl w-44`}>
+                className={`absolute right-2 bottom-0 translate-y-full z-10 ${isVisible ? '' : 'hidden'} bg-white rounded shadow-2xl w-44 transition duration-400 ${child2ClassName}`}>
                 {child2}
             </div>
         </div>
