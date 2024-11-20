@@ -17,12 +17,12 @@ export const cartSlice = createSlice({
             state.products.push(action.payload)
         },
         removeProduct: (state, action: PayloadAction<number>) => {
-            state.products = state.products.filter(product => product.productId != action.payload)
+            state.products = state.products.filter(product => product.productId !== action.payload)
         },
         incrementProduct: (state, action: PayloadAction<number>) => {
             state.products = state.products.map(product => {
 
-                if (product.productId == action.payload)
+                if (product.productId === action.payload)
                     product.quantity++
 
                 return product
@@ -31,7 +31,7 @@ export const cartSlice = createSlice({
         decrementProduct: (state, action: PayloadAction<number>) => {
             state.products = state.products.map(product => {
 
-                if (product.productId == action.payload)
+                if (product.productId === action.payload)
                     product.quantity--
 
                 return product
