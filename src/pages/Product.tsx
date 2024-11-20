@@ -16,6 +16,9 @@ import {Radio} from "../components/Radio";
 import {InfoTabsSwitcher} from "../components/InfoTabsSwitcher";
 import {Icon} from "../components/Icon";
 import {review} from "../interfaces/review";
+import { useDispatch } from 'react-redux'
+import {cartItem} from "../interfaces/cart";
+import {addProduct} from "../store/slices/cartSlice";
 
 interface selectedOptions {
     color?: string,
@@ -23,6 +26,8 @@ interface selectedOptions {
 }
 
 export function Product() {
+
+    const dispatch = useDispatch()
 
     const {id} = useParams()
     const [product, setProduct] = useState<product>();
@@ -106,6 +111,15 @@ export function Product() {
 
     function addToCart() {
         console.log(selectedOptions)
+        if (id && selectedOptions.color && selectedOptions.size && productQuantity) {
+            const cartItem: cartItem = {
+                productId: Number(id),
+                color: selectedOptions.color,
+                size: selectedOptions.size,
+                quantity: productQuantity
+            }
+            dispatch(addProduct(cartItem))
+        }
     }
 
     return (
