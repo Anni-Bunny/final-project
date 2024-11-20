@@ -41,7 +41,7 @@ export function Dropdown({
             </div>
 
             <div
-                className={`absolute right-2 bottom-0 translate-y-full z-10 ${isVisible ? '' : 'hidden'} bg-white rounded shadow-2xl w-44 transition duration-400 ${child2ClassName}`}>
+                className={`absolute right-2 bottom-0 translate-y-full z-10 ${isVisible ? '' : 'hidden'} bg-white rounded shadow-2xl transition duration-400 ${child2ClassName}`}>
                 {child2}
             </div>
         </div>
