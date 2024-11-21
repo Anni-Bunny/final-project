@@ -8,6 +8,7 @@ interface dropdownProps {
     child2?: React.ReactNode,
     child1ClassName?: string,
     child2ClassName?: string,
+    mainDivClassName?: string
 }
 
 export function Dropdown({
@@ -17,6 +18,7 @@ export function Dropdown({
                              child2,
                              child1ClassName,
                              child2ClassName,
+                             mainDivClassName
                          }: dropdownProps) {
     const [isVisible, setIsVisible] = useState(false);
 
@@ -25,7 +27,7 @@ export function Dropdown({
     };
 
     return (
-        <div className="flex relative w-full justify-end"
+        <div className={`flex relative w-full justify-end ${mainDivClassName}`}
              onMouseLeave={() => setIsVisible(false)}>
             <div className="relative">
                 <Button
