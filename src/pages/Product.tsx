@@ -16,6 +16,7 @@ import {review} from "../interfaces/review";
 import { useDispatch } from 'react-redux'
 import {cartItem} from "../interfaces/cart";
 import {addProduct} from "../store/slices/cartSlice";
+import {ShareDropDown} from "../components/ShareDropDown";
 
 interface selectedOptions {
     color?: string,
@@ -133,7 +134,11 @@ export function Product() {
                         <ProductImageSlider key={product.id} className="h-[40rem] w-1/2 bg-[#F6F6F6] rounded"
                                             product={product}/>
                         <div className="h-[40rem] w-1/2 py-3 flex flex-col justify-between">
-                            <h3 className="text-2xl font-bold text-[#0E1422] mb-4">{product.name}</h3>
+                            <div className="flex justify-between">
+                                <h3 className="text-2xl font-bold text-[#0E1422] mb-4">{product.name}</h3>
+                                <ShareDropDown/>
+                            </div>
+
                             <div className="flex gap-2 mb-6">
                                 <div className="flex gap-2 bg-[#F6F6F6] rounded-full py-0.5 px-6 justify-center"><Icon
                                     name={"star"}/> {`${product.score} — ${reviewCount} Reviews`}</div>
