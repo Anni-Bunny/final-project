@@ -14,9 +14,9 @@ export function Header() {
                     </Link>
                     <div className="flex gap-8">
                         <Link to="/">Home</Link>
-                        <Link to={""}>Categories</Link>
-                        <Link to={""}>About</Link>
-                        <Link to={"/shoppingCart"}>Contact</Link>
+                        <Link to={"/categories"}>Categories</Link>
+                        <Link to={"/about"}>About</Link>
+                        <Link to={"/contact"}>Contact</Link>
                     </div>
                 </div>
                 <div className="flex gap-8 h-11 items-center justify-between">
