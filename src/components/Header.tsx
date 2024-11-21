@@ -14,7 +14,7 @@ export function Header() {
                     </Link>
                     <div className="flex gap-8">
                         <Link to="/">Home</Link>
-                        <Link to={"/categories"}>Categories</Link>
+                        <Link to={"/categories"} className="flex gap-1">Categories <Icon name={"chevronDown"}/></Link>
                         <Link to={"/about"}>About</Link>
                         <Link to={"/contact"}>Contact</Link>
                     </div>
