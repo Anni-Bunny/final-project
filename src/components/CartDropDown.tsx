@@ -25,28 +25,29 @@ export function CartDropDown() {
                       <div className="flex flex-col w-[26rem] ">
                           <div className="flex flex-col gap-8 p-4 overflow-y-scroll max-h-[29rem]">
                               {
-                                  cart.products.map((product) =>
-                                      <CartItem product={product}/>
+                                  Array.isArray(cart.products) && cart.products.length > 0 ? (
+                                      cart.products.map((product) => (
+                                          <CartItem key={product.productId} product={product} />
+                                      ))
+                                  ) : (
+                                      <h3 className="flex items-center justify-center pt-10 font-bold text-xl">Cart is empty</h3>
                                   )
                               }
                           </div>
 
-                          <div className="p-4">
-                              <div className="flex justify-between p-3">
+                          <div className="px-4 flex flex-col gap-4 py-8">
+                              <div className="flex justify-between px-3">
                                   <span>Total</span>
                                   <span>{totalPrice > 0 ? `$${totalPrice}.00` : `$${totalPrice}`}</span>
                               </div>
 
                               <Link to={"/shoppingCart"}><Button title={"View Cart"} className="w-full"/></Link>
-                              <Link to={"#"} className="border-b flex justify-center">Checkout</Link>
 
+                              <Link to={"#"} className="flex justify-center"><span className="border-b">Checkout</span></Link>
                           </div>
-
-
                       </div>
-
-
                   }
+                  mainDivClassName={"flex justify-center max-w-16"}
         />
     );
 }
