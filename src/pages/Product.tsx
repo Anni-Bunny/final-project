@@ -76,7 +76,6 @@ export function Product() {
         fetchReviews();
     }, [id]);
 
-    console.log(reviews)
 
     function onChangeRadio(event: React.ChangeEvent<HTMLInputElement>) {
         const val = event.currentTarget.value
