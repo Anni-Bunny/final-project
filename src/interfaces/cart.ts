@@ -7,7 +7,8 @@ export interface cartItem {
     productId: number,
     size: string,
     color: string,
-    quantity: number
+    quantity: number,
+    sku: string
 }
 
 export interface cart {

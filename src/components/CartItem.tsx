@@ -40,12 +40,12 @@ export function CartItem({product}: cartItemProps) {
                     <div
                         className="h-10 min-w-10 w-28 flex items-center justify-between border border-[#E6E7E8] px-4 ">
                         <Button icon={"minus"} name={"minus"} type={"QuantityBtn"}
-                                onClick={() => dispatch(decrementProduct(product.productId))}/>
+                                onClick={() => dispatch(decrementProduct(product.sku))}/>
 
                         <h3 className="text-sm text-[#202533]">{product.quantity}</h3>
 
                         <Button icon={"add"} name={"plus"} type={"QuantityBtn"}
-                                onClick={() => dispatch(incrementProduct(product.productId))}/>
+                                onClick={() => dispatch(incrementProduct(product.sku))}/>
                     </div>
 
                     <span className="font-bold"> {product.price > 0 ? `$${product.price}.00` :

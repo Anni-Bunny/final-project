@@ -19,19 +19,19 @@ export const cartSlice = createSlice({
         removeProduct: (state, action: PayloadAction<number>) => {
             state.products = state.products.filter(product => product.productId !== action.payload)
         },
-        incrementProduct: (state, action: PayloadAction<number>) => {
+        incrementProduct: (state, action: PayloadAction<string>) => {
             state.products = state.products.map(product => {
 
-                if (product.productId === action.payload)
+                if (product.sku === action.payload)
                     product.quantity++
 
                 return product
             })
         },
-        decrementProduct: (state, action: PayloadAction<number>) => {
+        decrementProduct: (state, action: PayloadAction<string>) => {
             state.products = state.products.map(product => {
 
-                if (product.productId === action.payload)
+                if (product.sku === action.payload)
                     product.quantity--
 
                 return product
