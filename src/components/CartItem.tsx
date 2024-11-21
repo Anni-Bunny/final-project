@@ -4,23 +4,46 @@ import React from "react";
 import {decrementProduct, incrementProduct} from "../store/slices/cartSlice";
 import {useDispatch} from "react-redux";
 
+const types = {
+    vertical: {
+        containerFlexDirection: "flex-col",
+        imageSize: "w-20",
+        mainDiv:"gap-4 border-b border-[#E9E9EB] pb-8",
+        priceAndQuantityDiv: ""
+    },
+    horizontal: {
+        containerFlexDirection: "flex flex-row items-center justify-between gap-10",
+        imageSize: "w-28",
+        mainDiv: "gap-8",
+        priceAndQuantityDiv: "gap-8"
+    },
+}
+type type = keyof typeof types;
+
 interface cartItemProps {
-    product: cartItem
+    product: cartItem,
+    type?: type
 }
 
-export function CartItem({product}: cartItemProps) {
+export function CartItem({product, type = "vertical"}: cartItemProps) {
+
+    let containerFlexDirection = types[type].containerFlexDirection
+    let imageSize = types[type].imageSize
+    let mainDiv = types[type].mainDiv
+    let priceAndQuantityDiv = types[type].priceAndQuantityDiv
+
+
 
     const dispatch = useDispatch()
-
     const sumPrice = product.price * product.quantity
 
     return (
-        <div className="flex gap-4 h-30 border-b border-[#E9E9EB] pb-8">
+        <div className={`flex ${mainDiv}`}>
             <div className="flex bg-gray-300 items-center">
-                <img className=" w-20 bg-cover" src={product.image} alt=""/>
+                <img className={`bg-cover ${imageSize}`} src={product.image} alt=""/>
             </div>
 
-            <div className="flex flex-col justify-between">
+            <div className={`flex justify-between ${containerFlexDirection}`}>
                 <div className="flex gap-4">
                     <p className="max-w-44 overflow-hidden font-semibold">{product.name}</p>
                     <div className="flex-col">
@@ -36,7 +59,7 @@ export function CartItem({product}: cartItemProps) {
 
                 </div>
 
-                <div className="flex justify-between items-center">
+                <div className={`flex justify-between items-center ${priceAndQuantityDiv}`}>
                     <div
                         className="h-10 min-w-10 w-28 flex items-center justify-between border border-[#E6E7E8] px-4 ">
                         <Button icon={"minus"} name={"minus"} type={"QuantityBtn"}
