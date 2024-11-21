@@ -1,6 +1,8 @@
 import {cartItem} from "../interfaces/cart";
 import {Button} from "./Button";
 import React from "react";
+import {decrementProduct, incrementProduct} from "../store/slices/cartSlice";
+import {useDispatch} from "react-redux";
 
 interface cartItemProps {
     product: cartItem
@@ -8,14 +10,9 @@ interface cartItemProps {
 
 export function CartItem({product}: cartItemProps) {
 
-    function changeProductQuantity(event: React.MouseEvent<HTMLButtonElement>) {
-        if (event.currentTarget.name === "minus" && product.quantity > 0) {
-            product.quantity--
-        } else if (product && product.color && product.size &&
-            event.currentTarget.name === "plus" && product.quantity < product.stock) {
-            product.quantity++
-        }
-    }
+    const dispatch = useDispatch()
+
+    const sumPrice = product.price * product.quantity
 
     return (
         <div className="flex gap-4 h-30 border-b border-[#E9E9EB] pb-8">
@@ -43,13 +40,19 @@ export function CartItem({product}: cartItemProps) {
                     <div
                         className="h-10 min-w-10 w-28 flex items-center justify-between border border-[#E6E7E8] px-4 ">
                         <Button icon={"minus"} name={"minus"} type={"QuantityBtn"}
-                                onClick={changeProductQuantity}/>
+                                onClick={() => dispatch(decrementProduct(product.productId))}/>
+
                         <h3 className="text-sm text-[#202533]">{product.quantity}</h3>
+
                         <Button icon={"add"} name={"plus"} type={"QuantityBtn"}
-                                onClick={changeProductQuantity}/>
+                                onClick={() => dispatch(incrementProduct(product.productId))}/>
                     </div>
 
-                    <span className="font-bold"> {product.price > 0 ? `$${product.price}.00` : <span>`$${product.price}`</span>}</span>
+                    <span className="font-bold"> {product.price > 0 ? `$${product.price}.00` :
+                        <span>`$${product.price}`</span>}</span>
+
+                    <span className="font-bold"> {sumPrice > 0 ? `$${sumPrice}.00` :
+                        <span>`$${product.price}`</span>}</span>
                 </div>
 
             </div>
