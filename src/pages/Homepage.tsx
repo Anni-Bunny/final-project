@@ -7,6 +7,7 @@ import {product} from "../interfaces/product";
 import {Slider} from "../components/Slider";
 import {ProductsTabsSwitcher} from "../components/ProductsTabsSwitcher";
 import {Footer} from "../components/Footer";
+import {Link} from "react-router-dom";
 
 export function Homepage() {
     const [bestSelling, setBestSelling] = useState<product[]>([])
@@ -32,7 +33,7 @@ export function Homepage() {
                             <p className="text-[0.875rem]">Discover Our Newest Collection Today.</p>
                         </div>
                         <div>
-                            <Button icon={"arrowRight"} title={"View Collection"}/>
+                            <Link to={"/products"}><Button icon={"arrowRight"} title={"View Collection"}/></Link>
                         </div>
                     </div>
                     <div className="h-full flex items-end">
