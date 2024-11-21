@@ -1,6 +1,3 @@
-import {NotificationBar} from "../components/NotificationBar";
-import {Header} from "../components/Header";
-import {Footer} from "../components/Footer";
 import {Container} from "../components/Container";
 import {Slider} from "../components/Slider";
 import React, {useEffect, useState} from "react";
@@ -119,7 +116,8 @@ export function Product() {
                 productId: Number(id),
                 color: selectedOptions.color,
                 size: selectedOptions.size,
-                quantity: productQuantity
+                quantity: productQuantity,
+                sku: product.sku+selectedOptions.color+selectedOptions.size
             }
             dispatch(addProduct(cartItem))
         }
@@ -128,8 +126,6 @@ export function Product() {
 
     return (
         <>
-            <NotificationBar/>
-            <Header/>
             <BreadCrumb links={links}/>
             <section>
                 {
@@ -221,8 +217,6 @@ export function Product() {
                 </div>
                 <Slider products={products}/>
             </Container>
-
-            <Footer displayNewsLetter={true}/>
         </>
     );
 }

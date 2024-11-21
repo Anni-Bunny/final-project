@@ -1,6 +1,7 @@
 import {Link} from "react-router-dom";
 import {Icon} from "./Icon";
 import {Container} from "./Container";
+import {CartDropDown} from "./CartDropDown";
 
 export function Header() {
     return (
@@ -15,7 +16,7 @@ export function Header() {
                         <Link to="/">Home</Link>
                         <Link to={""}>Categories</Link>
                         <Link to={""}>About</Link>
-                        <Link to={""}>Contact</Link>
+                        <Link to={"/shoppingCart"}>Contact</Link>
                     </div>
                 </div>
                 <div className="flex gap-8 h-11 items-center">
@@ -23,7 +24,7 @@ export function Header() {
                         <Icon name="search"/>
                         <input type="search" className="h-6 outline-none"/>
                     </div>
-                    <Icon name="cart"/>
+                    <CartDropDown/>
                     <Icon name="user-1"/>
                 </div>
             </header>

@@ -1,14 +1,12 @@
-import {NotificationBar} from "../components/NotificationBar";
-import {useEffect, useState} from "react";
-import {Header} from "../components/Header";
+import React, {useEffect, useState} from "react";
 import api from "../classes/API";
 import {Container} from "../components/Container";
 import {Button} from "../components/Button";
 import {PromiseCard} from "../components/PromiseCard";
 import {product} from "../interfaces/product";
-import {Footer} from "../components/Footer";
 import {Slider} from "../components/Slider";
 import {ProductsTabsSwitcher} from "../components/ProductsTabsSwitcher";
+import {Footer} from "../components/Footer";
 
 export function Homepage() {
     const [bestSelling, setBestSelling] = useState<product[]>([])
@@ -26,8 +24,6 @@ export function Homepage() {
 
     return (
         <div>
-            <NotificationBar/>
-            <Header/>
             <section className="h-[27.5rem] bg-[#F6F6F6]">
                 <Container className="h-full justify-between">
                     <div className="flex flex-col gap-12">
@@ -87,9 +83,6 @@ export function Homepage() {
             </section>
 
             <ProductsTabsSwitcher/>
-
-            <Footer displayNewsLetter={true}/>
-
         </div>
     );
 }

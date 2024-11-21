@@ -1,6 +1,3 @@
-import {NotificationBar} from "../components/NotificationBar";
-import {Header} from "../components/Header";
-import {Footer} from "../components/Footer";
 import {BreadCrumb} from "../components/BreadCrumb";
 import {Link} from "react-router-dom";
 import {ProductCard} from "../components/ProductCard";
@@ -145,8 +142,6 @@ export function Products() {
 
     return (
         <div>
-            <NotificationBar/>
-            <Header/>
             <BreadCrumb links={links}/>
 
             <Container>
@@ -238,8 +233,6 @@ export function Products() {
 
                 </div>
             </Container>
-
-            <Footer displayNewsLetter={true}/>
         </div>
     );
 }
