@@ -19,7 +19,7 @@ export function Header() {
                         <Link to={"/shoppingCart"}>Contact</Link>
                     </div>
                 </div>
-                <div className="flex gap-8 h-11 items-center">
+                <div className="flex gap-8 h-11 items-center justify-between">
                     <div className="flex border border-1 rounded-md gap-2 px-4 py-2.5 h-11 items-center w-72">
                         <Icon name="search"/>
                         <input type="search" className="h-6 outline-none"/>
