@@ -54,7 +54,7 @@ export function CeckOut() {
                                 <Input inputType={"text"} inputClassName={"w-full"} label={"State"} placeholder={"Enter Your State"}/>
                                 <Input inputType={"text"} inputClassName={"w-full"} label={"Zip Code"} placeholder={"Enter Zip Code"}/>
                                 <Input inputType={"text"} inputClassName={"w-full"} label={"Country"} placeholder={"Enter Your Country"}/>
-                                <Input inputType={"text"} inputClassName={"w-full"} label={"Email"} placeholder={"Enter Your Email"}/>
+                                <Input inputType={"email"} inputClassName={"w-full"} label={"Email"} placeholder={"Enter Your Email"}/>
                                 <Input inputType={"text"} inputClassName={"w-full"} label={"Full name"} placeholder={"Enter Your Full name"}/>
                             </div>
                         </div>
