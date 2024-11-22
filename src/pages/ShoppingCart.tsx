@@ -25,8 +25,8 @@ export function ShoppingCart() {
             url: "/"
         },
         {
-            name: "Products",
-            url: "/products"
+            name: "Cart",
+            url: ""
         }
     ]
 
@@ -36,7 +36,7 @@ export function ShoppingCart() {
                 <Container>
                     <div className="flex flex-col gap-2 p-3">
                         <h3 className="text-2xl font-bold text-[#0E1422]">Cart</h3>
-                        <BreadCrumb containerClassName="mx-0" className=" my-0 px-0 py-0 " links={links}/>
+                        <BreadCrumb containerClassName="ml-0" links={links}/>
                     </div>
                 </Container>
             </section>
