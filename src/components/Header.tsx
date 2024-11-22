@@ -25,7 +25,7 @@ export function Header() {
                         <input type="search" className="h-6 outline-none"/>
                     </div>
                     <CartDropDown/>
-                    <Icon name="user-1"/>
+                    <Link to={"/profile"}><Icon name="user-1"/></Link>
                 </div>
             </header>
         </Container>
