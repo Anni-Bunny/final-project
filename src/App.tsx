@@ -9,6 +9,11 @@ import {ShoppingCart} from "./pages/ShoppingCart";
 import {NotificationBar} from "./components/NotificationBar";
 import {Header} from "./components/Header";
 import {Footer} from "./components/Footer";
+import {CeckOut} from "./pages/Checkout";
+import {AfterPayment} from "./pages/AfterPayment";
+import {Login} from "./pages/Login";
+import {SignUp} from "./pages/SignUp";
+import {ForgotPassword} from "./pages/ForgotPassword";
 
 const nonNewsLetterPages = ['/shoppingCart']
 
@@ -26,6 +31,12 @@ function App(){
                 <Route path="/products/:id" element={<Product/>}/>
                 <Route path="/products" element={<Products/>}/>
                 <Route path="/shoppingCart" element={<ShoppingCart/>}/>
+                <Route path="/checkout" element={<CeckOut/>}/>
+                <Route path="/afterPayment" element={<AfterPayment/>}/>
+                <Route path="/login" element={<Login/>}/>
+                <Route path="/signup" element={<SignUp/>}/>
+                <Route path="/forgotPassword" element={<ForgotPassword/>}/>
+                <Route path="/resetPassword" element={<ForgotPassword/>}/>
             </Routes>
             <Footer displayNewsLetter={displayNewsLetter}/>
         </div>
