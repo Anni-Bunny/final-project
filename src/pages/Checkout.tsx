@@ -3,11 +3,9 @@ import React from "react";
 import {Container} from "../components/Container";
 import {useSelector, useDispatch} from 'react-redux'
 import {RootState} from "../store/store";
-import {CartItem} from "../components/CartItem";
 import {Button} from "../components/Button"
 import {Link} from "react-router-dom";
 import {Input} from "../components/Input";
-import {text} from "node:stream/consumers";
 
 export function CeckOut() {
 
@@ -28,7 +26,7 @@ export function CeckOut() {
         },
         {
             name: "Checkout",
-            url: "/checkout"
+            url: ""
         }
     ]
 
@@ -97,7 +95,7 @@ export function CeckOut() {
                             <span>{`$${totalPrice + 3}.00`}</span>
                         </div>
 
-                        <Link to={"/checkout"}><Button title={"Checkout"} className="w-full"/></Link>
+                        <Link to={"/afterPayment"}><Button title={"Checkout"} className="w-full"/></Link>
 
                         <Link to={"/products"} className="flex justify-center"><span className="border-b text-sm">Continue Shopping</span></Link>
 
