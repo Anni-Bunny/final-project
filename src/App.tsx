@@ -14,6 +14,8 @@ import {AfterPayment} from "./pages/AfterPayment";
 import {Login} from "./pages/Login";
 import {SignUp} from "./pages/SignUp";
 import {ForgotPassword} from "./pages/ForgotPassword";
+import {ResetPassword} from "./pages/ResetPassword";
+import {Profile} from "./pages/Profile";
 
 const nonNewsLetterPages = ['/shoppingCart']
 
@@ -36,7 +38,8 @@ function App(){
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/signup" element={<SignUp/>}/>
                 <Route path="/forgotPassword" element={<ForgotPassword/>}/>
-                <Route path="/resetPassword" element={<ForgotPassword/>}/>
+                <Route path="/resetPassword" element={<ResetPassword/>}/>
+                <Route path="/profile" element={<Profile/>}/>
             </Routes>
             <Footer displayNewsLetter={displayNewsLetter}/>
         </div>
