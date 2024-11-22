@@ -2,6 +2,7 @@ import {BreadCrumb} from "../components/BreadCrumb";
 import React from "react";
 import {Container} from "../components/Container";
 import {Button} from "../components/Button";
+import {Link} from "react-router-dom";
 
 export function AfterPayment() {
 
@@ -32,7 +33,7 @@ export function AfterPayment() {
                     <img src="/images/successfulOrder.png" alt="successfulOrder" className="mb-5"/>
                     <h3 className="font-bold text-2xl text-[#0E1422] mb-4">Thank you for shopping</h3>
                     <p className="font-normal text-sm text-[#5C5F6A] max-w-96 text-center mb-12">Your order has been successfully placed and is now being processed.</p>
-                    <Button title={"Go to my account"} icon={"arrowRight"}/>
+                    <Link to={"/profile"}><Button title={"Go to my account"} icon={"arrowRight"}/></Link>
                 </div>
             </Container>
 
