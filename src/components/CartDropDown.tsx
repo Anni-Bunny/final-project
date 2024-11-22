@@ -46,7 +46,7 @@ export function CartDropDown() {
 
                                   <Link to={"/shoppingCart"}><Button title={"View Cart"} className="w-full"/></Link>
 
-                                  <Link to={"#"} className="flex justify-center"><span
+                                  <Link to={"/checkout"} className="flex justify-center"><span
                                       className="border-b">Checkout</span></Link>
                               </div>
                           )}
