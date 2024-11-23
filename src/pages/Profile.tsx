@@ -2,6 +2,7 @@ import {Tabs, TabSwitcher} from "../components/TabSwitcher";
 import {Container} from "../components/Container";
 import {BreadCrumb} from "../components/BreadCrumb";
 import React from "react";
+import {UserOrders} from "../components/UserOrders";
 
 export function Profile() {
 
@@ -17,7 +18,7 @@ export function Profile() {
     const content = [
         {
             name: 'orders',
-            component: <></>
+            component: <UserOrders/>
         },
         {
             name: 'wishlist',
@@ -42,8 +43,10 @@ export function Profile() {
 
     ];
 
-    const containerClassName: string = "gap-[2rem]"
-    const contentClassName:string = "max-w-[54rem]"
+    const btnDivClassName: string = "border-r pr-10"
+    const contentClassName:string = "max-w-[54rem] px-10"
+    const containerClassName:string = "pt-20 items-center"
+
 
 
     let links = [
@@ -71,9 +74,10 @@ export function Profile() {
             <TabSwitcher
                 tabs={tabs}
                 content={content}
-                containerClassName={containerClassName}
+                btnDivClassName={btnDivClassName}
                 type="horizontal"
                 contentClassName={contentClassName}
+                containerClassName={containerClassName}
                 btnType="LightGrayBtn"
                 iconPosition={"start"}
             />
