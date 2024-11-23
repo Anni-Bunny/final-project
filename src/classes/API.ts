@@ -26,6 +26,9 @@ export interface ordersParams {
     id?: number | string,
     userId?: number | string
 }
+export interface wishListParams {
+    userId?: number | string
+}
 
 
 class API {
@@ -58,7 +61,7 @@ class API {
         }
     }
 
-    async getUsers({id} : userParams) {
+    async getUsers({id}: userParams) {
         let url = 'users'
         if (id) {
             url += `/${id}`
@@ -132,6 +135,15 @@ class API {
                 url += `?userId=${userId}`
             }
         }
+        return await this.getRequest(url);
+    }
+
+    async getWishList({userId}: wishListParams = {}) {
+        let url = 'wishList'
+        if (userId) {
+            url += `?userId=${userId}`
+        }
+
         return await this.getRequest(url);
     }
 
