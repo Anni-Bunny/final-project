@@ -7,6 +7,7 @@ export interface wishListItem {
     size: string,
     color: string,
     sku: string
+    addedAt: string,
 }
 
 export interface wishList {
