@@ -6,7 +6,6 @@ import {PromiseCard} from "../components/PromiseCard";
 import {product} from "../interfaces/product";
 import {Slider} from "../components/Slider";
 import {ProductsTabsSwitcher} from "../components/ProductsTabsSwitcher";
-import {Footer} from "../components/Footer";
 import {Link} from "react-router-dom";
 
 export function Homepage() {
