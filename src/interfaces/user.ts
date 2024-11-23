@@ -1,4 +1,4 @@
-interface name{
+export interface name{
     firstname: string,
     lastname: string
 }
@@ -8,7 +8,7 @@ interface geolocationData{
     long: number
 }
 
-interface address{
+export interface address{
     geolocation: geolocationData,
     city: string,
     street: string,
