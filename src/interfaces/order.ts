@@ -1,13 +1,10 @@
-interface orderDetails{
-    productId: string,
-    sku: string,
-    name: string,
-    price: number,
-    image: string,
-    orderedOn: string,
-    status: string
-}
+import {cartItem} from "./cart";
+import {address} from "./user"
 
 export interface order {
-    userId: orderDetails
+    id: string | number,
+    status: string,
+    createdAt: string,
+    products: cartItem[],
+    address: address
 }
