@@ -18,6 +18,10 @@ export interface categoriesParams {
     id?: number | string
 }
 
+export interface userParams {
+    id?: number | string
+}
+
 export interface ordersParams {
     id?: number | string,
     userId?: number | string
@@ -54,7 +58,7 @@ class API {
         }
     }
 
-    async getUsers(id: string | null = null) {
+    async getUsers({id} : userParams) {
         let url = 'users'
         if (id) {
             url += `/${id}`
