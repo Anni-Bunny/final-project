@@ -18,6 +18,12 @@ export interface categoriesParams {
     id?: number | string
 }
 
+export interface ordersParams {
+    id?: number | string,
+    userId?: number | string
+}
+
+
 class API {
     private static instance: API;
     private URL: string = 'http://localhost:3001/'; // Ensure the protocol is included
@@ -108,6 +114,19 @@ class API {
         if (id) {
             url += `/${id}`
 
+        }
+        return await this.getRequest(url);
+    }
+
+    async getOrders({id, userId}: ordersParams = {}) {
+        let url = 'orders'
+        if (id) {
+            url += `/${id}`
+
+        } else {
+            if (userId) {
+                url += `?userId=${userId}`
+            }
         }
         return await this.getRequest(url);
     }
