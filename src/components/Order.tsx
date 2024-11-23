@@ -14,7 +14,7 @@ export function Order({order}: orderedItemProps) {
     ))
 
     return (
-        <div className="flex justify-between items-center mb-10">
+        <div className="flex justify-between items-center py-8 border-b last:border-none">
 
             <div className="flex items-start gap-3 max-w-72 overflow-x-auto">
                 {
