@@ -6,11 +6,11 @@ import {Button} from "./Button";
 export function UserAdress() {
     return (
         <Container>
-            <div className="mt-14 mb-32 flex justify-between w-full">
-                <div className="w-3/5 pr-40">
-                    <h5 className="text-[#0E1422] font-semibold text-lg py-4 mb-16">Shipping Address</h5>
+            <div className="flex flex-col w-full">
 
-                    <div className="flex flex-col gap-4">
+                    <h5 className="text-[#0E1422] font-semibold text-lg py-4 mb-8">Shipping Address</h5>
+
+                    <div className="flex flex-col gap-4 mb-16">
                         <Input inputType={"text"} label={"Street Address"} inputClassName={"w-full"}
                                placeholder={"Enter Your Street Address"}/>
 
@@ -26,8 +26,11 @@ export function UserAdress() {
                         </div>
                     </div>
 
+                <div>
                     <Button title={"Save Changes"}/>
                 </div>
+
+
             </div>
         </Container>
     );
