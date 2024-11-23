@@ -6,7 +6,7 @@ interface orderedItemProps {
     order: order,
 }
 
-export function OrderedItem({order}: orderedItemProps) {
+export function Order({order}: orderedItemProps) {
     let totalPrice = 0;
 
     order.products.map((product) => (
@@ -19,7 +19,8 @@ export function OrderedItem({order}: orderedItemProps) {
             <div className="flex items-start gap-3 max-w-72 overflow-x-auto">
                 {
                     order.products.map((product, index) => (
-                        <Link to={`/products/${product.productId}`}><img className="max-w-20 rounded-full" key={index} src={product.image}
+                        <Link to={`/products/${product.productId}`}>
+                            <img className="max-w-20 rounded-full" key={index} src={product.image}
                                    alt=""/> </Link>
                     ))
                 }
