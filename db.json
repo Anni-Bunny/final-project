@@ -15877,7 +15877,8 @@
           "color": "XL",
           "stock": 35,
           "name": "Modern Ergonomic Office Chair",
-          "sku": "WFJ-59108greenXL"
+          "sku": "WFJ-59108greenXL",
+          "addedAt": "2021-05-14 21:51:13"
         },
         {
           "productId": "3",
@@ -15887,7 +15888,8 @@
           "color": "XL",
           "stock": 46,
           "name": "Elegant Golden-Base Stone Top Dining Table",
-          "sku": "STX-58165yellowXL"
+          "sku": "STX-58165yellowXL",
+          "addedAt": "2021-05-14 21:51:13"
         },
         {
           "productId": "10",
@@ -15897,57 +15899,62 @@
           "color": "XXL",
           "stock": 92,
           "name": "Chic Summer Denim Espadrille Sandals",
-          "sku": "RKW-42156yellowXXL"
+          "sku": "RKW-42156yellowXXL",
+          "addedAt": "2021-05-14 21:51:13"
+        }
+      ]
+    },
+    {
+      "userId": 2,
+      "products":[
+        {
+          "productId": "10",
+          "image": "https:\/\/i.imgur.com\/9qrmE1b.jpeg",
+          "price": 33,
+          "size": "yellow",
+          "color": "XXL",
+          "stock": 92,
+          "name": "Chic Summer Denim Espadrille Sandals",
+          "sku": "RKW-42156yellowXXL",
+          "addedAt": "2021-05-14 21:51:13"
         },
         {
-          "userId": 2,
-          "products":[
-            {
-              "productId": "10",
-              "image": "https:\/\/i.imgur.com\/9qrmE1b.jpeg",
-              "price": 33,
-              "size": "yellow",
-              "color": "XXL",
-              "stock": 92,
-              "name": "Chic Summer Denim Espadrille Sandals",
-              "sku": "RKW-42156yellowXXL"
-            },
-            {
-              "productId": "11",
-              "image": "https:\/\/i.imgur.com\/hKcMNJs.jpeg",
-              "price": 27,
-              "size": "green",
-              "color": "L",
-              "stock": 100,
-              "name": "Vibrant Runners: Bold Orange & Blue Sneakers",
-              "sku": "FFX-00698greenL"
-            }
-          ]
+          "productId": "11",
+          "image": "https:\/\/i.imgur.com\/hKcMNJs.jpeg",
+          "price": 27,
+          "size": "green",
+          "color": "L",
+          "stock": 100,
+          "name": "Vibrant Runners: Bold Orange & Blue Sneakers",
+          "sku": "FFX-00698greenL",
+          "addedAt": "2021-05-14 21:51:13"
+        }
+      ]
+    },
+    {
+      "userId": 3,
+      "products":[
+        {
+          "productId": "1",
+          "image": "https:\/\/i.imgur.com\/LGk9Jn2.jpeg",
+          "price": 16,
+          "size": "yellow",
+          "color": "XL",
+          "stock": 55,
+          "name": "Sleek Smartwatch with Vibrant Display",
+          "sku": "THR-96403yellowXL",
+          "addedAt": "2021-05-14 21:51:13"
         },
         {
-          "userId": 3,
-          "products":[
-            {
-              "productId": "1",
-              "image": "https:\/\/i.imgur.com\/LGk9Jn2.jpeg",
-              "price": 16,
-              "size": "yellow",
-              "color": "XL",
-              "stock": 55,
-              "name": "Sleek Smartwatch with Vibrant Display",
-              "sku": "THR-96403yellowXL"
-            },
-            {
-              "productId": "16",
-              "image": "https:\/\/i.imgur.com\/Au8J9sX.jpeg",
-              "price": 17,
-              "size": "green",
-              "color": "S",
-              "stock": 63,
-              "name": "Elegant Purple Leather Loafers",
-              "sku": "ESY-02490greenS"
-            }
-          ]
+          "productId": "16",
+          "image": "https:\/\/i.imgur.com\/Au8J9sX.jpeg",
+          "price": 17,
+          "size": "green",
+          "color": "S",
+          "stock": 63,
+          "name": "Elegant Purple Leather Loafers",
+          "sku": "ESY-02490greenS",
+          "addedAt": "2021-05-14 21:51:13"
         }
       ]
     }
