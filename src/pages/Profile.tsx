@@ -3,6 +3,10 @@ import {Container} from "../components/Container";
 import {BreadCrumb} from "../components/BreadCrumb";
 import React from "react";
 import {UserOrders} from "../components/UserOrders";
+import {UserAdress} from "../components/UserAdress";
+import {UserPassword} from "../components/UserPassword";
+import {UserAccountDetails} from "../components/UserAccountDetails";
+import {WishList} from "../components/WishList";
 
 export function Profile() {
 
@@ -22,19 +26,19 @@ export function Profile() {
         },
         {
             name: 'wishlist',
-            component: <></>
+            component: <WishList/>
         },
         {
             name: 'address',
-            component: <></>
+            component: <UserAdress/>
         },
         {
             name: 'password',
-            component: <></>
+            component: <UserPassword/>
         },
         {
             name: 'accountDetail',
-            component: <></>
+            component: <UserAccountDetails/>
         },
         {
             name: 'logout',
@@ -44,7 +48,7 @@ export function Profile() {
     ];
 
     const btnDivClassName: string = "border-r pr-10"
-    const contentClassName:string = "max-w-[54rem] px-10"
+    const contentClassName:string = "max-w-[60rem] px-10"
     const containerClassName:string = "pt-20 items-center"
 
 
