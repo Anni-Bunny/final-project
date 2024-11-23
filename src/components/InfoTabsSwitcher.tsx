@@ -26,7 +26,7 @@ export function InfoTabsSwitcher({product}:InfoTabsSwitcherProps) {
 
     ];
 
-    const containerClassName: string = "gap-[2rem]"
+    const containerClassName: string = "items-start gap-[2rem]"
     const contentClassName:string = "max-w-[54rem]"
 
     return (
