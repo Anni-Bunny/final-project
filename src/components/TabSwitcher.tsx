@@ -52,8 +52,8 @@ export function TabSwitcher({
     return (
         <section className="pb-44">
             <Container>
-                <div className={`${containerFlexDirection} flex items-start gap-12 w-full`}>
-                    <div className={`flex gap-6 text-sm pt-20 ${btnFlexDirection} ${btnDivClassName}`}>
+                <div className={`${containerFlexDirection} flex gap-12 w-full`}>
+                    <div className={`flex gap-6 text-sm py-20 ${btnFlexDirection} ${btnDivClassName}`}>
                         {tabs.map((tab) => (
                             <Button
                                 key={tab.name}
