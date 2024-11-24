@@ -97,8 +97,6 @@ export function CeckOut() {
 
                         <Link to={"/afterPayment"}><Button title={"Checkout"} className="w-full"/></Link>
 
-                        <Link to={"/products"} className="flex justify-center"><span className="border-b text-sm">Continue Shopping</span></Link>
-
                     </div>
 
 
