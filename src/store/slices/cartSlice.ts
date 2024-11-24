@@ -4,8 +4,8 @@ import {cart, cartItem} from "../../interfaces/cart";
 
 
 const initialState: cart = {
-    id: 0,
-    userId: 0,
+    id: -1,
+    userId: -1,
     products: []
 }
 
