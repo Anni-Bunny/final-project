@@ -1,11 +1,18 @@
 import {BreadCrumb} from "../components/BreadCrumb";
-import React from "react";
+import React, {useState} from "react";
 import {Container} from "../components/Container";
 import {Button} from "../components/Button";
 import {Link} from "react-router-dom";
 import {Input} from "../components/Input";
+import {login, userLoginForm} from "../store/slices/userSlice";
+import api from "../classes/API";
+import {useDispatch} from 'react-redux'
 
 export function Login() {
+    const dispatch = useDispatch()
+
+    const [loginForm, setLoginForm] = useState<userLoginForm>({email: 'test@test.com', password: 'password'})
+    const [error, setError] = useState('')
 
     let links = [
         {
@@ -17,6 +24,29 @@ export function Login() {
             url: ""
         }
     ]
+
+    function updateForm(event: React.ChangeEvent<HTMLInputElement>) {
+        const name = event.currentTarget.name
+        const value = event.currentTarget.value
+
+        setLoginForm((state) => ({
+            ...state,
+            [name]: value
+        }))
+    }
+
+    async function loginUser(event: React.FormEvent<HTMLFormElement>) {
+        event.preventDefault()
+        const response = await api.getUsers(loginForm)
+        const loginUser = response[0]
+        if (loginUser) {
+            dispatch(login(loginUser))
+            //redirect
+            
+        } else {
+            setError('Email or password is wrong')
+        }
+    }
 
     return (
         <div>
@@ -30,23 +60,36 @@ export function Login() {
             </section>
 
             <Container>
-                <div className="my-32 flex flex-col items-center justify-center max-w-96 w-full mx-auto">
-                    <Button title="Continue with Google" icon={"coloredIcons/google"} iconPosition={"start"} type={"whiteBtn"} className={"mb-8 w-96"}/>
+                <form onSubmit={loginUser}
+                      className="my-32 flex flex-col items-center justify-center max-w-96 w-full mx-auto">
+                    <Button title="Continue with Google" icon={"coloredIcons/google"} iconPosition={"start"}
+                            type={"whiteBtn"} className={"mb-8 w-96"}/>
                     <div className="flex items-center justify-between w-full mb-8">
                         <hr className="border-t border-[#E6E7E8] my-4 align-middle w-2/5 "/>
                         <p className="text-[#5C5F6A] text-sm">OR</p>
                         <hr className="border-t border-[#E6E7E8] my-4 align-middle w-2/5"/>
                     </div>
+                    <div className="w-full flex items-center justify-center">
+                        { error && <p className="text-red-600 text-lg">{error}</p>}
+                    </div>
                     <div className="w-full flex flex-col gap-4 mb-4">
-                        <Input inputType={"email"} inputClassName={"w-full"} label={"Email"} placeholder={"Enter Your Email"}/>
-                        <Input inputType={"password"} inputClassName={"w-full"} label={"Password"} placeholder={"Enter Your Password"}/>
+                        <Input required={true} value={loginForm.email} onChange={updateForm} name="email"
+                               inputType={"email"} inputClassName={"w-full"}
+                               label={"Email"}
+                               placeholder={"Enter Your Email"}/>
+                        <Input required={true} value={loginForm.password} onChange={updateForm} name="password"
+                               inputType={"password"} inputClassName={"w-full"}
+                               label={"Password"}
+                               placeholder={"Enter Your Password"}/>
                     </div>
 
-                    <Link to={"/forgotPassword"} className="w-full"><p className="flex justify-end text-sm text-[#555555] font-medium mb-8">Forgot Password?</p></Link>
+                    <Link to={"/forgotPassword"} className="w-full"><p
+                        className="flex justify-end text-sm text-[#555555] font-medium mb-8">Forgot Password?</p>
+                    </Link>
                     <Button title="Login" className="w-full mb-8"/>
                     <Link to={"/signup"} className="flex justify-center text-[#5C5F6A]"><span className="text-sm">Don't have an account? Sign up</span></Link>
 
-                </div>
+                </form>
             </Container>
 
         </div>
