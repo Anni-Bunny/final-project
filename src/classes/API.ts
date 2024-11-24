@@ -1,3 +1,5 @@
+import {userLoginForm} from "../store/slices/userSlice";
+
 export interface reviewParams {
     id?: number | string,
     productId?: number | string,
@@ -19,13 +21,16 @@ export interface categoriesParams {
 }
 
 export interface userParams {
-    id?: number | string
+    id?: number | string,
+    email?: string,
+    password?: string
 }
 
 export interface ordersParams {
     id?: number | string,
     userId?: number | string
 }
+
 export interface wishListParams {
     userId?: number | string
 }
@@ -61,11 +66,12 @@ class API {
         }
     }
 
-    async getUsers({id}: userParams) {
+    async getUsers({id, email, password}: userParams) {
         let url = 'users'
         if (id) {
             url += `/${id}`
-
+        } else  {
+            url+=`?email=${email}&password=${password}`
         }
         return await this.getRequest(url);
     }
