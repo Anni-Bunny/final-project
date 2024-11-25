@@ -70,8 +70,8 @@ class API {
         let url = 'users'
         if (id) {
             url += `/${id}`
-        } else  {
-            url+=`?email=${email}&password=${password}`
+        } else {
+            url += `?email=${email}&password=${password}`
         }
         return await this.getRequest(url);
     }
@@ -94,11 +94,12 @@ class API {
         return await this.getRequest(url);
     }
 
-    async getCarts(id: string | null = null) {
+    async getCarts({id, userId}: ordersParams) {
         let url = 'carts'
         if (id) {
             url += `/${id}`
-
+        } else {
+            url += `?userId=${userId}`
         }
         return await this.getRequest(url);
     }
