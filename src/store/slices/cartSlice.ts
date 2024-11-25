@@ -13,6 +13,7 @@ export const cartSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
+        loadUserCart: (state,action:PayloadAction<cart>) => action.payload,
         addProduct: (state, action: PayloadAction<cartItem>) => {
             state.products.push(action.payload)
         },
@@ -38,10 +39,11 @@ export const cartSlice = createSlice({
 
             }).filter(product => product.quantity > 0)
         },
+        clearCart: () => initialState
     },
 })
 
 // Action creators are generated for each case reducer function
-export const {addProduct, removeProduct, incrementProduct, decrementProduct} = cartSlice.actions
+export const {loadUserCart,addProduct, removeProduct, incrementProduct, decrementProduct, clearCart} = cartSlice.actions
 
 export default cartSlice.reducer
