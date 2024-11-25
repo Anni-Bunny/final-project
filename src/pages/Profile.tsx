@@ -17,7 +17,6 @@ export function Profile() {
         {name: 'address', title: 'Address', icon: 'delivery', textPosition: 'start'},
         {name: 'password', title: 'Password', icon: 'key', textPosition: 'start'},
         {name: 'accountDetail', title: 'Account Detail', icon: 'user-1', textPosition: 'start'},
-        {name: 'logout', title: 'Logout', icon: 'logout', textPosition: 'start'},
     ];
 
     const content = [
@@ -40,12 +39,7 @@ export function Profile() {
         {
             name: 'accountDetail',
             component: <UserAccountDetails/>
-        },
-        {
-            name: 'logout',
-            component: <Logout/>
-        },
-
+        }
     ];
 
     const btnDivClassName: string = "border-r pr-10"
