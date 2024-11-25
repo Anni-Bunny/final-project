@@ -1,15 +1,18 @@
 import {BreadCrumb} from "../components/BreadCrumb";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Container} from "../components/Container";
 import {Button} from "../components/Button";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {Input} from "../components/Input";
 import {login, userLoginForm} from "../store/slices/userSlice";
 import api from "../classes/API";
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
+import {RootState} from "../store/store";
 
 export function Login() {
     const dispatch = useDispatch()
+    const user = useSelector((state: RootState) => state.user.data)
+    const navigate = useNavigate();
 
     const [loginForm, setLoginForm] = useState<userLoginForm>({email: 'test@test.com', password: 'password'})
     const [error, setError] = useState('')
@@ -41,12 +44,16 @@ export function Login() {
         const loginUser = response[0]
         if (loginUser) {
             dispatch(login(loginUser))
-            //redirect
-            
         } else {
             setError('Email or password is wrong')
         }
     }
+
+    useEffect(() => {
+        if (user){
+            navigate('/');
+        }
+    }, [navigate, user]);
 
     return (
         <div>
