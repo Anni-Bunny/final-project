@@ -8,13 +8,14 @@ import {login, userLoginForm} from "../store/slices/userSlice";
 import api from "../classes/API";
 import {useDispatch, useSelector} from 'react-redux'
 import {RootState} from "../store/store";
+import {loadUserCart} from "../store/slices/cartSlice";
 
 export function Login() {
     const dispatch = useDispatch()
     const user = useSelector((state: RootState) => state.user.data)
     const navigate = useNavigate();
 
-    const [loginForm, setLoginForm] = useState<userLoginForm>({email: 'test@test.com', password: 'password'})
+    const [loginForm, setLoginForm] = useState<userLoginForm>({email: 'unikolaus@yahoo.com', password: '123123'})
     const [error, setError] = useState('')
 
     let links = [
@@ -44,6 +45,12 @@ export function Login() {
         const loginUser = response[0]
         if (loginUser) {
             dispatch(login(loginUser))
+
+            const response = await api.getCarts({userId: loginUser.id})
+            const userCart = response[0]
+
+            dispatch(loadUserCart(userCart))
+
         } else {
             setError('Email or password is wrong')
         }
