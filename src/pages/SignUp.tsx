@@ -33,7 +33,11 @@ export function SignUp() {
         if (navigate !== undefined){
             navigate('/login');
         }
-        await api.registerUser({signupInfo: signupInfo });
+        const response = await api.registerUser({signupInfo: signupInfo});
+        
+        if (response.id){
+            await api.createUserCart(response.id)
+        }
 
     }
 
