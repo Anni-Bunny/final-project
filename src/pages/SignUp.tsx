@@ -1,11 +1,42 @@
 import {BreadCrumb} from "../components/BreadCrumb";
-import React from "react";
+import React, {useState} from "react";
 import {Container} from "../components/Container";
 import {Button} from "../components/Button";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {Input} from "../components/Input";
+import api from "../classes/API";
+
+
+export interface signupInfo {
+    firstname: string,
+    lastname: string,
+    email: string,
+    password:string,
+}
 
 export function SignUp() {
+    const [signupInfo, setSignupInfo] = useState<signupInfo>({firstname:'', lastname:'', email:'', password:''})
+    const navigate = useNavigate();
+
+    function onChangeInput(event: React.ChangeEvent<HTMLInputElement>) {
+        const val = event.currentTarget.value
+        const name = event.currentTarget.name
+
+            setSignupInfo((state) => ({
+                ...state,
+                [name]: val
+            }))
+    }
+
+    async function signupUser(event: React.FormEvent<HTMLFormElement>) {
+        event.preventDefault()
+        if (navigate !== undefined){
+            navigate('/login');
+        }
+        await api.registerUser({signupInfo: signupInfo });
+
+    }
+
 
     let links = [
         {
@@ -30,24 +61,24 @@ export function SignUp() {
             </section>
 
             <Container>
-                <div className="my-32 flex flex-col items-center justify-center max-w-96 w-full mx-auto">
-                    <Button title="Continue with Google" icon={"coloredIcons/google"} iconPosition={"start"} type={"whiteBtn"} className={"mb-8 w-96"}/>
+                <form onSubmit={signupUser} className="pt-16 pb-32 flex flex-col items-center justify-center max-w-96 w-full mx-auto">
                     <div className="flex items-center justify-between w-full mb-8">
                         <hr className="border-t border-[#E6E7E8] my-4 align-middle w-2/5 "/>
-                        <p className="text-[#5C5F6A] text-sm">OR</p>
+                        <p className="text-[#5C5F6A] text-lg font-bold">SIGNUP</p>
                         <hr className="border-t border-[#E6E7E8] my-4 align-middle w-2/5"/>
                     </div>
                     <div className="w-full flex flex-col gap-4 mb-4">
-                        <Input inputType={"text"} inputClassName={"w-full"} label={"Name"} placeholder={"Enter Your Name"}/>
-                        <Input inputType={"email"} inputClassName={"w-full"} label={"Email"} placeholder={"Enter Your Email"}/>
-                        <Input inputType={"password"} inputClassName={"w-full"} label={"Password"} placeholder={"Enter Your Password"}/>
+                        <Input required={true} onChange={onChangeInput} name="firstname" inputType={"text"} inputClassName={"w-full"} label={"First name"} placeholder={"Enter Your First name"}/>
+                        <Input required={true} onChange={onChangeInput} name="lastname" inputType={"text"} inputClassName={"w-full"} label={"Last name"} placeholder={"Enter Your Last name"}/>
+                        <Input required={true} onChange={onChangeInput} name="email" inputType={"email"} inputClassName={"w-full"} label={"Email"} placeholder={"Enter Your Email"}/>
+                        <Input required={true} onChange={onChangeInput} name="password" inputType={"password"} inputClassName={"w-full"} label={"Password"} placeholder={"Enter Your Password"}/>
                     </div>
 
                     <Link to={""} className="w-full"><p className="flex justify-end text-sm text-[#5C5F6A] font-medium mb-8">By creating an account you agree with our Terms of Service and Privacy</p></Link>
                     <Button title="Create account" className="w-full mb-8"/>
                     <Link to={"/login"} className="flex justify-center text-[#5C5F6A]"><span className="text-sm">Already have an account? Log in</span></Link>
 
-                </div>
+                </form>
             </Container>
 
         </div>
