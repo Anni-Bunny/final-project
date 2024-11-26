@@ -12083,8 +12083,19 @@
           "color": "green",
           "stock": 37,
           "name": "Elegant Solid Wood Dining Table",
-          "quantity": 2,
+          "quantity": 3,
           "sku": "ZJI-85646greenXXL"
+        },
+        {
+          "image": "https://i.imgur.com/hKcMNJs.jpeg",
+          "name": "Vibrant Runners: Bold Orange & Blue Sneakers",
+          "price": 27,
+          "stock": 13,
+          "productId": 11,
+          "color": "green",
+          "size": "XXL",
+          "quantity": 1,
+          "sku": "FFX-00698greenXXL"
         }
       ]
     },
