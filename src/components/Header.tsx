@@ -4,7 +4,6 @@ import {Container} from "./Container";
 import {CartDropDown} from "./CartDropDown";
 import {useSelector} from "react-redux";
 import {RootState} from "../store/store";
-import {CartItem} from "./CartItem";
 import React from "react";
 import {Button} from "./Button";
 import {Dropdown} from "./DropDown";
