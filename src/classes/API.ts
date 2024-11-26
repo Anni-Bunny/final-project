@@ -1,4 +1,5 @@
-import {userLoginForm} from "../store/slices/userSlice";
+import {signupInfo} from "../pages/SignUp";
+import {user} from "../interfaces/user";
 
 export interface reviewParams {
     id?: number | string,
@@ -35,6 +36,10 @@ export interface wishListParams {
     userId?: number | string
 }
 
+export interface registerUserParams {
+    signupInfo: signupInfo
+}
+
 
 class API {
     private static instance: API;
@@ -65,6 +70,31 @@ class API {
             console.error(error);
         }
     }
+
+    async postRequest(route: string, data: any, callback: Function | undefined = undefined) {
+        try {
+            const res = await fetch(this.URL + route, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            });
+
+            if (res.ok) {
+                const responseData = await res.json();
+                if (callback) {
+                    callback(responseData);
+                }
+                return responseData;
+            } else {
+                throw new Error('Unable to post data');
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
 
     async getUsers({id, email, password}: userParams) {
         let url = 'users'
@@ -152,6 +182,22 @@ class API {
         }
 
         return await this.getRequest(url);
+    }
+
+    async registerUser({signupInfo}: registerUserParams) {
+        const userInfo: user = {
+            "id": Math.floor(Math.random() * 1000),
+            "email": signupInfo.email,
+            "password": signupInfo.password,
+            "name": {
+                "firstname": signupInfo.firstname,
+                "lastname": signupInfo.lastname
+            },
+        }
+
+        const url = 'users'
+
+        return await this.postRequest(url, userInfo, console.log)
     }
 
 }
