@@ -96,6 +96,30 @@ class API {
         }
     }
 
+    async putRequest(route: string, data: any, callback: Function | undefined = undefined) {
+        try {
+            const res = await fetch(this.URL + route, {
+                method: 'PUT',  // Change POST to PUT
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            });
+
+            if (res.ok) {
+                const responseData = await res.json();
+                if (callback) {
+                    callback(responseData);
+                }
+                return responseData;
+            } else {
+                throw new Error('Unable to put data');
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
 
     async getUsers({id, email, password}: userParams) {
         let url = 'users'
@@ -201,7 +225,7 @@ class API {
         return await this.postRequest(url, userInfo)
     }
 
-    async createUserCart(userId:number) {
+    async createUserCart(userId: number) {
         const userCartInfo: cart = {
             "id": userId,
             "userId": userId,
@@ -211,6 +235,15 @@ class API {
         const url = 'carts'
 
         return await this.postRequest(url, userCartInfo)
+    }
+
+    async updateUserCart(cart: cart) {
+        const url = `carts/${cart.id}`
+
+        if (cart.id > 0) {
+            return await this.putRequest(url, cart)
+        }
+
     }
 
 }
