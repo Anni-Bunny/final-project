@@ -76,11 +76,10 @@ export function Login() {
             <Container>
                 <form onSubmit={loginUser}
                       className="my-32 flex flex-col items-center justify-center max-w-96 w-full mx-auto">
-                    <Button title="Continue with Google" icon={"coloredIcons/google"} iconPosition={"start"}
-                            type={"whiteBtn"} className={"mb-8 w-96"}/>
-                    <div className="flex items-center justify-between w-full mb-8">
+
+                    <div className="flex items-center justify-between w-full mb-10">
                         <hr className="border-t border-[#E6E7E8] my-4 align-middle w-2/5 "/>
-                        <p className="text-[#5C5F6A] text-sm">OR</p>
+                        <p className="text-[#5C5F6A] text-lg font-bold">LOGIN</p>
                         <hr className="border-t border-[#E6E7E8] my-4 align-middle w-2/5"/>
                     </div>
                     <div className="w-full flex items-center justify-center">
