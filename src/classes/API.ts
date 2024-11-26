@@ -1,5 +1,6 @@
 import {signupInfo} from "../pages/SignUp";
 import {user} from "../interfaces/user";
+import {cart} from "../interfaces/cart";
 
 export interface reviewParams {
     id?: number | string,
@@ -197,7 +198,19 @@ class API {
 
         const url = 'users'
 
-        return await this.postRequest(url, userInfo, console.log)
+        return await this.postRequest(url, userInfo)
+    }
+
+    async createUserCart(userId:number) {
+        const userCartInfo: cart = {
+            "id": userId,
+            "userId": userId,
+            "products": [],
+        }
+
+        const url = 'carts'
+
+        return await this.postRequest(url, userCartInfo)
     }
 
 }
