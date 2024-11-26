@@ -17,12 +17,12 @@ export interface address{
 }
 
 export interface user{
-    id: number,
-    email: string,
-    username: string,
-    password:string,
-    name: name,
-    image: string,
-    phone: string,
-    address: address
+    id?: number,
+    email?: string,
+    username?: string,
+    password?:string,
+    name?: name,
+    image?: string,
+    phone?: string,
+    address?: address
 }
