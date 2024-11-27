@@ -7,7 +7,6 @@ import {UserAdress} from "../components/UserAdress";
 import {UserPassword} from "../components/UserPassword";
 import {UserAccountDetails} from "../components/UserAccountDetails";
 import {WishList} from "../components/WishList";
-import {Logout} from "../components/Logout";
 
 export function Profile() {
 
