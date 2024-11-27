@@ -4,13 +4,16 @@ import {Link} from "react-router-dom";
 import {Button} from "./Button";
 import {WishListItem} from "./WishListItem";
 import {wishList} from "../interfaces/wishList";
+import {useSelector} from "react-redux";
+import {RootState} from "../store/store";
 
 export function WishList() {
     const [wishList, setWishList] = useState<wishList>();
+    const user = useSelector((state: RootState) => state.user.data)
 
     useEffect(() => {
         async function fetchOrders() {
-            const reviewsRequest = await api.getWishList({userId: 1});
+            const reviewsRequest = await api.getWishList({userId: user?.id});
             if (reviewsRequest) {
                 setWishList(reviewsRequest[0]);
             }
