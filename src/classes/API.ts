@@ -211,7 +211,6 @@ class API {
 
     async registerUser({signupInfo}: registerUserParams) {
         const userInfo: user = {
-            "id": Math.floor(Math.random() * 1000),
             "email": signupInfo.email,
             "password": signupInfo.password,
             "name": {
@@ -226,8 +225,7 @@ class API {
     }
 
     async createUserCart(userId: number) {
-        const userCartInfo: cart = {
-            "id": userId,
+        const userCartInfo = {
             "userId": userId,
             "products": [],
         }
@@ -240,8 +238,8 @@ class API {
     async updateUserCart(cart: cart) {
         const url = `carts/${cart.id}`
 
-        if (cart.id > 0) {
-            return await this.putRequest(url, cart)
+        if (cart.id) {
+            return await this.putRequest(url, cart,console.log)
         }
 
     }
