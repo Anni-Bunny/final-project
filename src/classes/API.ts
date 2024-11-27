@@ -41,6 +41,11 @@ export interface registerUserParams {
     signupInfo: signupInfo
 }
 
+export interface updateUserPasswordParams {
+    userId: number | string,
+    newPassword: string
+}
+
 
 class API {
     private static instance: API;
@@ -100,6 +105,30 @@ class API {
         try {
             const res = await fetch(this.URL + route, {
                 method: 'PUT',  // Change POST to PUT
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            });
+
+            if (res.ok) {
+                const responseData = await res.json();
+                if (callback) {
+                    callback(responseData);
+                }
+                return responseData;
+            } else {
+                throw new Error('Unable to put data');
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    async patchRequest(route: string, data: any, callback: Function | undefined = undefined) {
+        try {
+            const res = await fetch(this.URL + route, {
+                method: 'PATCH',  // Change POST to PUT
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -246,6 +275,13 @@ class API {
         }
 
     }
+
+    async updateUserPassword({userId, newPassword} : updateUserPasswordParams) {
+        const url = `users/${userId}`
+
+        return await this.patchRequest(url, {password:newPassword})
+    }
+
 
 }
 
