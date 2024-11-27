@@ -31,8 +31,9 @@ export function ForgotPassword() {
     async function sendResetLink(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault()
         const response = await api.getUsers({email: email})
-        if (response[0]){
-            navigate('/resetPassword');
+        const user = response[0];
+        if (user){
+            navigate('/resetPassword/'+user.id);
         } else {
             setError('Email is wrong')
         }
