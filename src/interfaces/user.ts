@@ -13,7 +13,9 @@ export interface address{
     city: string,
     street: string,
     number: string,
-    zipcode: string
+    zipcode: string,
+    state: string,
+    country: string
 }
 
 export interface user{
@@ -24,5 +26,5 @@ export interface user{
     name?: name,
     image?: string,
     phone?: string,
-    address?: address
+    address?: address,
 }
