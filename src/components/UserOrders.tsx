@@ -4,13 +4,16 @@ import {order} from "../interfaces/order";
 import {Order} from "./Order";
 import {Link} from "react-router-dom";
 import {Button} from "./Button";
+import {useSelector} from "react-redux";
+import {RootState} from "../store/store";
 
 export function UserOrders() {
     const [orders, setOrders] = useState<order[]>();
+    const user = useSelector((state: RootState) => state.user.data)
 
     useEffect(() => {
         async function fetchOrders() {
-            const reviewsRequest = await api.getOrders({userId: 1});
+            const reviewsRequest = await api.getOrders({userId: user?.id});
             if (reviewsRequest) {
                 setOrders(reviewsRequest);
             }
