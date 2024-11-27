@@ -30,15 +30,17 @@ export function SignUp() {
 
     async function signupUser(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault()
-        if (navigate !== undefined){
-            navigate('/login');
-        }
-        const response = await api.registerUser({signupInfo: signupInfo});
+
+        let response = await api.registerUser({signupInfo: signupInfo});
         
         if (response.id){
-            await api.createUserCart(response.id)
-        }
+            response = await api.createUserCart(response.id)
 
+            if (response.id) {
+                navigate('/login');
+            }
+
+        }
     }
 
 
