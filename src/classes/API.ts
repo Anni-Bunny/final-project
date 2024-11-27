@@ -125,7 +125,10 @@ class API {
         let url = 'users'
         if (id) {
             url += `/${id}`
-        } else {
+        } else if(email && !password){
+            url += `?email=${email}`
+        }
+        else {
             url += `?email=${email}&password=${password}`
         }
         return await this.getRequest(url);
