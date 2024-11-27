@@ -27,8 +27,8 @@ export function CartDropDown() {
                           <div className="flex flex-col gap-8 p-4 max-h-[29rem] overflow-y-auto">
                               {
                                   Array.isArray(cart.products) && cart.products.length > 0 ? (
-                                      cart.products.map((product) => (
-                                          <CartItem key={product.productId} product={product}/>
+                                      cart.products.map((product,index) => (
+                                          <CartItem key={index} product={product}/>
                                       ))
                                   ) : (
                                       <h3 className="flex items-center justify-center pt-10 font-bold text-xl mb-6">Cart is
