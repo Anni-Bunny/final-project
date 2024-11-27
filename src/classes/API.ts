@@ -153,12 +153,11 @@ class API {
     async getUsers({id, email, password}: userParams) {
         let url = 'users'
         if (id) {
-            url += `/${id}`
-        } else if(email && !password){
-            url += `?email=${email}`
-        }
-        else {
-            url += `?email=${email}&password=${password}`
+            url += `/${encodeURIComponent(id)}`
+        } else if (email && !password) {
+            url += `?email=${encodeURIComponent(email)}`
+        } else {
+            url += `?email=${encodeURIComponent(email ?? '')}&password=${encodeURIComponent(password ?? '')}`
         }
         return await this.getRequest(url);
     }
@@ -167,15 +166,15 @@ class API {
         let url = 'products'
         if (id) {
 
-            url += `/${id}`
+            url += `/${encodeURIComponent(id)}`
 
         } else if (_page) {
 
-            url += `?_page=${_page}&_per_page=${_per_page}&_sort=${_sort}`
+            url += `?_page=${encodeURIComponent(_page)}&_per_page=${encodeURIComponent(_per_page)}&_sort=${encodeURIComponent(_sort ?? '')}`
 
         } else if (_sort) {
 
-            url += `?_sort=${_sort}&_limit=${_limit}`
+            url += `?_sort=${encodeURIComponent(_sort)}&_limit=${encodeURIComponent(_limit)}`
 
         }
         return await this.getRequest(url);
@@ -184,9 +183,9 @@ class API {
     async getCarts({id, userId}: ordersParams) {
         let url = 'carts'
         if (id) {
-            url += `/${id}`
+            url += `/${encodeURIComponent(id)}`
         } else {
-            url += `?userId=${userId}`
+            url += `?userId=${encodeURIComponent(userId ?? '')}`
         }
         return await this.getRequest(url);
     }
@@ -199,12 +198,12 @@ class API {
         }
 
         if (id) {
-            url += `/${id}`
+            url += `/${encodeURIComponent(id)}`
             return await this.getRequest(url);
         }
 
         if (productId) {
-            url += `?productId=${productId}&_page=${_page}&_per_page=${_per_page}&_sort=${_sort}`
+            url += `?productId=${encodeURIComponent(productId)}&_page=${encodeURIComponent(_page)}&_per_page=${encodeURIComponent(_per_page)}&_sort=${encodeURIComponent(_sort)}`
         }
 
         return await this.getRequest(url);
@@ -213,7 +212,7 @@ class API {
     async getCategories({id}: categoriesParams = {}) {
         let url = 'categories'
         if (id) {
-            url += `/${id}`
+            url += `/${encodeURIComponent(id)}`
 
         }
         return await this.getRequest(url);
@@ -222,11 +221,11 @@ class API {
     async getOrders({id, userId}: ordersParams = {}) {
         let url = 'orders'
         if (id) {
-            url += `/${id}`
+            url += `/${encodeURIComponent(id)}`
 
         } else {
             if (userId) {
-                url += `?userId=${userId}`
+                url += `?userId=${encodeURIComponent(userId)}`
             }
         }
         return await this.getRequest(url);
@@ -235,7 +234,7 @@ class API {
     async getWishList({userId}: wishListParams = {}) {
         let url = 'wishList'
         if (userId) {
-            url += `?userId=${userId}`
+            url += `?userId=${encodeURIComponent(userId)}`
         }
 
         return await this.getRequest(url);
@@ -271,15 +270,15 @@ class API {
         const url = `carts/${cart.id}`
 
         if (cart.id) {
-            return await this.putRequest(url, cart,console.log)
+            return await this.putRequest(url, cart, console.log)
         }
 
     }
 
-    async updateUserPassword({userId, newPassword} : updateUserPasswordParams) {
+    async updateUserPassword({userId, newPassword}: updateUserPasswordParams) {
         const url = `users/${userId}`
 
-        return await this.patchRequest(url, {password:newPassword})
+        return await this.patchRequest(url, {password: newPassword})
     }
 
 
