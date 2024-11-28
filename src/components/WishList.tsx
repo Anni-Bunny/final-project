@@ -4,7 +4,6 @@ import {Button} from "./Button";
 import {WishListItem} from "./WishListItem";
 import {useSelector} from "react-redux";
 import {RootState} from "../store/store";
-import {wishList} from "../interfaces/wishList";
 
 export function WishList() {
     const wishList = useSelector((state: RootState) => state.wishList)
@@ -13,8 +12,8 @@ export function WishList() {
         <div className="flex flex-col gap-4">
             {
                 wishList && wishList.products?.length > 0 ? (
-                    wishList.products.map((order, index) => (
-                        <WishListItem key={index} product={order} />
+                    wishList.products.map((product, index) => (
+                        <WishListItem key={index} product={product} />
                     ))
                 ) : (
                     <div className="flex flex-col items-center justify-center gap-8">
