@@ -9,6 +9,7 @@ import api from "../classes/API";
 import {useDispatch, useSelector} from 'react-redux'
 import {RootState} from "../store/store";
 import {loadUserCart} from "../store/slices/cartSlice";
+import {loadWishList} from "../store/slices/wishListSlice";
 
 export function Login() {
     const dispatch = useDispatch()
@@ -50,6 +51,12 @@ export function Login() {
             const userCart = response[0]
 
             dispatch(loadUserCart(userCart))
+
+            const wishListResponse = await api.getWishList({userId: loginUser.id});
+            const userWishList = wishListResponse[0]
+
+            dispatch(loadWishList(userWishList))
+
 
         } else {
             setError('Email or password is wrong')
