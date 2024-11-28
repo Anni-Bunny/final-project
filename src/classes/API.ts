@@ -1,6 +1,7 @@
 import {signupInfo} from "../pages/SignUp";
 import {user} from "../interfaces/user";
 import {cart} from "../interfaces/cart";
+import {wishList} from "../interfaces/wishList";
 
 export interface reviewParams {
     id?: number | string,
@@ -266,11 +267,31 @@ class API {
         return await this.postRequest(url, userCartInfo)
     }
 
+    async createUserWishList(userId: number) {
+        const userWishListInfo = {
+            "userId": userId,
+            "products": [],
+        }
+
+        const url = 'wishList'
+
+        return await this.postRequest(url, userWishListInfo)
+    }
+
     async updateUserCart(cart: cart) {
         const url = `carts/${cart.id}`
 
         if (cart.id) {
             return await this.putRequest(url, cart, console.log)
+        }
+
+    }
+
+    async updateWishList(wishList: wishList) {
+        const url = `wishList/${wishList.id}`
+
+        if (wishList.id) {
+            return await this.putRequest(url, wishList, console.log)
         }
 
     }
