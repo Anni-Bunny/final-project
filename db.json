@@ -2401,9 +2401,9 @@
       }
     },
     {
-      "id": "3856",
+      "id": "b1d9",
       "email": "ani@gmail.com",
-      "password": "123",
+      "password": "1234",
       "name": {
         "firstname": "ani",
         "lastname": "maghradze"
@@ -15427,87 +15427,9 @@
       ]
     },
     {
-      "id": "6d84",
-      "userId": "3856",
-      "products": [
-        {
-          "image": "https://i.imgur.com/YaSqa06.jpeg",
-          "name": "Stylish Red & Silver Over-Ear Headphones",
-          "price": 39,
-          "stock": 52,
-          "productId": 0,
-          "color": "blue",
-          "size": "S",
-          "quantity": 2,
-          "sku": "CHG-38634blueS"
-        },
-        {
-          "image": "https://i.imgur.com/YaSqa06.jpeg",
-          "name": "Stylish Red & Silver Over-Ear Headphones",
-          "price": 39,
-          "stock": 53,
-          "productId": 0,
-          "color": "green",
-          "size": "L",
-          "quantity": 1,
-          "sku": "CHG-38634greenL"
-        },
-        {
-          "image": "https://i.imgur.com/YaSqa06.jpeg",
-          "name": "Stylish Red & Silver Over-Ear Headphones",
-          "price": 39,
-          "stock": 86,
-          "productId": 0,
-          "color": "blue",
-          "size": "XXL",
-          "quantity": 1,
-          "sku": "CHG-38634blueXXL"
-        },
-        {
-          "image": "https://i.imgur.com/YaSqa06.jpeg",
-          "name": "Stylish Red & Silver Over-Ear Headphones",
-          "price": 39,
-          "stock": 84,
-          "productId": 0,
-          "color": "blue",
-          "size": "XL",
-          "quantity": 1,
-          "sku": "CHG-38634blueXL"
-        },
-        {
-          "image": "https://i.imgur.com/YaSqa06.jpeg",
-          "name": "Stylish Red & Silver Over-Ear Headphones",
-          "price": 39,
-          "stock": 53,
-          "productId": 0,
-          "color": "green",
-          "size": "L",
-          "quantity": 1,
-          "sku": "CHG-38634greenL"
-        },
-        {
-          "image": "https://i.imgur.com/YaSqa06.jpeg",
-          "name": "Stylish Red & Silver Over-Ear Headphones",
-          "price": 39,
-          "stock": 53,
-          "productId": 0,
-          "color": "green",
-          "size": "L",
-          "quantity": 2,
-          "sku": "CHG-38634greenL"
-        },
-        {
-          "image": "https://i.imgur.com/YaSqa06.jpeg",
-          "name": "Stylish Red & Silver Over-Ear Headphones",
-          "price": 39,
-          "stock": 84,
-          "productId": 0,
-          "color": "blue",
-          "size": "XL",
-          "quantity": 1,
-          "sku": "CHG-38634blueXL"
-        }
-      ]
+      "id": "e7cb",
+      "userId": "b1d9",
+      "products": []
     }
   ],
   "orders": [
@@ -16063,6 +15985,11 @@
         }
       ],
       "id": "a312"
+    },
+    {
+      "id": "98a5",
+      "userId": "e7cb",
+      "products": []
     }
   ]
 }
