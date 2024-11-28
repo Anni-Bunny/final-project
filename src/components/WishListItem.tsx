@@ -31,7 +31,7 @@ export function WishListItem({product}: WishListItemProps) {
             <div className="flex justify-between items-center gap-10">
                 <span className="font-semibold"> {`$${product.price}.00`} </span>
                 <Button onClick={() => dispatch(removeProduct(product.productId))} title={"Remove item"} type={"whiteSmallBtn"} className="flex text-start"/>
-                <Link to={`/products/:${product.productId}`}><Button title={"Add to cart"} type={"whiteBtn"}/></Link>
+                <Link to={`/products/${product.productId}`}><Button title={"Add to cart"} type={"whiteBtn"}/></Link>
             </div>
         </div>
     );
