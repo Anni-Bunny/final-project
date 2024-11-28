@@ -13,10 +13,13 @@ import {Radio} from "../components/Radio";
 import {InfoTabsSwitcher} from "../components/InfoTabsSwitcher";
 import {Icon} from "../components/Icon";
 import {review} from "../interfaces/review";
-import { useDispatch } from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import {cartItem} from "../interfaces/cart";
 import {addProduct} from "../store/slices/cartSlice";
 import {ShareDropDown} from "../components/ShareDropDown";
+import {wishListItem} from "../interfaces/wishList";
+import {addProductToWishList} from "../store/slices/wishListSlice";
+import {RootState} from "../store/store";
 
 interface selectedOptions {
     color?: string,
@@ -25,6 +28,7 @@ interface selectedOptions {
 
 export function Product() {
 
+    const wishList = useSelector((state: RootState) => state.wishList)
     const dispatch = useDispatch()
 
     const {id} = useParams()
@@ -34,6 +38,7 @@ export function Product() {
     const [productQuantity, setProductQuantity] = useState<number>(0)
     const [reviews, setReviews] = useState<review[]>([])
     const [reviewCount, setReviewCount] = useState<number>(0)
+    const [icon, setIcon] = useState<string>("heart")
 
     let links = [
         {
@@ -124,6 +129,30 @@ export function Product() {
         setProductQuantity(0)
     }
 
+    function addToWishList() {
+        console.log('t1')
+        if (id && selectedOptions.color && selectedOptions.size && product) {
+            console.log('t2')
+            const wishListItem: wishListItem = {
+                image: product.images[selectedOptions.color][0],
+                name: product.name,
+                price: product.price,
+                productId: Number(id),
+                sku: product.sku+selectedOptions.color+selectedOptions.size,
+                addedAt: product.createdAt
+            }
+
+            const itemExists = wishList.products.some(item => item.productId === wishListItem.productId);
+
+            if (!itemExists) {
+                dispatch(addProductToWishList(wishListItem));
+                setIcon("redheart")
+            }
+
+        }
+    }
+
+
     return (
         <>
             <BreadCrumb links={links}/>
@@ -196,9 +225,7 @@ export function Product() {
                             </div>
                             <div className="flex gap-4 mb-3">
                                 <Button onClick={addToCart} className="w-72" title={"Add to cart"}/>
-                                <div className="w-11 h-11 flex items-center justify-center border border-[#E6E7E8]">
-                                    <Icon name={"heart"}/>
-                                </div>
+                                <Button onClick={addToWishList} icon={icon} type="CleanBtn" className="w-11 h-11 flex items-center justify-center border border-[#E6E7E8] p-0"/>
                             </div>
                             <p className="mb-1.5 text-xs text-[#5C5F6A] font-medium">— Free shipping on orders $100+</p>
                         </div>
