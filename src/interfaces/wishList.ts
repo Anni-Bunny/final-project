@@ -11,6 +11,7 @@ export interface wishListItem {
 }
 
 export interface wishList {
+    id: number | string,
     userId: number | string,
     products: wishListItem[]
 }
