@@ -31,12 +31,14 @@ export function SignUp() {
     async function signupUser(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault()
 
-        let response = await api.registerUser({signupInfo: signupInfo});
-        
-        if (response.id){
-            response = await api.createUserCart(response.id)
+        const userResponse = await api.registerUser({signupInfo: signupInfo});
+        const userId = userResponse.id
 
-            if (response.id) {
+        if (userId){
+            const cartResponse = await api.createUserCart(userId)
+            const wishlistResponse = await api.createUserWishList(userId)
+
+            if (cartResponse.id && wishlistResponse.id) {
                 navigate('/login');
             }
 
