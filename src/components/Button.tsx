@@ -31,6 +31,11 @@ const btnTypes = {
         typeClasses: "bg-white h-6 w-6",
         divClasses: "",
         titleClasses: "text-3xl text-[#5C5F6A] group-hover:text-[#f1ebdd] "
+    },
+    CleanBtn: {
+        typeClasses: "",
+        divClasses: "",
+        titleClasses: ""
     }
 
 }
