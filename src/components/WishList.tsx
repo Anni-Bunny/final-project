@@ -1,25 +1,13 @@
-import React, {useEffect, useState} from "react";
-import api from "../classes/API";
+import React from "react";
 import {Link} from "react-router-dom";
 import {Button} from "./Button";
 import {WishListItem} from "./WishListItem";
-import {wishList} from "../interfaces/wishList";
 import {useSelector} from "react-redux";
 import {RootState} from "../store/store";
+import {wishList} from "../interfaces/wishList";
 
 export function WishList() {
-    const [wishList, setWishList] = useState<wishList>();
-    const user = useSelector((state: RootState) => state.user.data)
-
-    useEffect(() => {
-        async function fetchOrders() {
-            const reviewsRequest = await api.getWishList({userId: user?.id});
-            if (reviewsRequest) {
-                setWishList(reviewsRequest[0]);
-            }
-        }
-        fetchOrders();
-    }, []);
+    const wishList = useSelector((state: RootState) => state.wishList)
 
     return (
         <div className="flex flex-col gap-4">
