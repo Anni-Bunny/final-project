@@ -15,7 +15,7 @@ export const wishListSlice = createSlice({
     initialState,
     reducers: {
         loadWishList: (state, action: PayloadAction<wishList>) => action.payload,
-        addProduct: (state, action: PayloadAction<wishListItem>) => {
+        addProductToWishList: (state, action: PayloadAction<wishListItem>) => {
             state.products.push(action.payload)
             api.updateWishList(state)
 
@@ -32,7 +32,7 @@ export const wishListSlice = createSlice({
 // Action creators are generated for each case reducer function
 export const {
     loadWishList,
-    addProduct,
+    addProductToWishList,
     removeProduct,
     clearWishList,
 } = wishListSlice.actions
