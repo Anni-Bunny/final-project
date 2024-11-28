@@ -12118,6 +12118,17 @@
           "size": "XXL",
           "quantity": 1,
           "sku": "CHG-38634blueXXL"
+        },
+        {
+          "image": "https://i.imgur.com/YaSqa06.jpeg",
+          "name": "Stylish Red & Silver Over-Ear Headphones",
+          "price": 39,
+          "stock": 52,
+          "productId": 0,
+          "color": "blue",
+          "size": "S",
+          "quantity": 1,
+          "sku": "CHG-38634blueS"
         }
       ]
     },
@@ -15929,14 +15940,6 @@
       "userId": 1,
       "products": [
         {
-          "image": "https://i.imgur.com/YaSqa06.jpeg",
-          "name": "Stylish Red & Silver Over-Ear Headphones",
-          "price": 39,
-          "productId": 0,
-          "sku": "CHG-38634blueS",
-          "addedAt": "2024-06-17 03:09:32"
-        },
-        {
           "image": "https://i.imgur.com/DMQHGA0.jpeg",
           "name": "Modern dining table",
           "price": 120,
@@ -15951,6 +15954,30 @@
           "productId": 4,
           "sku": "DRH-72699blueS",
           "addedAt": "2024-05-19 01:45:49"
+        },
+        {
+          "image": "https://i.imgur.com/3dU0m72.jpeg",
+          "name": "Modern Ergonomic Office Chair",
+          "price": 71,
+          "productId": 7,
+          "sku": "WFJ-59108blueS",
+          "addedAt": "2024-10-24 22:28:45"
+        },
+        {
+          "image": "https://i.imgur.com/3oXNBst.jpeg",
+          "name": "Modern Minimalist Workstation Setup",
+          "price": 49,
+          "productId": 6,
+          "sku": "GRK-45526blueS",
+          "addedAt": "2024-05-14 03:34:43"
+        },
+        {
+          "image": "https://i.imgur.com/9qrmE1b.jpeg",
+          "name": "Chic Summer Denim Espadrille Sandals",
+          "price": 33,
+          "productId": 10,
+          "sku": "RKW-42156blueS",
+          "addedAt": "2024-01-18 09:40:46"
         }
       ],
       "id": "bb21"
