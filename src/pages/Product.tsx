@@ -18,7 +18,7 @@ import {cartItem} from "../interfaces/cart";
 import {addProduct} from "../store/slices/cartSlice";
 import {ShareDropDown} from "../components/ShareDropDown";
 import {wishListItem} from "../interfaces/wishList";
-import {addProductToWishList} from "../store/slices/wishListSlice";
+import {addProductToWishList, removeProduct} from "../store/slices/wishListSlice";
 import {RootState} from "../store/store";
 
 interface selectedOptions {
@@ -38,7 +38,7 @@ export function Product() {
     const [productQuantity, setProductQuantity] = useState<number>(0)
     const [reviews, setReviews] = useState<review[]>([])
     const [reviewCount, setReviewCount] = useState<number>(0)
-    const [icon, setIcon] = useState<string>("heart")
+    const [itemInWishlist, setItemInWishlist] = useState(false)
 
     let links = [
         {
@@ -81,6 +81,15 @@ export function Product() {
         fetchProducts();
         fetchReviews();
     }, [id]);
+
+
+    useEffect(() => {
+        if (product) {
+            setItemInWishlist(state => wishList.products.some(item => item.productId + '' === product.id))
+        }
+        console.log(itemInWishlist)
+
+    }, [wishList, product]);
 
 
     function onChangeRadio(event: React.ChangeEvent<HTMLInputElement>) {
@@ -129,10 +138,9 @@ export function Product() {
         setProductQuantity(0)
     }
 
-    function addToWishList() {
+    function toggleWishList() {
         console.log('t1')
-        if (id && selectedOptions.color && selectedOptions.size && product) {
-            console.log('t2')
+        if (id !== null && selectedOptions.color && selectedOptions.size && product) {
             const wishListItem: wishListItem = {
                 image: product.images[selectedOptions.color][0],
                 name: product.name,
@@ -142,13 +150,11 @@ export function Product() {
                 addedAt: product.createdAt
             }
 
-            const itemExists = wishList.products.some(item => item.productId === wishListItem.productId);
-
-            if (!itemExists) {
+            if (!itemInWishlist) {
                 dispatch(addProductToWishList(wishListItem));
-                setIcon("redheart")
+            } else  {
+                dispatch(removeProduct(wishListItem.productId))
             }
-
         }
     }
 
@@ -225,7 +231,7 @@ export function Product() {
                             </div>
                             <div className="flex gap-4 mb-3">
                                 <Button onClick={addToCart} className="w-72" title={"Add to cart"}/>
-                                <Button onClick={addToWishList} icon={icon} type="CleanBtn" className="w-11 h-11 flex items-center justify-center border border-[#E6E7E8] p-0"/>
+                                <Button onClick={toggleWishList} icon={itemInWishlist ? 'redheart' : 'heart'} type="CleanBtn" className="w-11 h-11 flex items-center justify-center border border-[#E6E7E8] p-0"/>
                             </div>
                             <p className="mb-1.5 text-xs text-[#5C5F6A] font-medium">— Free shipping on orders $100+</p>
                         </div>
