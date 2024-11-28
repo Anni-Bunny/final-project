@@ -12096,6 +12096,28 @@
           "size": "XXL",
           "quantity": 1,
           "sku": "FFX-00698greenXXL"
+        },
+        {
+          "image": "https://i.imgur.com/YaSqa06.jpeg",
+          "name": "Stylish Red & Silver Over-Ear Headphones",
+          "price": 39,
+          "stock": 86,
+          "productId": 0,
+          "color": "blue",
+          "size": "XXL",
+          "quantity": 2,
+          "sku": "CHG-38634blueXXL"
+        },
+        {
+          "image": "https://i.imgur.com/YaSqa06.jpeg",
+          "name": "Stylish Red & Silver Over-Ear Headphones",
+          "price": 39,
+          "stock": 86,
+          "productId": 0,
+          "color": "blue",
+          "size": "XXL",
+          "quantity": 1,
+          "sku": "CHG-38634blueXXL"
         }
       ]
     },
@@ -15429,7 +15451,19 @@
     {
       "id": "e7cb",
       "userId": "b1d9",
-      "products": []
+      "products": [
+        {
+          "image": "https://i.imgur.com/YaSqa06.jpeg",
+          "name": "Stylish Red & Silver Over-Ear Headphones",
+          "price": 39,
+          "stock": 52,
+          "productId": 0,
+          "color": "blue",
+          "size": "S",
+          "quantity": 1,
+          "sku": "CHG-38634blueS"
+        }
+      ]
     }
   ],
   "orders": [
@@ -15895,37 +15929,28 @@
       "userId": 1,
       "products": [
         {
-          "productId": "7",
-          "image": "https://i.imgur.com/3dU0m72.jpeg",
-          "price": 71,
-          "size": "L",
-          "color": "green",
-          "stock": 35,
-          "name": "Modern Ergonomic Office Chair",
-          "sku": "WFJ-59108greenXL",
-          "addedAt": "2021-05-14 21:51:13"
+          "image": "https://i.imgur.com/YaSqa06.jpeg",
+          "name": "Stylish Red & Silver Over-Ear Headphones",
+          "price": 39,
+          "productId": 0,
+          "sku": "CHG-38634blueS",
+          "addedAt": "2024-06-17 03:09:32"
         },
         {
-          "productId": "3",
-          "image": "https://i.imgur.com/NWIJKUj.jpeg",
-          "price": 66,
-          "size": "L",
-          "color": "green",
-          "stock": 46,
-          "name": "Elegant Golden-Base Stone Top Dining Table",
-          "sku": "STX-58165yellowXL",
-          "addedAt": "2021-05-14 21:51:13"
+          "image": "https://i.imgur.com/DMQHGA0.jpeg",
+          "name": "Modern dining table",
+          "price": 120,
+          "productId": 2,
+          "sku": "UJY-13987blueS",
+          "addedAt": "2024-01-02 19:51:10"
         },
         {
-          "productId": "10",
-          "image": "https://i.imgur.com/9qrmE1b.jpeg",
-          "price": 33,
-          "size": "L",
-          "color": "green",
-          "stock": 92,
-          "name": "Chic Summer Denim Espadrille Sandals",
-          "sku": "RKW-42156yellowXXL",
-          "addedAt": "2021-05-14 21:51:13"
+          "image": "https://i.imgur.com/6wkyyIN.jpeg",
+          "name": "Modern Elegance Teal Armchair",
+          "price": 25,
+          "productId": 4,
+          "sku": "DRH-72699blueS",
+          "addedAt": "2024-05-19 01:45:49"
         }
       ],
       "id": "bb21"
