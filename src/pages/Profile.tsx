@@ -3,7 +3,7 @@ import {Container} from "../components/Container";
 import {BreadCrumb} from "../components/BreadCrumb";
 import React from "react";
 import {UserOrders} from "../components/UserOrders";
-import {UserAdress} from "../components/UserAdress";
+import {UserAddress} from "../components/UserAddress";
 import {UserPassword} from "../components/UserPassword";
 import {UserAccountDetails} from "../components/UserAccountDetails";
 import {WishList} from "../components/WishList";
@@ -29,7 +29,7 @@ export function Profile() {
         },
         {
             name: 'address',
-            component: <UserAdress/>
+            component: <UserAddress/>
         },
         {
             name: 'password',
