@@ -26,27 +26,24 @@
     },
     {
       "id": "1",
-      "email": "unikolaus@yahoo.com",
+      "email": "animaghradze@gmail.com",
       "username": "princess.cartwright",
-      "password": "1234",
+      "password": "123",
       "name": {
-        "firstname": "Estell",
-        "lastname": "Moen"
+        "firstname": "ani",
+        "lastname": "maghradze"
       },
       "image": "https://picsum.photos/id/1/200/200",
       "phone": "(531) 417-5963",
       "address": {
-        "geolocation": {
-          "lat": -48.379306,
-          "long": -147.643012
-        },
+        "street": "dsdsdsdsdsds",
         "city": "Lindseyshire",
         "state": "Lao People's Democratic Republic",
-        "country": "Antarctica (the territory South of 60 deg S)",
-        "street": "Reilly Circle",
-        "number": "420",
-        "zipcode": "72256"
-      }
+        "zipcode": "72256",
+        "country": "Antarctica (the territory South of 60 deg S)"
+      },
+      "name.firstname": "new",
+      "name.lastname": "new"
     },
     {
       "id": "2",
@@ -15940,14 +15937,6 @@
       "userId": 1,
       "products": [
         {
-          "image": "https://i.imgur.com/DMQHGA0.jpeg",
-          "name": "Modern dining table",
-          "price": 120,
-          "productId": 2,
-          "sku": "UJY-13987blueS",
-          "addedAt": "2024-01-02 19:51:10"
-        },
-        {
           "image": "https://i.imgur.com/6wkyyIN.jpeg",
           "name": "Modern Elegance Teal Armchair",
           "price": 25,
@@ -15970,14 +15959,6 @@
           "productId": 6,
           "sku": "GRK-45526blueS",
           "addedAt": "2024-05-14 03:34:43"
-        },
-        {
-          "image": "https://i.imgur.com/9qrmE1b.jpeg",
-          "name": "Chic Summer Denim Espadrille Sandals",
-          "price": 33,
-          "productId": 10,
-          "sku": "RKW-42156blueS",
-          "addedAt": "2024-01-18 09:40:46"
         }
       ],
       "id": "bb21"
