@@ -1,16 +1,89 @@
 import {BreadCrumb} from "../components/BreadCrumb";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {Container} from "../components/Container";
-import {useSelector, useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import {RootState} from "../store/store";
 import {Button} from "../components/Button"
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {Input} from "../components/Input";
+import api from "../classes/API";
+import {order} from "../interfaces/order";
+import moment from "moment";
+import {clearAndUpdateDb, clearCart} from "../store/slices/cartSlice";
+
+interface inputInfo {
+    street: string,
+    city: string,
+    state: string,
+    zipcode: string,
+    country: string,
+    firstname: string,
+    lastname: string
+}
 
 export function CeckOut() {
 
+    const navigate = useNavigate()
     const cart = useSelector((state: RootState) => state.cart)
+    const user = useSelector((state: RootState) => state.user.data)
+    const [alert, setAlert] = useState('');
     const dispatch = useDispatch()
+
+    const tax = 3
+
+    const [newAddress, setNewAddress] = useState<inputInfo>({
+        street: user?.address?.street || "",
+        city: user?.address?.city || "",
+        state: user?.address?.state || "",
+        zipcode: user?.address?.zipcode || "",
+        country: user?.address?.country || "",
+        firstname: user?.name?.firstname || " ",
+        lastname: user?.name?.lastname || ""
+    });
+
+
+    function onChangeInput(event: React.ChangeEvent<HTMLInputElement>) {
+        const val = event.currentTarget.value
+        const name = event.currentTarget.name
+
+        setNewAddress((state) => ({
+            ...state,
+            [name]: val
+        }))
+    }
+
+    async function placeOrder(event: React.FormEvent<HTMLFormElement>) {
+        event.preventDefault()
+        if (user?.id) {
+            const order: order = {
+                userId: user.id,
+                status: "processing",
+                tax: tax,
+                createdAt: moment().format("YYYY-MM-DD"),
+                products: cart.products.map(item => {
+                    return {
+                        image: item.image,
+                        name: item.name,
+                        price: item.price,
+                        productId: item.productId,
+                        size: item.size,
+                        color: item.color,
+                        quantity: item.quantity,
+                        sku: item.sku
+                    }
+                }),
+                address: newAddress
+            }
+
+            const response = await api.postOrder(order)
+
+            if (response) {
+                dispatch(clearAndUpdateDb())
+                navigate('/afterPayment')
+            }
+
+        }
+    }
 
     let totalQuantity = 0;
     let totalPrice = 0;
@@ -42,20 +115,36 @@ export function CeckOut() {
             </section>
 
             <Container>
-                <div className="mt-14 mb-32 flex justify-between w-full">
+                <form onSubmit={placeOrder} className="mt-14 mb-32 flex justify-between w-full">
                     <div className="w-3/5 pr-40">
                         <h5 className="text-[#0E1422] font-semibold text-lg py-4 mb-16">Shipping Address</h5>
 
                         <div className="flex flex-col gap-4">
-                            <Input inputType={"text"} label={"Street Address"} inputClassName={"w-full"} placeholder={"Enter Your Street Address"}/>
+                            <Input value={newAddress.street} onChange={onChangeInput} name={"street"} inputType={"text"}
+                                   label={"Street Address"} inputClassName={"w-full"}
+                                   placeholder={"Enter Your Street Address"}/>
 
                             <div className="grid grid-cols-2 gap-4  ">
-                                <Input inputType={"text"} inputClassName={"w-full"} label={"City"} placeholder={"Enter Your City"}/>
-                                <Input inputType={"text"} inputClassName={"w-full"} label={"State"} placeholder={"Enter Your State"}/>
-                                <Input inputType={"text"} inputClassName={"w-full"} label={"Zip Code"} placeholder={"Enter Zip Code"}/>
-                                <Input inputType={"text"} inputClassName={"w-full"} label={"Country"} placeholder={"Enter Your Country"}/>
-                                <Input inputType={"email"} inputClassName={"w-full"} label={"Email"} placeholder={"Enter Your Email"}/>
-                                <Input inputType={"text"} inputClassName={"w-full"} label={"Full name"} placeholder={"Enter Your Full name"}/>
+                                <Input value={newAddress.city} onChange={onChangeInput} name={"city"} inputType={"text"}
+                                       inputClassName={"w-full"} label={"City"} placeholder={"Enter Your City"}/>
+                                <Input value={newAddress.state} onChange={onChangeInput} name={"state"}
+                                       inputType={"text"}
+                                       inputClassName={"w-full"} label={"State"} placeholder={"Enter Your State"}/>
+                                <Input value={newAddress.zipcode} onChange={onChangeInput} name={"zipcode"}
+                                       inputType={"text"}
+                                       inputClassName={"w-full"} label={"Zip Code"} placeholder={"Enter Zip Code"}/>
+                                <Input value={newAddress.country} onChange={onChangeInput} name={"country"}
+                                       inputType={"text"}
+                                       inputClassName={"w-full"} label={"Country"}
+                                       placeholder={"Enter Your Country"}/>
+                                <Input value={newAddress.firstname} onChange={onChangeInput} name={"firstname"}
+                                       inputType={"text"}
+                                       inputClassName={"w-full"} label={"First name"}
+                                       placeholder={"Enter Your First name"}/>
+                                <Input value={newAddress.lastname} onChange={onChangeInput} name={"lastname"}
+                                       inputType={"text"}
+                                       inputClassName={"w-full"} label={"Last name"}
+                                       placeholder={"Enter Your Last name"}/>
                             </div>
                         </div>
                     </div>
@@ -88,21 +177,21 @@ export function CeckOut() {
                         </div>
                         <div className="flex justify-between mb-2">
                             <span className="text-[#5C5F6A]">Tax:</span>
-                            <span>$3.00</span>
+                            <span>${tax}</span>
                         </div>
                         <div className="flex justify-between py-4 border-t border-[#E6E7E8]">
                             <span>Total</span>
-                            <span>{`$${totalPrice + 3}.00`}</span>
+                            <span>{`$${totalPrice + tax}`}</span>
                         </div>
 
-                        <Link to={"/afterPayment"}><Button title={"Checkout"} className="w-full"/></Link>
+                        <Button title={"Checkout"} className={"w-full " + (!cart.products.length ? 'hidden' : '')}/>
 
                     </div>
 
-
-                </div>
+                </form>
             </Container>
 
         </div>
+
     );
 }
