@@ -16,7 +16,7 @@ export function Login() {
     const user = useSelector((state: RootState) => state.user.data)
     const navigate = useNavigate();
 
-    const [loginForm, setLoginForm] = useState<userLoginForm>({email: 'unikolaus@yahoo.com', password: '123123'})
+    const [loginForm, setLoginForm] = useState<userLoginForm>({email: 'animaghradze@gmail.com', password: '123'})
     const [error, setError] = useState('')
 
     let links = [
