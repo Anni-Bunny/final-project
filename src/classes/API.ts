@@ -1,7 +1,8 @@
 import {signupInfo} from "../pages/SignUp";
-import {user} from "../interfaces/user";
+import {address, user} from "../interfaces/user";
 import {cart} from "../interfaces/cart";
 import {wishList} from "../interfaces/wishList";
+import {details} from "../components/UserAccountDetails";
 
 export interface reviewParams {
     id?: number | string,
@@ -45,6 +46,16 @@ export interface registerUserParams {
 export interface updateUserPasswordParams {
     userId: number | string,
     newPassword: string
+}
+
+export interface updateUserAddressParams {
+    userId: number | string,
+    newAddress: address
+}
+
+export interface updateUserDetailsParams {
+    userId: number | string,
+    newDetails: details
 }
 
 
@@ -149,7 +160,6 @@ class API {
             console.error(error);
         }
     }
-
 
     async getUsers({id, email, password}: userParams) {
         let url = 'users'
@@ -300,6 +310,18 @@ class API {
         const url = `users/${userId}`
 
         return await this.patchRequest(url, {password: newPassword})
+    }
+
+    async updateUserAddress({userId, newAddress} : updateUserAddressParams){
+        const url = `users/${userId}`
+
+        return await this.patchRequest(url, {address: newAddress})
+    }
+
+    async updateUserDetails({userId, newDetails} : updateUserDetailsParams){
+        const url = `users/${userId}`
+
+        return await this.patchRequest(url, {name: {firstname: newDetails.firstname, lastname: newDetails.lastname}, email: newDetails.email})
     }
 
 
