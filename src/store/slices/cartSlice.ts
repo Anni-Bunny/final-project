@@ -15,13 +15,21 @@ export const cartSlice = createSlice({
     initialState,
     reducers: {
         loadUserCart: (state, action: PayloadAction<cart>) => action.payload,
-        addProduct: (state, action: PayloadAction<cartItem>) => {
-            state.products.push(action.payload)
-            api.updateUserCart(state)
 
+        addProduct: (state, action: PayloadAction<cartItem>) => {
+            const existingProduct = state.products.find(product => product.sku === action.payload.sku);
+            if (existingProduct) {
+                // If the product already exists, increase its quantity
+                existingProduct.quantity += action.payload.quantity;
+            } else {
+                // If the product doesn't exist, add it to the cart
+                state.products.push(action.payload);
+            }
+
+            api.updateUserCart(state);
         },
-        removeProduct: (state, action: PayloadAction<number>) => {
-            state.products = state.products.filter(product => product.productId !== action.payload)
+        removeProduct: (state, action: PayloadAction<string>) => {
+            state.products = state.products.filter(product => product.sku !== action.payload)
             api.updateUserCart(state)
 
         },
