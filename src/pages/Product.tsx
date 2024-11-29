@@ -139,7 +139,6 @@ export function Product() {
     }
 
     function toggleWishList() {
-        console.log('t1')
         if (id !== null && selectedOptions.color && selectedOptions.size && product) {
             const wishListItem: wishListItem = {
                 image: product.images[selectedOptions.color][0],
