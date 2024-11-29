@@ -3,6 +3,7 @@ import {address, user} from "../interfaces/user";
 import {cart} from "../interfaces/cart";
 import {wishList} from "../interfaces/wishList";
 import {details} from "../components/UserAccountDetails";
+import {order} from "../interfaces/order";
 
 export interface reviewParams {
     id?: number | string,
@@ -160,6 +161,7 @@ class API {
             console.error(error);
         }
     }
+
 
     async getUsers({id, email, password}: userParams) {
         let url = 'users'
@@ -324,7 +326,12 @@ class API {
         return await this.patchRequest(url, {name: {firstname: newDetails.firstname, lastname: newDetails.lastname}, email: newDetails.email})
     }
 
+    async postOrder(order :order) {
 
+        const url = 'orders'
+
+        return await this.postRequest(url, order)
+    }
 }
 
 // Export a single instance of the API class
