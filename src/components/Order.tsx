@@ -19,9 +19,10 @@ export function Order({order}: orderedItemProps) {
             <div className="flex items-start gap-3 max-w-72 overflow-x-auto">
                 {
                     order.products.map((product, index) => (
-                        <Link to={`/products/${product.productId}`}>
-                            <img className="max-w-20 rounded-full" key={index} src={product.image}
-                                   alt=""/> </Link>
+                        <Link  key={index} to={`/products/${product.productId}`}>
+                            <img className="max-w-20 rounded-full" src={product.image}
+                                   alt=""/>
+                        </Link>
                     ))
                 }
             </div>
