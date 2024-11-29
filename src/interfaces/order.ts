@@ -12,7 +12,9 @@ export interface orderItem {
 }
 
 export interface order {
-    id: string | number,
+    id?: string | number,
+    userId: string | number,
+    tax: string | number,
     status: string,
     createdAt: string,
     products: orderItem[],
