@@ -12073,59 +12073,15 @@
       "userId": 1,
       "products": [
         {
-          "productId": "5",
-          "image": "https://i.imgur.com/4lTaHfF.jpeg",
-          "price": 67,
-          "size": "L",
-          "color": "green",
-          "stock": 37,
-          "name": "Elegant Solid Wood Dining Table",
-          "quantity": 3,
-          "sku": "ZJI-85646greenXXL"
-        },
-        {
-          "image": "https://i.imgur.com/hKcMNJs.jpeg",
-          "name": "Vibrant Runners: Bold Orange & Blue Sneakers",
-          "price": 27,
-          "stock": 13,
-          "productId": 11,
-          "color": "green",
-          "size": "XXL",
-          "quantity": 1,
-          "sku": "FFX-00698greenXXL"
-        },
-        {
-          "image": "https://i.imgur.com/YaSqa06.jpeg",
-          "name": "Stylish Red & Silver Over-Ear Headphones",
-          "price": 39,
-          "stock": 86,
-          "productId": 0,
-          "color": "blue",
-          "size": "XXL",
-          "quantity": 2,
-          "sku": "CHG-38634blueXXL"
-        },
-        {
-          "image": "https://i.imgur.com/YaSqa06.jpeg",
-          "name": "Stylish Red & Silver Over-Ear Headphones",
-          "price": 39,
-          "stock": 86,
-          "productId": 0,
-          "color": "blue",
-          "size": "XXL",
-          "quantity": 1,
-          "sku": "CHG-38634blueXXL"
-        },
-        {
-          "image": "https://i.imgur.com/YaSqa06.jpeg",
-          "name": "Stylish Red & Silver Over-Ear Headphones",
-          "price": 39,
-          "stock": 52,
-          "productId": 0,
+          "image": "https://i.imgur.com/LGk9Jn2.jpeg",
+          "name": "Sleek Smartwatch with Vibrant Display",
+          "price": 16,
+          "stock": 70,
+          "productId": 1,
           "color": "blue",
           "size": "S",
-          "quantity": 1,
-          "sku": "CHG-38634blueS"
+          "quantity": 4,
+          "sku": "THR-96403blueS"
         }
       ]
     },
