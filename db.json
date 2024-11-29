@@ -12076,7 +12076,6 @@
           "image": "https://i.imgur.com/LGk9Jn2.jpeg",
           "name": "Sleek Smartwatch with Vibrant Display",
           "price": 16,
-          "stock": 70,
           "productId": 1,
           "color": "blue",
           "size": "S",
@@ -15886,6 +15885,54 @@
         "number": "645",
         "zipcode": "21057"
       }
+    },
+    {
+      "id": "6dca",
+      "userId": "1",
+      "status": "processing",
+      "tax": 3,
+      "createdAt": "2024-11-30",
+      "products": [
+        {
+          "image": "https://i.imgur.com/HqYqLnW.jpeg",
+          "name": "Futuristic Chic High-Heel Boots",
+          "price": 36,
+          "productId": 14,
+          "size": "S",
+          "color": "blue",
+          "quantity": 1,
+          "sku": "ZMM-46819blueS"
+        },
+        {
+          "image": "https://i.imgur.com/hKcMNJs.jpeg",
+          "name": "Vibrant Runners: Bold Orange & Blue Sneakers",
+          "price": 27,
+          "productId": 11,
+          "size": "S",
+          "color": "blue",
+          "quantity": 1,
+          "sku": "FFX-00698blueS"
+        },
+        {
+          "image": "https://i.imgur.com/6wkyyIN.jpeg",
+          "name": "Modern Elegance Teal Armchair",
+          "price": 25,
+          "productId": 4,
+          "size": "XXL",
+          "color": "blue",
+          "quantity": 1,
+          "sku": "DRH-72699blueXXL"
+        }
+      ],
+      "address": {
+        "street": "dsdsdsdsdsds",
+        "city": "Lindseyshire",
+        "state": "Lao People's Democratic Republic",
+        "zipcode": "72256",
+        "country": "Antarctica (the territory South of 60 deg S)",
+        "firstname": "ani",
+        "lastname": "maghradze"
+      }
     }
   ],
   "wishList": [
@@ -15915,6 +15962,14 @@
           "productId": 6,
           "sku": "GRK-45526blueS",
           "addedAt": "2024-05-14 03:34:43"
+        },
+        {
+          "image": "https://i.imgur.com/YaSqa06.jpeg",
+          "name": "Stylish Red & Silver Over-Ear Headphones",
+          "price": 39,
+          "productId": 0,
+          "sku": "CHG-38634blueXXL",
+          "addedAt": "2024-06-17 03:09:32"
         }
       ],
       "id": "bb21"
