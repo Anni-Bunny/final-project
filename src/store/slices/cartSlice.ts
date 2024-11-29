@@ -55,7 +55,11 @@ export const cartSlice = createSlice({
             }).filter(product => product.quantity > 0)
             api.updateUserCart(state)
         },
-        clearCart: () => initialState
+        clearCart: () => initialState,
+        clearAndUpdateDb: (state) => {
+            state.products = []
+            api.updateUserCart(state)
+        }
     },
 })
 
@@ -66,7 +70,8 @@ export const {
     removeProduct,
     incrementProduct,
     decrementProduct,
-    clearCart
+    clearCart,
+    clearAndUpdateDb
 } = cartSlice.actions
 
 export default cartSlice.reducer
