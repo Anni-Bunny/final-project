@@ -9,10 +9,10 @@ interface geolocationData{
 }
 
 export interface address{
-    geolocation: geolocationData,
+    geolocation?: geolocationData,
     city: string,
     street: string,
-    number: string,
+    number?: string,
     zipcode: string,
     state: string,
     country: string
