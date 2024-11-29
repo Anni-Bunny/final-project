@@ -1,7 +1,7 @@
 import {cartItem} from "../interfaces/cart";
 import {Button} from "./Button";
 import React from "react";
-import {decrementProduct, incrementProduct} from "../store/slices/cartSlice";
+import {decrementProduct, incrementProduct, removeProduct} from "../store/slices/cartSlice";
 import {useDispatch} from "react-redux";
 
 const types = {
@@ -76,6 +76,9 @@ export function CartItem({product, type = "vertical"}: cartItemProps) {
 
                     <span className="font-bold"> {sumPrice > 0 ? `$${sumPrice}.00` :
                         <span>`$${product.price}`</span>}</span>
+
+                    <Button icon={"close"} name={"plus"} type={"QuantityBtn"}
+                            onClick={() => dispatch(removeProduct(product.sku))}/>
                 </div>
 
             </div>
