@@ -22,7 +22,7 @@ export function UserOrders() {
     }, []);
 
     return (
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 max-h-[30.25rem] overflow-y-auto pr-5">
             {
                 orders && orders.length > 0 ? (
                     orders.map((order, index) => (

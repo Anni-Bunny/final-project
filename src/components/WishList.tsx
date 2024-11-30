@@ -9,7 +9,7 @@ export function WishList() {
     const wishList = useSelector((state: RootState) => state.wishList)
 
     return (
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 max-h-[31.25rem] overflow-y-auto pr-5">
             {
                 wishList && wishList.products?.length > 0 ? (
                     wishList.products.map((product, index) => (
