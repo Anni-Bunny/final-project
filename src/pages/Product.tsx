@@ -87,7 +87,6 @@ export function Product() {
         if (product) {
             setItemInWishlist(state => wishList.products.some(item => item.productId + '' === product.id))
         }
-        console.log(itemInWishlist)
 
     }, [wishList, product]);
 
