@@ -47,6 +47,7 @@ export function SortDropdown({
                     </React.Fragment>
                 ))}
             </ul>}
+            mainDivClassName="justify-end"
         />
     )
 }
