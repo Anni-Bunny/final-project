@@ -48,6 +48,7 @@ export function SortDropdown({
                 ))}
             </ul>}
             mainDivClassName="justify-end"
+            child2ClassName="right-2"
         />
     )
 }
