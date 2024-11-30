@@ -169,7 +169,7 @@ export function Product() {
                         <div className="h-[40rem] w-1/2 py-3 flex flex-col justify-between">
                             <div className="flex justify-between">
                                 <h3 className="text-2xl font-bold text-[#0E1422] mb-4">{product.name}</h3>
-                                <ShareDropDown/>
+                                <ShareDropDown productId={product.id}/>
                             </div>
 
                             <div className="flex gap-2 mb-6">
