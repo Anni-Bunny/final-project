@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Button} from './Button';
+import {BtnType, Button} from './Button';
 
 interface dropdownProps {
     title?: string;
@@ -9,6 +9,7 @@ interface dropdownProps {
     child1ClassName?: string,
     child2ClassName?: string,
     mainDivClassName?: string
+    btnType?: BtnType
 }
 
 export function Dropdown({
@@ -18,7 +19,8 @@ export function Dropdown({
                              child2,
                              child1ClassName,
                              child2ClassName,
-                             mainDivClassName
+                             mainDivClassName,
+                             btnType="whiteSmallBtn",
                          }: dropdownProps) {
     const [isVisible, setIsVisible] = useState(false);
 
@@ -27,14 +29,14 @@ export function Dropdown({
     };
 
     return (
-        <div className={`flex relative w-full justify-end ${mainDivClassName}`}
+        <div className={`flex relative w-full ${mainDivClassName}`}
              onMouseLeave={() => setIsVisible(false)}>
             <div className="relative">
                 <Button
                     title={title}
                     icon={icon}
                     className={"relative"}
-                    type={"whiteSmallBtn"}
+                    type={btnType}
                     onClick={toggleDropdown}
                 />
                 <span className={`absolute ${child1ClassName}`}>
