@@ -38,15 +38,15 @@ export function CartItem({product, type = "vertical"}: cartItemProps) {
     const sumPrice = product.price * product.quantity
 
     return (
-        <div className={`flex ${mainDiv}`}>
+        <div className={`flex ${mainDiv} justify-between`}>
             <div className="flex bg-gray-300 items-center">
                 <img className={`bg-cover ${imageSize}`} src={product.image} alt=""/>
             </div>
 
-            <div className={`flex justify-between ${containerFlexDirection}`}>
-                <div className="flex gap-4">
+            <div className={`flex justify-between w-full gap-4 ${containerFlexDirection}`}>
+                <div className="flex gap-4 justify-between">
                     <p className="max-w-44 overflow-hidden font-semibold">{product.name}</p>
-                    <div className="flex-col">
+                    <div className="flex flex-col items-end">
                         <span className="flex items-center gap-1 justify-center">
                             <p>Color - </p>
                             <div className={`bg-${product.color}-200 rounded-full w-3 h-3`}></div>
