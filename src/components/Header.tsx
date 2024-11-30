@@ -45,6 +45,7 @@ export function Header() {
                                             <Logout/>
                                         </div>
                                         }
+                                        child2ClassName="right-2"
                                     />
                                 </div>
                             )
