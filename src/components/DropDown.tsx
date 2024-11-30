@@ -29,9 +29,9 @@ export function Dropdown({
     };
 
     return (
-        <div className={`flex relative w-full ${mainDivClassName}`}
+        <span className={`flex relative w-full ${mainDivClassName}`}
              onMouseLeave={() => setIsVisible(false)}>
-            <div className="relative">
+            <span className="relative">
                 <Button
                     title={title}
                     icon={icon}
@@ -42,12 +42,12 @@ export function Dropdown({
                 <span className={`absolute ${child1ClassName}`}>
                     {child1}
                 </span>
-            </div>
+            </span>
 
             <div
-                className={`absolute right-2 bottom-0 translate-y-full z-10 ${isVisible ? '' : 'hidden'} bg-white rounded shadow-2xl transition duration-400 ${child2ClassName}`}>
+                className={`absolute bottom-0 translate-y-full z-10 ${isVisible ? '' : 'hidden'} bg-white rounded shadow-2xl transition duration-400 ${child2ClassName}`}>
                 {child2}
             </div>
-        </div>
+        </span>
     );
 }
