@@ -23,7 +23,7 @@ export function CartDropDown() {
                   child1={totalQuantity}
                   child1ClassName="top-0 right-0 bg-red-100 w-5 h-5 rounded-full flex items-center justify-center "
                   child2={
-                      <div className="flex flex-col w-[26rem] ">
+                      <div className="flex flex-col w-[28rem] ">
                           <div className="flex flex-col gap-8 p-4 max-h-[29rem] overflow-y-auto">
                               {
                                   Array.isArray(cart.products) && cart.products.length > 0 ? (
