@@ -12076,10 +12076,11 @@
           "image": "https://i.imgur.com/LGk9Jn2.jpeg",
           "name": "Sleek Smartwatch with Vibrant Display",
           "price": 16,
+          "stock": 70,
           "productId": 1,
           "color": "blue",
           "size": "S",
-          "quantity": 4,
+          "quantity": 1,
           "sku": "THR-96403blueS"
         }
       ]
@@ -15933,6 +15934,110 @@
         "firstname": "ani",
         "lastname": "maghradze"
       }
+    },
+    {
+      "id": "37d3",
+      "userId": "1",
+      "status": "processing",
+      "tax": 3,
+      "createdAt": "2024-11-30",
+      "products": [
+        {
+          "image": "https://i.imgur.com/6wkyyIN.jpeg",
+          "name": "Modern Elegance Teal Armchair",
+          "price": 25,
+          "productId": 4,
+          "size": "S",
+          "color": "yellow",
+          "quantity": 1,
+          "sku": "DRH-72699yellowS"
+        },
+        {
+          "image": "https://i.imgur.com/6wkyyIN.jpeg",
+          "name": "Modern Elegance Teal Armchair",
+          "price": 25,
+          "productId": 4,
+          "size": "XL",
+          "color": "yellow",
+          "quantity": 1,
+          "sku": "DRH-72699yellowXL"
+        }
+      ],
+      "address": {
+        "street": "dsdsdsdsdsds",
+        "city": "Lindseyshire",
+        "state": "Lao People's Democratic Republic",
+        "zipcode": "72256",
+        "country": "Antarctica (the territory South of 60 deg S)",
+        "firstname": "ani",
+        "lastname": "maghradze"
+      }
+    },
+    {
+      "id": "b4a5",
+      "userId": "1",
+      "status": "processing",
+      "tax": 3,
+      "createdAt": "2024-11-30",
+      "products": [
+        {
+          "image": "https://i.imgur.com/LGk9Jn2.jpeg",
+          "name": "Sleek Smartwatch with Vibrant Display",
+          "price": 16,
+          "productId": 1,
+          "size": "S",
+          "color": "blue",
+          "quantity": 4,
+          "sku": "THR-96403blueS"
+        }
+      ],
+      "address": {
+        "street": "dsdsdsdsdsds",
+        "city": "Lindseyshire",
+        "state": "Lao People's Democratic Republic",
+        "zipcode": "72256",
+        "country": "Antarctica (the territory South of 60 deg S)",
+        "firstname": "ani",
+        "lastname": "maghradze"
+      }
+    },
+    {
+      "id": "0ee0",
+      "userId": "1",
+      "status": "processing",
+      "tax": 3,
+      "createdAt": "2024-11-30",
+      "products": [
+        {
+          "image": "https://i.imgur.com/YaSqa06.jpeg",
+          "name": "Stylish Red & Silver Over-Ear Headphones",
+          "price": 39,
+          "productId": 0,
+          "size": "S",
+          "color": "blue",
+          "quantity": 1,
+          "sku": "CHG-38634blueS"
+        },
+        {
+          "image": "https://i.imgur.com/YaSqa06.jpeg",
+          "name": "Stylish Red & Silver Over-Ear Headphones",
+          "price": 39,
+          "productId": 0,
+          "size": "M",
+          "color": "blue",
+          "quantity": 1,
+          "sku": "CHG-38634blueM"
+        }
+      ],
+      "address": {
+        "street": "dsdsdsdsdsds",
+        "city": "Lindseyshire",
+        "state": "Lao People's Democratic Republic",
+        "zipcode": "72256",
+        "country": "Antarctica (the territory South of 60 deg S)",
+        "firstname": "ani",
+        "lastname": "maghradze"
+      }
     }
   ],
   "wishList": [
@@ -15940,36 +16045,12 @@
       "userId": 1,
       "products": [
         {
-          "image": "https://i.imgur.com/6wkyyIN.jpeg",
-          "name": "Modern Elegance Teal Armchair",
-          "price": 25,
-          "productId": 4,
-          "sku": "DRH-72699blueS",
-          "addedAt": "2024-05-19 01:45:49"
-        },
-        {
-          "image": "https://i.imgur.com/3dU0m72.jpeg",
-          "name": "Modern Ergonomic Office Chair",
-          "price": 71,
-          "productId": 7,
-          "sku": "WFJ-59108blueS",
-          "addedAt": "2024-10-24 22:28:45"
-        },
-        {
           "image": "https://i.imgur.com/3oXNBst.jpeg",
           "name": "Modern Minimalist Workstation Setup",
           "price": 49,
           "productId": 6,
           "sku": "GRK-45526blueS",
           "addedAt": "2024-05-14 03:34:43"
-        },
-        {
-          "image": "https://i.imgur.com/YaSqa06.jpeg",
-          "name": "Stylish Red & Silver Over-Ear Headphones",
-          "price": 39,
-          "productId": 0,
-          "sku": "CHG-38634blueXXL",
-          "addedAt": "2024-06-17 03:09:32"
         }
       ],
       "id": "bb21"
