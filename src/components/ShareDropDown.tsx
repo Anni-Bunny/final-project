@@ -41,6 +41,7 @@ export function ShareDropDown({productId}: shareDropDownProps) {
                           </div>
                       </div>}
                   mainDivClassName={"flex justify-center max-w-16"}
+                  child2ClassName="right-2"
         />
     );
 }
