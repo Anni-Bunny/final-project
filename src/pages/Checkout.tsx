@@ -26,7 +26,6 @@ export function CeckOut() {
     const navigate = useNavigate()
     const cart = useSelector((state: RootState) => state.cart)
     const user = useSelector((state: RootState) => state.user.data)
-    const [alert, setAlert] = useState('');
     const dispatch = useDispatch()
 
     const tax = 3
