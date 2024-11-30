@@ -5,6 +5,7 @@ import {ProductReviews} from "./ProductReviews";
 import {Button} from "./Button";
 import {product} from "../interfaces/product";
 import {SortDropdown} from "./SortDropdown";
+import {WriteReviewDropDown} from "./WriteReviewDropDown";
 
 interface ProductReviewListProps {
     product: product;
@@ -57,7 +58,7 @@ export function ProductReviewList({product}: ProductReviewListProps) {
             <div className="border-b">
                 <h5 className="font-semibold text-[1rem] pb-4">Reviews</h5>
                 <p className="pb-10">{averageStars ? averageStars : 'No ratings yet'} - {reviewCount} Reviews</p>
-                <Button title={"Write a review"} type={"whiteBtn"} className=""/>
+                <WriteReviewDropDown/>
 
                 <SortDropdown
                     sortedBy={sortedBy}
