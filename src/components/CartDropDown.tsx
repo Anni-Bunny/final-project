@@ -54,6 +54,7 @@ export function CartDropDown() {
                       </div>
                   }
                   mainDivClassName={"flex justify-center max-w-16"}
+                  child2ClassName="right-2"
         />
     );
 }
