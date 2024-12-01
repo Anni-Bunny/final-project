@@ -58,7 +58,7 @@ export function ProductReviewList({product}: ProductReviewListProps) {
             <div className="border-b">
                 <h5 className="font-semibold text-[1rem] pb-4">Reviews</h5>
                 <p className="pb-10">{averageStars ? averageStars : 'No ratings yet'} - {reviewCount} Reviews</p>
-                <WriteReviewDropDown/>
+                <WriteReviewDropDown setReviews={setReviews}/>
 
                 <SortDropdown
                     sortedBy={sortedBy}

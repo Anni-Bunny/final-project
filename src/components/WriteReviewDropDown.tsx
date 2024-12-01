@@ -1,5 +1,5 @@
 import {Dropdown} from "./DropDown";
-import React, {useState} from "react";
+import React, {Dispatch, SetStateAction, useState} from "react";
 import {Button} from "./Button";
 import {review} from "../interfaces/review";
 import {useSelector} from "react-redux";
@@ -7,7 +7,11 @@ import {RootState} from "../store/store";
 import moment from "moment/moment";
 import api from "../classes/API";
 
-export function WriteReviewDropDown() {
+interface WriteReviewDropDownProps {
+    setReviews: React.Dispatch<React.SetStateAction<review[]>>;
+}
+
+export function WriteReviewDropDown({setReviews}: WriteReviewDropDownProps) {
     const [rating, setRating] = useState<number>(0);
     const [hoveredRating, setHoveredRating] = useState<number>(0);
     const [coment, setComent] = useState<string>("")
@@ -55,11 +59,11 @@ export function WriteReviewDropDown() {
         setComent(val)
     }
 
-    async function addReview(event: React.FormEvent<HTMLFormElement>){
+    async function addReview(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault()
 
         if (user && user.name && user.id) {
-            const review : review = {
+            const review: review = {
                 productId: user.id,
                 name: user.name.firstname,
                 surName: user.name.lastname,
@@ -67,12 +71,20 @@ export function WriteReviewDropDown() {
                 comment: coment,
                 stars: rating,
             }
-            await api.postReview(review)
+            const response = await api.postReview(review)
+            console.log(response)
+
+            if (response) {
+                setComent("")
+                setRating(0)
+                setHoveredRating(0)
+
+                setReviews((prevState) => ([response, ...prevState]));
+            }
+
         }
 
-        setComent("")
-        setRating(0)
-        setHoveredRating(0)
+
     }
 
     return (
