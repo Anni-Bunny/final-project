@@ -4,6 +4,7 @@ import {cart} from "../interfaces/cart";
 import {wishList} from "../interfaces/wishList";
 import {details} from "../components/UserAccountDetails";
 import {order} from "../interfaces/order";
+import {review} from "../interfaces/review";
 
 export interface reviewParams {
     id?: number | string,
@@ -331,6 +332,12 @@ class API {
         const url = 'orders'
 
         return await this.postRequest(url, order)
+    }
+
+    async postReview(review: review){
+        const url = 'reviews'
+
+        return await this.postRequest(url, review)
     }
 }
 
