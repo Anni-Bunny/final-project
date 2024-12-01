@@ -1,12 +1,17 @@
 import {Dropdown} from "./DropDown";
 import React, {useState} from "react";
 import {Button} from "./Button";
+import {review} from "../interfaces/review";
+import {useSelector} from "react-redux";
+import {RootState} from "../store/store";
+import moment from "moment/moment";
+import api from "../classes/API";
 
 export function WriteReviewDropDown() {
     const [rating, setRating] = useState<number>(0);
-
-    // State to temporarily store the hover rating
     const [hoveredRating, setHoveredRating] = useState<number>(0);
+    const [coment, setComent] = useState<string>("")
+    const user = useSelector((state: RootState) => state.user.data)
 
     // Function to handle click to set rating
     const handleClick = (index: number) => {
@@ -44,18 +49,44 @@ export function WriteReviewDropDown() {
         );
     }
 
+    function onChangeTextarea(event: React.ChangeEvent<HTMLTextAreaElement>) {
+        const val = event.currentTarget.value
+
+        setComent(val)
+    }
+
+    async function addReview(event: React.FormEvent<HTMLFormElement>){
+        event.preventDefault()
+
+        if (user && user.name && user.id) {
+            const review : review = {
+                productId: user.id,
+                name: user.name.firstname,
+                surName: user.name.lastname,
+                date: moment().format("YYYY-MM-DD"),
+                comment: coment,
+                stars: rating,
+            }
+            await api.postReview(review)
+        }
+
+        setComent("")
+        setRating(0)
+        setHoveredRating(0)
+    }
+
     return (
         <Dropdown
             title={"Write a review"}
             btnType={"whiteBtn"}
             mainDivClassName={"justify-start"}
             child2={
-                <div className="flex flex-col w-[24rem] h-[22rem] px-10 py-8 gap-6">
+                <form onSubmit={addReview} className="flex flex-col w-[24rem] h-[22rem] px-10 py-8 gap-6">
                     <h5 className="text-[#0E1422] font-bold border-b py-2">Write Review</h5>
 
                     <div className="flex flex-col">
                         <h5>Review</h5>
-                        <textarea name={"review"} required={true} className="rounded-md border border-[#E6E7E8] py-2.5 px-[0.938rem] h-[2.813rem]text-black text-sm
+                        <textarea onChange={onChangeTextarea} value={coment} name={"review"} required={true} className="rounded-md border border-[#E6E7E8] py-2.5 px-[0.938rem] h-[2.813rem]text-black text-sm
                                 focus:outline-none data-[focus]:outline-2 data-[focus]:-outline-offset-2 data-[focus]:outline-white/25 required:"/>
                     </div>
 
@@ -64,7 +95,7 @@ export function WriteReviewDropDown() {
                     </div>
 
                     <Button title="Submit Your Review"/>
-                </div>}
+                </form>}
             child2ClassName=""
 
         />
