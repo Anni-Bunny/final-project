@@ -1,6 +1,6 @@
 export interface review {
-    id: number;
-    productId: number,
+    id?: number;
+    productId: number | string,
     name: string;
     surName: string;
     date: string;
