@@ -15,7 +15,7 @@ export function AdminDashboard() {
 
     return (
        <>
-           <BreadCrumb className="" links={links}/>
+           <BreadCrumb isInContainer={false} className="" links={links}/>
        </>
     );
 }
