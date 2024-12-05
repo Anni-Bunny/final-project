@@ -13,7 +13,7 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
         <div>
             <div className="admin-layout flex h-screen">
                 {isAdminRoute && displayAdminSideBar && <AdminSideBar />}
-                <main className="bg-[#F6F6F6] w-full p-12">{children}</main>
+                <main className="bg-[#F6F6F6] w-full px-16 py-10">{children}</main>
             </div>
         </div>
     );
