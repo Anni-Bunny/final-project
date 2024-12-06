@@ -18,7 +18,7 @@ export function Pagination({className, onChange, selectedOptionsPage, pageCount}
 
     return (
         <div
-            className={`flex items-center justify-center border border-[#E9E9EB] max-w-48 w-full py-1 px-2 gap-1 ${className} `}>
+            className={`flex py-1 px-2 gap-1 ${className} `}>
 
             <Radio name={"page"}
                    onChange={onChange}
