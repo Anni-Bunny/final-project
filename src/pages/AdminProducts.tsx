@@ -7,6 +7,7 @@ import {renponse} from "../interfaces/response";
 import api from "../classes/API";
 import {topFunction} from "../Helpers/functions";
 import {Icon} from "../components/Icon";
+import {Pagination} from "../components/Pagination";
 
 const defaultResponse = {
     first: 1,
@@ -64,7 +65,7 @@ export function AdminProducts() {
 
     useEffect(() => {
         async function getProducts() {
-            const response = await api.getProducts({_sort: sortedBy, _page: selectedOptions.page, _per_page: 7});
+            const response = await api.getProducts({_sort: sortedBy, _page: selectedOptions.page, _per_page: 6});
             setResponse(response);
         }
 
@@ -89,6 +90,28 @@ export function AdminProducts() {
         setSortTitle(title);
         resetPage();
     };
+
+    function onChangeRadio(event: React.ChangeEvent<HTMLInputElement>) {
+        const val = event.currentTarget.value
+        const name = event.currentTarget.name
+
+        if (name !== "page") {
+
+            setSelectedOptions((state) => ({
+                ...state,
+                page: 1,
+                [name]: val
+            }));
+
+        } else {
+
+            setSelectedOptions((state) => ({
+                ...state,
+                [name]: val
+            }));
+
+        }
+    }
 
     return (
         <div className='flex flex-col gap-16'>
@@ -162,6 +185,12 @@ export function AdminProducts() {
 
                     </tbody>
                 </table>
+
+                <>
+                    {response.pages &&
+                        <Pagination pageCount={response.pages} className="w-full justify-end" onChange={onChangeRadio}
+                                    selectedOptionsPage={selectedOptions.page}/>}
+                </>
             </div>
         </div>
     );
