@@ -223,9 +223,9 @@ export function Products() {
                             }
                         </div>
 
-                        <div className=" flex justify-center">
+                        <div className="flex justify-center">
                             {response.pages &&
-                                <Pagination pageCount={response.pages} className="mb-32" onChange={onChangeRadio}
+                                <Pagination pageCount={response.pages} className="mb-32 border border-[#E9E9EB]" onChange={onChangeRadio}
                                             selectedOptionsPage={selectedOptions.page}/>}
                         </div>
                     </div>
