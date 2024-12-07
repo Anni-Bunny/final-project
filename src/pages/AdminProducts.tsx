@@ -39,7 +39,7 @@ export function AdminProducts() {
     let links = [
         {
             name: "Admin",
-            url: "/admin/products"
+            url: "/admin/dashboard"
         },
         {
             name: "Products",
