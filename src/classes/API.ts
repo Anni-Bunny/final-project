@@ -34,7 +34,9 @@ export interface userParams {
 
 export interface ordersParams {
     id?: number | string,
-    userId?: number | string
+    userId?: number | string,
+    _page?: number | string,
+    _per_page?: number | string
 }
 
 export interface wishListParams {
@@ -232,15 +234,18 @@ class API {
         return await this.getRequest(url);
     }
 
-    async getOrders({id, userId}: ordersParams = {}) {
+    async getOrders({id, userId, _page, _per_page = 6}: ordersParams = {}) {
         let url = 'orders'
         if (id) {
             url += `/${encodeURIComponent(id)}`
 
-        } else {
-            if (userId) {
+        } else if (userId) {
                 url += `?userId=${encodeURIComponent(userId)}`
-            }
+
+        } else if (_page) {
+
+            url += `?_page=${encodeURIComponent(_page)}&_per_page=${encodeURIComponent(_per_page)})}`
+
         }
         return await this.getRequest(url);
     }
