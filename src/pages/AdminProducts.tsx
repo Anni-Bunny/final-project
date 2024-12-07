@@ -155,7 +155,7 @@ export function AdminProducts() {
             <div className="max-h-[45rem] h-full bg-white flex justify-between py-6 px-12 flex-col ">
                 <div className="flex justify-between items-center">
                     <h4 className="text-lg">Products</h4>
-                    <SearchInput onSearch={handleSearch} placeholder="Search..."/>
+                    <SearchInput onSearch={handleSearch} placeholder="Search product"/>
                 </div>
 
                 <Table columns={columns} data={data} />
