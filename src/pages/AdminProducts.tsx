@@ -1,13 +1,23 @@
 import {BreadCrumb} from "../components/BreadCrumb";
-import React, {useEffect, useState} from "react";
+import React, {ReactNode, useEffect, useState} from "react";
 import {SearchInput} from "../components/SearchInput";
-import {Link} from "react-router-dom";
-import {ProductCard} from "../components/ProductCard";
 import {renponse} from "../interfaces/response";
 import api from "../classes/API";
 import {topFunction} from "../Helpers/functions";
 import {Icon} from "../components/Icon";
 import {Pagination} from "../components/Pagination";
+import Table from "../components/Table"
+import {keyboard} from "@testing-library/user-event/dist/keyboard";
+
+interface Data {
+    image: ReactNode,
+    productName: string,
+    sku: string,
+    price: string | number,
+    stock: string,
+    categories: string,
+    action: string,
+}
 
 const defaultResponse = {
     first: 1,
@@ -41,6 +51,7 @@ export function AdminProducts() {
     const [sortedBy, setSortedBy] = useState('-date');
     const [selectedOptions, setSelectedOptions] = useState<selectedOptions>({page: 1})
     const [sortTitle, setSortTitle] = useState('Date desc');
+    const [data, setData] = useState<Data[]>([])
 
     const handleSearch = (query: string) => {
         // Perform your search logic here, for example:
@@ -67,12 +78,26 @@ export function AdminProducts() {
         async function getProducts() {
             const response = await api.getProducts({_sort: sortedBy, _page: selectedOptions.page, _per_page: 6});
             setResponse(response);
+
+            const updatedData = response.data.map((item: any) => ({
+                image: <img className="bg-[#F6F6F6] w-12 bg-cover" src={item.images.default[0]} alt=""/>,
+                productName: item.name,
+                sku: item.sku,
+                price: item.price,
+                stock: item.stock.blue.s,
+                categories: item.category.name,
+                action: "...",
+            }));
+
+            setData(() => updatedData);
+
         }
 
         getProducts();
 
         topFunction()
     }, [sortedBy, selectedOptions.page]);
+
 
     const sortByList = [
         {
@@ -113,78 +138,27 @@ export function AdminProducts() {
         }
     }
 
+    const columns: {Header:ReactNode, accessor: keyof Data}[] = [
+        {Header: <Icon name="sort"/>, accessor: 'image'},
+        {Header: 'Product name', accessor: 'productName'},
+        {Header: 'sku', accessor: 'sku'},
+        {Header: 'price', accessor: 'price'},
+        {Header: 'stock', accessor: 'stock'},
+        {Header: 'categories', accessor: 'categories'},
+        {Header: 'action', accessor: 'action'},
+    ];
+
     return (
-        <div className='flex flex-col gap-16'>
+        <div className='flex flex-col gap-16 h-full'>
             <BreadCrumb isInContainer={false} className="" links={links}/>
 
-            <div className="relative overflow-x-auto overflow-y-auto bg-white py-6 px-12 flex flex-col gap-6">
+            <div className="max-h-[45rem] h-full bg-white flex justify-between py-6 px-12 flex-col ">
                 <div className="flex justify-between items-center">
                     <h4 className="text-lg">Products</h4>
                     <SearchInput onSearch={handleSearch} placeholder="Search..."/>
                 </div>
 
-
-                <table className="w-full text-sm text-left ">
-                    <thead className="text-xs text-gray-700 uppercase">
-                    <tr>
-                        <th scope="col" className="px-6 py-3">
-                            <Icon name="sort"/>
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                            Product name
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                            sku
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                            price
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                            stock
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                            categories
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                            action
-                        </th>
-                    </tr>
-                    </thead>
-
-
-                    <tbody>
-
-                    {
-                        response.data.map((product) => (
-                            <tr className="bg-white border-b border-[#F6F6F6]" key={product.id}>
-                                <td className="px-6 py-4">
-                                    <img className="bg-[#F6F6F6] w-12 bg-cover"
-                                         src={product.images.default[0]} alt=""/>
-                                </td>
-                                <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                                    {product.name}
-                                </td>
-                                <td className="px-6 py-4">
-                                    {product.sku}
-                                </td>
-                                <td className="px-6 py-4">
-                                    {product.price}
-                                </td>
-                                <td className="px-6 py-4">
-                                    {product.stock.blue.s}
-                                </td>
-                                <td className="px-6 py-4">
-                                    {product.category.name}
-                                </td>
-                                <td className="px-6 py-4">
-                                    ...
-                                </td>
-                            </tr>
-                        ))
-                    }
-
-                    </tbody>
-                </table>
+                <Table columns={columns} data={data} />
 
                 <>
                     {response.pages &&
