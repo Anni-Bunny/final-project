@@ -30,7 +30,7 @@ const defaultResponse = {
 interface selectedOptions {
     color?: string,
     size?: string,
-    page?: number | string
+    page: number | string
 }
 
 export function AdminReviews() {
@@ -71,6 +71,7 @@ export function AdminReviews() {
             }
         ))
     }
+
 
     useEffect(() => {
         async function getReviews() {
