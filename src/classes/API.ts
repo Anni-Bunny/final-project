@@ -29,7 +29,9 @@ export interface categoriesParams {
 export interface userParams {
     id?: number | string,
     email?: string,
-    password?: string
+    password?: string,
+    _page?: string | number,
+    _per_page?: string | number
 }
 
 export interface ordersParams {
@@ -166,12 +168,14 @@ class API {
     }
 
 
-    async getUsers({id, email, password}: userParams) {
+    async getUsers({id, email, password, _page, _per_page = 6}: userParams) {
         let url = 'users'
         if (id) {
             url += `/${encodeURIComponent(id)}`
         } else if (email && !password) {
             url += `?email=${encodeURIComponent(email)}`
+        } else if (_page && _per_page) {
+            url += `?_page=${encodeURIComponent(_page)}&_per_page=${encodeURIComponent(_per_page)}}`
         } else {
             url += `?email=${encodeURIComponent(email ?? '')}&password=${encodeURIComponent(password ?? '')}`
         }
