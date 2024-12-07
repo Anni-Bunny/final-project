@@ -209,17 +209,17 @@ class API {
     async getReviews({id, productId, _page = 1, _per_page = 3, _sort = '-date'}: reviewParams) {
         let url = 'reviews';
 
-        if (!id && !productId) {
-            throw new Error('at least one is required id or productId')
-        }
-
         if (id) {
             url += `/${encodeURIComponent(id)}`
             return await this.getRequest(url);
         }
 
+        if (_page) {
+            url += `?_page=${encodeURIComponent(_page)}&_per_page=${encodeURIComponent(_per_page)}&_sort=${encodeURIComponent(_sort)}`
+        }
+
         if (productId) {
-            url += `?productId=${encodeURIComponent(productId)}&_page=${encodeURIComponent(_page)}&_per_page=${encodeURIComponent(_per_page)}&_sort=${encodeURIComponent(_sort)}`
+            url += '&productId=${encodeURIComponent(productId)}'
         }
 
         return await this.getRequest(url);
