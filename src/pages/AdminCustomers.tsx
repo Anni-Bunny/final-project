@@ -83,7 +83,7 @@ export function AdminCustomers() {
                     className="w-12 h-12 flex items-center justify-center bg-[#F0F1FF] rounded-full px-[0.906rem] py-[0.719rem] text-[#0070F3] font-semibold">{item.name.firstname[0]}{item.name.lastname[0]}</div>,
                 name: <>{item.name.firstname} {item.name.lastname}</>,
                 email: item.email,
-                shippingAddress: <>{item.address.number} {item.address.street}, {item.address.city}, {item.address.state}</> ,
+                shippingAddress: <>{item.address?.number} {item.address?.street}, {item.address?.city}, {item.address?.state}</> ,
                 action: "...",
             }));
 
