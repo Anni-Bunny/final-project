@@ -84,7 +84,7 @@ export function AdminProducts() {
                 productName: item.name,
                 sku: item.sku,
                 price: item.price,
-                stock: item.stock.blue.s,
+                stock: item.stock.blue?.S > 0 ? "IN STOCK" : "OUT OF STOCK",
                 categories: item.category.name,
                 action: "...",
             }));
