@@ -75,7 +75,7 @@ export function AdminOrders() {
     }
 
     useEffect(() => {
-        async function getProducts() {
+        async function getOrders() {
             const response = await api.getOrders({_page: selectedOptions.page, _per_page: 6});
             setResponse(response);
 
@@ -111,7 +111,7 @@ export function AdminOrders() {
 
         }
 
-        getProducts();
+        getOrders();
 
         topFunction()
     }, [sortedBy, selectedOptions.page]);
