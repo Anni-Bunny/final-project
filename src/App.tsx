@@ -21,6 +21,7 @@ import {AdminReviews} from "./pages/AdminReviews";
 import {AdminSettings} from "./pages/AdminSettings";
 import { MainLayout } from "./layouts/MainLayout"
 import {AdminLayout} from './layouts/AdminLayout';
+import {About} from "./pages/About";
 
 
 function App(){
@@ -39,6 +40,7 @@ function App(){
                 <Route path="/forgotPassword" element={<MainLayout><ForgotPassword /></MainLayout>} />
                 <Route path="/resetPassword/:id" element={<MainLayout><ResetPassword /></MainLayout>} />
                 <Route path="/profile" element={<MainLayout><Profile /></MainLayout>} />
+                <Route path="/about" element={<About />}/>
 
                 {/* Admin Routes with AdminLayout */}
                 <Route path="/admin/login" element={<AdminLayout><AdminLogin /></AdminLayout>} />
@@ -48,6 +50,7 @@ function App(){
                 <Route path="/admin/customers" element={<AdminLayout><AdminCustomers /></AdminLayout>} />
                 <Route path="/admin/reviews" element={<AdminLayout><AdminReviews /></AdminLayout>} />
                 <Route path="/admin/settings" element={<AdminLayout><AdminSettings /></AdminLayout>} />
+
             </Routes>
         </div>
     );
