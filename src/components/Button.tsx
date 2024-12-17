@@ -61,14 +61,15 @@ interface ButtonProps {
     onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void,
     name?: string,
     iconPosition?: IconPosition,
-    textPosition?: TextPosition
+    textPosition?: TextPosition,
+    titleClassName?: string
 }
 
-export function Button({icon, className, title, type = "defaultBtn", onClick, name, iconPosition = 'end', textPosition = "center"}: ButtonProps) {
+export function Button({icon, className, title, type = "defaultBtn", onClick, name, iconPosition = 'end', textPosition = "center", titleClassName}: ButtonProps) {
 
     let typeClasses = btnTypes[type].typeClasses + " " + className + " " + textPositions[textPosition]
     let divClasses = btnTypes[type].divClasses
-    let titleClasses = btnTypes[type].titleClasses
+    let titleClasses = btnTypes[type].titleClasses + " " + titleClassName
 
     let handleOnClick
 
