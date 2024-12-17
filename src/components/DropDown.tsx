@@ -9,7 +9,8 @@ interface dropdownProps {
     child1ClassName?: string,
     child2ClassName?: string,
     mainDivClassName?: string
-    btnType?: BtnType
+    btnType?: BtnType,
+    titleClassName?: string
 }
 
 export function Dropdown({
@@ -20,7 +21,8 @@ export function Dropdown({
                              child1ClassName,
                              child2ClassName,
                              mainDivClassName,
-                             btnType="whiteSmallBtn",
+                             btnType = "whiteSmallBtn",
+                             titleClassName
                          }: dropdownProps) {
     const [isVisible, setIsVisible] = useState(false);
 
@@ -30,7 +32,7 @@ export function Dropdown({
 
     return (
         <span className={`flex relative w-full ${mainDivClassName}`}
-             onMouseLeave={() => setIsVisible(false)}>
+              onMouseLeave={() => setIsVisible(false)}>
             <span className="relative">
                 <Button
                     title={title}
@@ -38,6 +40,7 @@ export function Dropdown({
                     className={"relative"}
                     type={btnType}
                     onClick={toggleDropdown}
+                    titleClassName={titleClassName}
                 />
                 <span className={`absolute ${child1ClassName}`}>
                     {child1}
