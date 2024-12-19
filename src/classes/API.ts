@@ -223,7 +223,7 @@ class API {
         }
 
         if (productId) {
-            url += '&productId=${encodeURIComponent(productId)}'
+            url += `&productId=${encodeURIComponent(productId)}`
         }
 
         return await this.getRequest(url);
