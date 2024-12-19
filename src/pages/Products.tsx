@@ -53,7 +53,7 @@ export function Products() {
 
     useEffect(() => {
         async function getProducts() {
-            const response = await api.getProducts({_sort: sortedBy, _page: selectedOptions.page});
+            const response = await api.getProducts({_sort: sortedBy, _page: selectedOptions.page, categoryIds: selectedCategoryId });
             setResponse(response);
         }
 
@@ -71,7 +71,7 @@ export function Products() {
         }
 
         topFunction()
-    }, [sortedBy, selectedOptions.page]);
+    }, [sortedBy, selectedOptions.page, selectedCategoryId]);
 
 
     let links = [
@@ -151,10 +151,10 @@ export function Products() {
                         <div className="flex flex-col gap-4">
                             <h4>Categories</h4>
                             <div className="flex flex-col">
-                                {categories.map((category) => (
-                                    <div className="flex items-center py-3 px-1 border-b border-[#E9E9EB] font-normal">
+                                {categories.map((category, index) => (
+                                    <div className="flex items-center py-3 px-1 border-b border-[#E9E9EB] font-normal" key={index}>
                                         <CheckBox
-                                            key={category.id}
+                                            key={index}
                                             name="category"
                                             value={category.id}
                                             label={category.name}
@@ -215,9 +215,9 @@ export function Products() {
 
                         <div className="flex-col grid grid-cols-3 gap-8 mb-16">
                             {
-                                response.data.map(product => (
-                                    <Link to={"/products/" + product.id}>
-                                        <ProductCard key={product.id} product={product}/>
+                                response.data.map((product, index) => (
+                                    <Link to={"/products/" + product.id} key={index}>
+                                        <ProductCard key={index} product={product}/>
                                     </Link>
                                 ))
                             }
