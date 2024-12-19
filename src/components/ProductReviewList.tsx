@@ -15,7 +15,7 @@ export function ProductReviewList({product}: ProductReviewListProps) {
     const [sortedBy, setSortedBy] = useState('-date');
     const [reviews, setReviews] = useState<review[]>([]);
     const [averageStars, setAverageStars] = useState<number | null>(null);
-    const [sortTitle, setSortTitle] = useState('Date desc');
+    const [sortTitle, setSortTitle] = useState('Date Desc');
     const [page, setPage] = useState<number>(1);
     const [reviewCount, setReviewCount] = useState<number>(0);
 
