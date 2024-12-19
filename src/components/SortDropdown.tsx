@@ -24,24 +24,22 @@ export function SortDropdown({
                         {sortedBy !== `-${item.sortKey}` && (
                             <li
                                 className="block px-4 py-2 hover:bg-gray-400 bg-opacity-25 cursor-pointer transition duration-200 hover:text-white hover:font-bold"
-                                data-sort-by={`-${item.sortKey}`}
                                 onClick={() => {
-                                    onSortChange(`-${item.sortKey}`, `${item.title} desc`);
+                                    onSortChange(`-${item.sortKey}`, `${item.title} Desc`);
                                 }}
                             >
-                                {item.title} desc
+                                {item.title} Desc
                             </li>
                         )}
 
                         {sortedBy !== `${item.sortKey}` && (
                             <li
                                 className="block px-4 py-2 hover:bg-gray-400 cursor-pointer transition duration-200 hover:text-white hover:font-bold"
-                                data-sort-by={item.sortKey}
                                 onClick={() => {
-                                    onSortChange(`${item.sortKey}`, `${item.title} asc`);
+                                    onSortChange(`${item.sortKey}`, `${item.title} Asc`);
                                 }}
                             >
-                                {item.title} asc
+                                {item.title} Asc
                             </li>
                         )}
                     </React.Fragment>
