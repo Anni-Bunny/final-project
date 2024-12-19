@@ -19,7 +19,8 @@ export interface productParams {
     _sort?: string,
     _limit?: number,
     _page?: number | string,
-    _per_page?: number | string
+    _per_page?: number | string,
+    categoryIds?: string[]
 }
 
 export interface categoriesParams {
@@ -182,7 +183,7 @@ class API {
         return await this.getRequest(url);
     }
 
-    async getProducts({id, _sort, _limit = 9, _page, _per_page = 9}: productParams = {}) {
+    async getProducts({id, _sort, _limit = 9, _page, _per_page = 9, categoryIds}: productParams = {}) {
         let url = 'products'
         if (id) {
 
@@ -196,6 +197,10 @@ class API {
 
             url += `?_sort=${encodeURIComponent(_sort)}&_limit=${encodeURIComponent(_limit)}`
 
+        }
+        if (categoryIds && categoryIds.length > 0) {
+            const categoryQuery = categoryIds.map(id => `${encodeURIComponent(id)}`).join(',');
+            url += `&category.id=${categoryQuery}`;
         }
         return await this.getRequest(url);
     }
