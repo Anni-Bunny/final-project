@@ -9,6 +9,7 @@ import {Pagination} from "../components/Pagination";
 import Table from "../components/Table"
 import {keyboard} from "@testing-library/user-event/dist/keyboard";
 import {order} from "../interfaces/order";
+import {TableSearchInput} from "../components/TableSearchInput";
 
 interface Data {
     image: ReactNode,
@@ -51,18 +52,7 @@ export function AdminCustomers() {
     const [selectedOptions, setSelectedOptions] = useState<selectedOptions>({page: 1})
     const [sortTitle, setSortTitle] = useState('Date desc');
     const [data, setData] = useState<Data[]>([])
-
-    const handleSearch = (query: string) => {
-        // Perform your search logic here, for example:
-        // Fetch results from an API, or filter data.
-        console.log('Searching for:', query);
-
-        // Example of updating search results (simulated data)
-        const results = ['apple', 'banana', 'orange', 'grape', 'watermelon'].filter(item =>
-            item.toLowerCase().includes(query.toLowerCase())
-        );
-        setSearchResults(results);
-    };
+    
 
     function resetPage() {
         setSelectedOptions(state => (
@@ -151,7 +141,7 @@ export function AdminCustomers() {
             <div className="max-h-[45rem] h-full bg-white flex justify-between py-6 px-12 flex-col ">
                 <div className="flex justify-between items-center">
                     <h4 className="text-lg">Customers</h4>
-                    <SearchInput onSearch={handleSearch} placeholder="Search Customers"/>
+                    <TableSearchInput placeholder="Search Customers"/>
                 </div>
 
                 <Table columns={columns} data={data}/>
