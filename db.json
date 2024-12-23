@@ -12116,19 +12116,7 @@
     {
       "id": "1",
       "userId": 1,
-      "products": [
-        {
-          "image": "https://i.imgur.com/LGk9Jn2.jpeg",
-          "name": "Sleek Smartwatch with Vibrant Display",
-          "price": 16,
-          "stock": 70,
-          "productId": 1,
-          "color": "blue",
-          "size": "S",
-          "quantity": 1,
-          "sku": "THR-96403blueS"
-        }
-      ]
+      "products": []
     },
     {
       "id": "2",
