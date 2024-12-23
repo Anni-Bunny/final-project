@@ -75,7 +75,7 @@ export function Homepage() {
                                 of clothing categories.</p>
                         </div>
                         <div>
-                            <Button className="inline" icon={"arrowRight"} title={"Start Browsing"}/>
+                            <Link to={"/products"}><Button className="inline" icon={"arrowRight"} title={"Start Browsing"}/></Link>
                         </div>
                     </div>
                     <img className="h-[19.438rem]" src="/images/categoryImage.png" alt=""/>
