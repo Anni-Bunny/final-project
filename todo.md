@@ -1,9 +1,6 @@
 
 global alert component and redux state
 
-pages: 
-homepage: input, subscribe, filter.
-categories: dropdown, navigate
-about
+homepage: subscribe.
 contact 
 products: filter
