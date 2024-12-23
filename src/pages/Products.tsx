@@ -60,7 +60,7 @@ export function Products() {
 
     //because I am using fake API I have to get all products and filter on my side
     function filterProducts(products : product[], query: any) {
-        products = products.filter(product => product.name.toLowerCase().includes(query) )
+        products = products.filter(product => product.name.toLowerCase().includes(query.toLowerCase()) )
         return products
     }
 
