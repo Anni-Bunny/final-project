@@ -9,23 +9,21 @@ import {Dropdown} from "./DropDown";
 import {Logout} from "./Logout";
 import {SearchInput} from "./SearchInput";
 import api from "../classes/API";
+import {category} from "../interfaces/category";
 
 export function Header() {
     const user = useSelector((state: RootState) => state.user.data)
-    const [categories, setCategories] = useState<string[]>([])
-    const [searchResults, setSearchResults] = useState<string[]>([]);
+    const [categories, setCategories] = useState<category[]>([])
 
     useEffect(() => {
         async function getCategories() {
             const categoriesRequest = await api.getCategories();
             if (categoriesRequest) {
-                const categoryNames = categoriesRequest.map((category: { name: string }) => category.name);
-                setCategories(categoryNames);
+                setCategories(categoriesRequest);
             }
         }
         getCategories();
     }, []);
-
 
     return (
         <Container className="h-20 border-b border-[#F6F6F6] bg-white flex justify-center items-center">
@@ -46,8 +44,8 @@ export function Header() {
                             <ul className="p-4 w-44 text-[#0E1422] flex flex-col gap-2">
                                 {
                                     categories.map((category, index) => (
-                                            <Link to="" key={index} className="hover:font-bold">
-                                                <li key={index}>{category}</li>
+                                            <Link to={`/products?category=${category.id}`} key={index} className="hover:font-bold" >
+                                                <li key={index}>{category.name}</li>
                                             </Link>
                                         )
                                     )
@@ -63,17 +61,7 @@ export function Header() {
                 </div>
                 <div className="flex gap-4 h-11 items-center justify-between">
 
-                    <div className="flex items-center relative">
-                        <SearchInput/>
-                        <ul className="mt-4 flex flex-col">
-                            {searchResults.map((result, index) => (
-                                <li key={index} className="absolute p-2 border-b border-gray-200 left-0 ">
-                                    {result}
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-
+                    <SearchInput/>
                     <CartDropDown/>
 
                     {
