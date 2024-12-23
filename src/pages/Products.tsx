@@ -1,5 +1,5 @@
 import {BreadCrumb} from "../components/BreadCrumb";
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import {ProductCard} from "../components/ProductCard";
 import React, {useEffect, useState} from "react";
 import api from "../classes/API";
@@ -12,6 +12,8 @@ import {SortDropdown} from "../components/SortDropdown";
 import {renponse} from "../interfaces/response";
 import {Pagination} from "../components/Pagination";
 import {topFunction} from "../Helpers/functions";
+import queryString from "query-string";
+import {product} from "../interfaces/product";
 
 interface selectedOptions {
     color?: string,
@@ -51,10 +53,33 @@ export function Products() {
     const sizes = ["S", "M", "L", "XL", "XXL"]
 
 
+    const location = useLocation();
+    const queryParams = queryString.parse(location.search);
+    const searchQuery = queryParams.search || "";
+
+
+    //because I am using fake API I have to get all products and filter on my side
+    function filterProducts(products : product[], query: any) {
+        products = products.filter(product => product.name.toLowerCase().includes(query) )
+        return products
+    }
+
+
     useEffect(() => {
         async function getProducts() {
-            const response = await api.getProducts({_sort: sortedBy, _page: selectedOptions.page, categoryIds: selectedCategoryId });
-            setResponse(response);
+
+            if (searchQuery) {
+                let response = await api.getProducts({_sort: sortedBy, categoryIds: selectedCategoryId });
+                response = filterProducts(response, searchQuery)
+
+                let paginatedResponse = defaultResponse
+                paginatedResponse.data = response
+                setResponse(paginatedResponse);
+
+            } else {
+                const response = await api.getProducts({_sort: sortedBy, _page: selectedOptions.page, categoryIds: selectedCategoryId });
+                setResponse(response);
+            }
         }
 
         async function getCategories() {
@@ -71,7 +96,7 @@ export function Products() {
         }
 
         topFunction()
-    }, [sortedBy, selectedOptions.page, selectedCategoryId]);
+    }, [sortedBy, selectedOptions.page, selectedCategoryId, searchQuery]);
 
 
     let links = [
@@ -147,7 +172,7 @@ export function Products() {
             <Container>
                 <div className="flex gap-5">
                     <div
-                        className="flex flex-col max-w-64 max-h-[51.75 rem] h-full w-full align-top border border-[#E6E7E8] py-6 px-4 gap-10">
+                        className="flex flex-col max-w-64 max-h-[51.75 rem] h-full w-full align-top border border-[#E6E7E8] py-6 px-4 gap-10 mb-16">
                         <div className="flex flex-col gap-4">
                             <h4>Categories</h4>
                             <div className="flex flex-col">
