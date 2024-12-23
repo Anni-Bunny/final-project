@@ -59,7 +59,7 @@ export function Products() {
 
     const searchQuery = queryParams.search || "";
 
-    const selectedCategory: string = String(queryParams.category) || "";
+    const selectedCategory: string = queryParams.category ? String(queryParams.category) : "";
 
     //because I am using fake API I have to get all products and filter on my side
     function filterProducts(products : product[], query: any) {
