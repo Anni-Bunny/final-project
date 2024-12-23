@@ -54,9 +54,12 @@ export function Products() {
 
 
     const location = useLocation();
+
     const queryParams = queryString.parse(location.search);
+
     const searchQuery = queryParams.search || "";
 
+    const selectedCategory: string = String(queryParams.category) || "";
 
     //because I am using fake API I have to get all products and filter on my side
     function filterProducts(products : product[], query: any) {
@@ -64,10 +67,15 @@ export function Products() {
         return products
     }
 
+    useEffect(() => {
+        if (selectedCategory) {
+            setSelectedCategoryId([selectedCategory])
+        }
+    }, [selectedCategory]);
+
 
     useEffect(() => {
         async function getProducts() {
-
             if (searchQuery) {
                 let response = await api.getProducts({_sort: sortedBy, categoryIds: selectedCategoryId });
                 response = filterProducts(response, searchQuery)
