@@ -1,7 +1,7 @@
 import {Tabs} from "./TabSwitcher";
 import {Button} from "./Button";
-import React, {useState} from "react";
-import {useNavigate} from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import {useLocation, useNavigate} from "react-router-dom";
 
 export function AdminSideBar() {
     let navigate = useNavigate();
@@ -15,6 +15,14 @@ export function AdminSideBar() {
     ];
 
     const [currentTab, setCurrentTab] = useState<string>(tabs[0].name);
+
+    const location = useLocation();
+
+    console.log(location)
+
+    useEffect(() => {
+        setCurrentTab(location.pathname.replace("/admin/",''))
+    }, [location]);
 
     function onChangePage(event: React.MouseEvent<HTMLButtonElement>) {
         setCurrentTab(event.currentTarget.name);
