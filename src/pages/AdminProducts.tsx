@@ -8,6 +8,7 @@ import {Icon} from "../components/Icon";
 import {Pagination} from "../components/Pagination";
 import Table from "../components/Table"
 import {keyboard} from "@testing-library/user-event/dist/keyboard";
+import {TableSearchInput} from "../components/TableSearchInput";
 
 interface Data {
     image: ReactNode,
@@ -53,17 +54,6 @@ export function AdminProducts() {
     const [sortTitle, setSortTitle] = useState('Date desc');
     const [data, setData] = useState<Data[]>([])
 
-    const handleSearch = (query: string) => {
-        // Perform your search logic here, for example:
-        // Fetch results from an API, or filter data.
-        console.log('Searching for:', query);
-
-        // Example of updating search results (simulated data)
-        const results = ['apple', 'banana', 'orange', 'grape', 'watermelon'].filter(item =>
-            item.toLowerCase().includes(query.toLowerCase())
-        );
-        setSearchResults(results);
-    };
 
     function resetPage() {
         setSelectedOptions(state => (
@@ -155,7 +145,7 @@ export function AdminProducts() {
             <div className="max-h-[45rem] h-full bg-white flex justify-between py-6 px-12 flex-col ">
                 <div className="flex justify-between items-center">
                     <h4 className="text-lg">Products</h4>
-                    <SearchInput onSearch={handleSearch} placeholder="Search product"/>
+                    <TableSearchInput placeholder="Search product"/>
                 </div>
 
                 <Table columns={columns} data={data} />
