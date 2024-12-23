@@ -119,7 +119,7 @@ export function AdminDashboard() {
     ];
 
     function ViewAllOrders() {
-        navigate('/admin/Orders')
+        navigate('/admin/orders')
     }
 
     const [doughnutDataSet, setDoughnutDataSet] = useState({
