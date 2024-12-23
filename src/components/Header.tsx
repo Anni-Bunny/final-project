@@ -1,5 +1,4 @@
 import {Link} from "react-router-dom";
-import {Icon} from "./Icon";
 import {Container} from "./Container";
 import {CartDropDown} from "./CartDropDown";
 import {useSelector} from "react-redux";
@@ -14,7 +13,6 @@ import api from "../classes/API";
 export function Header() {
     const user = useSelector((state: RootState) => state.user.data)
     const [categories, setCategories] = useState<string[]>([])
-
     const [searchResults, setSearchResults] = useState<string[]>([]);
 
     useEffect(() => {
@@ -28,17 +26,6 @@ export function Header() {
         getCategories();
     }, []);
 
-    const handleSearch = (query: string) => {
-        // Perform your search logic here, for example:
-        // Fetch results from an API, or filter data.
-        console.log('Searching for:', query);
-
-        // Example of updating search results (simulated data)
-        const results = ['apple', 'banana', 'orange', 'grape', 'watermelon'].filter(item =>
-            item.toLowerCase().includes(query.toLowerCase())
-        );
-        setSearchResults(results);
-    };
 
     return (
         <Container className="h-20 border-b border-[#F6F6F6] bg-white flex justify-center items-center">
@@ -77,7 +64,7 @@ export function Header() {
                 <div className="flex gap-4 h-11 items-center justify-between">
 
                     <div className="flex items-center relative">
-                        <SearchInput onSearch={handleSearch} placeholder="Search..."/>
+                        <SearchInput/>
                         <ul className="mt-4 flex flex-col">
                             {searchResults.map((result, index) => (
                                 <li key={index} className="absolute p-2 border-b border-gray-200 left-0 ">
