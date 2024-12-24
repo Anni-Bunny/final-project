@@ -16149,5 +16149,17 @@
       "userId": "e7cb",
       "products": []
     }
+  ],
+  "admins": [
+    {
+      "id": "0",
+      "email": "anibunny@gmail.com",
+      "username": "username",
+      "password": "123",
+      "name": {
+        "firstname": "ani",
+        "lastname": "maghradze"
+      }
+    }
   ]
 }
