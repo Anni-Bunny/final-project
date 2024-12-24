@@ -5,6 +5,7 @@ import {wishList} from "../interfaces/wishList";
 import {details} from "../components/UserAccountDetails";
 import {order} from "../interfaces/order";
 import {review} from "../interfaces/review";
+import {admin, name} from "../interfaces/admin";
 
 export interface reviewParams {
     id?: number | string,
@@ -182,6 +183,18 @@ class API {
         }
         return await this.getRequest(url);
     }
+
+    async getAdmins({id, email, password}: admin) {
+        let url = 'admins'
+        if (id) {
+            url += `/${encodeURIComponent(id)}`
+        } else if (email && password) {
+            url += `?email=${encodeURIComponent(email ?? '')}&password=${encodeURIComponent(password ?? '')}`
+        }
+        return await this.getRequest(url);
+    }
+
+
 
     async getProducts({id, _sort, _limit = 9, _page, _per_page = 9, categoryIds}: productParams = {}) {
         let url = 'products'
