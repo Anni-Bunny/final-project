@@ -56,7 +56,6 @@ export function Header() {
                         />
 
                         <Link to={"/about"} className="hover:text-black">About</Link>
-                        <Link to={"/contact"} className="hover:text-black">Contact</Link>
                     </div>
                 </div>
                 <div className="flex gap-4 h-11 items-center justify-between">
