@@ -3,7 +3,8 @@ import {Container} from "../components/Container";
 import {Button} from "../components/Button";
 import {Link, useNavigate} from "react-router-dom";
 import {Input} from "../components/Input";
-import {userLoginForm} from "../store/slices/userSlice";
+import {login, userLoginForm} from "../store/slices/userSlice";
+import api from "../classes/API";
 
 
 export function AdminLogin() {
@@ -24,11 +25,23 @@ export function AdminLogin() {
         }))
     }
 
+    async function loginAdmin(event: React.FormEvent<HTMLFormElement>) {
+        event.preventDefault()
+        const response = await api.getAdmins(loginForm)
+        const loginAdmin = response[0]
+        if (loginAdmin) {
+            navigate('/admin/dashboard')
+
+        } else {
+            setError('Email or password is wrong')
+        }
+    }
+
 
     return (
         <div className="flex h-screen ">
             <Container>
-                <form
+                <form onSubmit={loginAdmin}
                     className="flex flex-col items-center justify-center max-w-96 w-full mx-auto border border-[#E9E9EB] rounded-lg p-8">
 
                     <div className="flex items-center justify-center gap-2 w-full mb-16">
