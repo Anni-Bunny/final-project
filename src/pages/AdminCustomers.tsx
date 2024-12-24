@@ -1,14 +1,11 @@
 import {BreadCrumb} from "../components/BreadCrumb";
 import React, {ReactNode, useEffect, useState} from "react";
-import {SearchInput} from "../components/SearchInput";
 import {renponse} from "../interfaces/response";
 import api from "../classes/API";
 import {topFunction} from "../Helpers/functions";
 import {Icon} from "../components/Icon";
 import {Pagination} from "../components/Pagination";
 import Table from "../components/Table"
-import {keyboard} from "@testing-library/user-event/dist/keyboard";
-import {order} from "../interfaces/order";
 import {TableSearchInput} from "../components/TableSearchInput";
 
 interface Data {
@@ -52,7 +49,7 @@ export function AdminCustomers() {
     const [selectedOptions, setSelectedOptions] = useState<selectedOptions>({page: 1})
     const [sortTitle, setSortTitle] = useState('Date desc');
     const [data, setData] = useState<Data[]>([])
-    
+
 
     function resetPage() {
         setSelectedOptions(state => (
