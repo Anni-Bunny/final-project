@@ -38,6 +38,7 @@ export function InfoTabsSwitcher({product}:InfoTabsSwitcherProps) {
             contentClassName={contentClassName}
             btnType="LightGrayBtn"
             iconPosition={"start"}
+            btnDivClassName={"py-20"}
         />
     );
 }
