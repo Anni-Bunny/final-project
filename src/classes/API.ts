@@ -5,7 +5,7 @@ import {wishList} from "../interfaces/wishList";
 import {details} from "../components/UserAccountDetails";
 import {order} from "../interfaces/order";
 import {review} from "../interfaces/review";
-import {admin, name} from "../interfaces/admin";
+import {admin} from "../interfaces/admin";
 
 export interface reviewParams {
     id?: number | string,
@@ -193,8 +193,6 @@ class API {
         }
         return await this.getRequest(url);
     }
-
-
 
     async getProducts({id, _sort, _limit = 9, _page, _per_page = 9, categoryIds}: productParams = {}) {
         let url = 'products'
