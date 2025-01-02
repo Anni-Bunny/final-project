@@ -142,19 +142,19 @@ export function AdminProducts() {
         <div className='flex flex-col gap-16 h-full'>
             <BreadCrumb isInContainer={false} className="" links={links}/>
 
-            <div className="max-h-[45rem] h-full bg-white flex justify-between py-6 px-12 flex-col ">
-                <div className="flex justify-between items-center">
+            <div className="max-h-[45rem] h-full bg-white py-6 px-12 flex-col relative">
+                <div className="flex justify-between items-center mb-6">
                     <h4 className="text-lg">Products</h4>
                     <TableSearchInput placeholder="Search product"/>
                 </div>
 
                 <Table columns={columns} data={data} />
 
-                <>
+                <div className="absolute bottom-10 right-12">
                     {response.pages &&
                         <Pagination pageCount={response.pages} className="w-full justify-end" onChange={onChangeRadio}
                                     selectedOptionsPage={selectedOptions.page}/>}
-                </>
+                </div>
             </div>
         </div>
     );
