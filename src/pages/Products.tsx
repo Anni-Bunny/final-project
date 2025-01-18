@@ -76,18 +76,8 @@ export function Products() {
 
     useEffect(() => {
         async function getProducts() {
-            if (searchQuery) {
-                let response = await api.getProducts({_sort: sortedBy, categoryIds: selectedCategoryId });
-                response = filterProducts(response, searchQuery)
-
-                let paginatedResponse = defaultResponse
-                paginatedResponse.data = response
-                setResponse(paginatedResponse);
-
-            } else {
-                const response = await api.getProducts({_sort: sortedBy, _page: selectedOptions.page, categoryIds: selectedCategoryId });
-                setResponse(response);
-            }
+            const response = await api.getProducts({_sort: sortedBy, _page: selectedOptions.page, categoryIds: selectedCategoryId, _name: String(searchQuery) });
+            setResponse(response);
         }
 
         async function getCategories() {

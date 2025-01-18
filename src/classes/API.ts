@@ -18,6 +18,7 @@ export interface reviewParams {
 export interface productParams {
     id?: number | string,
     _sort?: string,
+    _name?: string,
     _limit?: number,
     _page?: number | string,
     _per_page?: number | string,
@@ -69,7 +70,7 @@ export interface updateUserDetailsParams {
 
 class API {
     private static instance: API;
-    private URL: string = 'http://localhost:3001/'; // Ensure the protocol is included
+    private URL: string = 'https://fake-api-beta-mauve.vercel.app/'; // Ensure the protocol is included
 
     private constructor() {
     } // Private constructor to prevent instantiation
@@ -194,7 +195,7 @@ class API {
         return await this.getRequest(url);
     }
 
-    async getProducts({id, _sort, _limit = 9, _page, _per_page = 9, categoryIds}: productParams = {}) {
+    async getProducts({id, _sort, _limit = 9, _page, _per_page = 9, categoryIds, _name}: productParams = {}) {
         let url = 'products'
         if (id) {
 
@@ -210,9 +211,15 @@ class API {
 
         }
         if (categoryIds && categoryIds.length > 0) {
-            const categoryQuery = categoryIds.map(id => `${encodeURIComponent(id)}`).join(',');
+            const categoryQuery = categoryIds.map(id => `${encodeURIComponent(id)}`).join('|');
             url += `&category.id=${categoryQuery}`;
         }
+
+        if (_name) {
+            _name = encodeURIComponent('%' + _name + '%')
+            url += `&name=${_name}`
+        }
+
         return await this.getRequest(url);
     }
 
