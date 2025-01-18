@@ -12116,7 +12116,19 @@
     {
       "id": "1",
       "userId": 1,
-      "products": []
+      "products": [
+        {
+          "image": "https://i.imgur.com/YaSqa06.jpeg",
+          "name": "Stylish Red & Silver Over-Ear Headphones",
+          "price": 39,
+          "stock": 52,
+          "productId": 0,
+          "color": "blue",
+          "size": "S",
+          "quantity": 1,
+          "sku": "CHG-38634blueS"
+        }
+      ]
     },
     {
       "id": "2",
@@ -16278,6 +16290,44 @@
           "color": "blue",
           "quantity": 1,
           "sku": "CHG-38634blueS"
+        }
+      ],
+      "address": {
+        "street": "dsdsdsdsdsds",
+        "city": "Lindseyshire",
+        "state": "Lao People's Democratic Republic",
+        "zipcode": "72256",
+        "country": "Antarctica (the territory South of 60 deg S)",
+        "firstname": "ani",
+        "lastname": "maghradze"
+      }
+    },
+    {
+      "id": "2632",
+      "userId": "1",
+      "status": "processing",
+      "tax": 3,
+      "createdAt": "2025-01-04",
+      "products": [
+        {
+          "image": "https://i.imgur.com/YaSqa06.jpeg",
+          "name": "Stylish Red & Silver Over-Ear Headphones",
+          "price": 39,
+          "productId": 0,
+          "size": "S",
+          "color": "yellow",
+          "quantity": 3,
+          "sku": "CHG-38634yellowS"
+        },
+        {
+          "image": "https://i.imgur.com/LGk9Jn2.jpeg",
+          "name": "Sleek Smartwatch with Vibrant Display",
+          "price": 16,
+          "productId": 1,
+          "size": "M",
+          "color": "blue",
+          "quantity": 1,
+          "sku": "THR-96403blueM"
         }
       ],
       "address": {
